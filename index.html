@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pea Pod Network – a cozy home for personal shortcuts and self-hosted services." />
+  <meta name="theme-color" content="#1a2e1a" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Pea Pod Network" />
+  <meta property="og:description" content="A cozy home for personal shortcuts and self-hosted services." />
+  <meta property="og:image"       content="https://ks1686.github.io/og-image.png" />
+
+  <!-- Cloudflare-compatible: no server-side rendering required, plain static HTML -->
+  <title>Pea Pod Network</title>
+
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Favicon – simple SVG pea pod -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫛</text></svg>" />
+</head>
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+    <div class="bg-orb bg-orb--3"></div>
+  </div>
+
+  <div class="page-wrapper">
+
+    <!-- ================================================================
+         HEADER
+         ================================================================ -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <a href="/" class="logo" aria-label="Pea Pod Network home">
+          <span class="logo-icon" aria-hidden="true">🫛</span>
+          <span>
+            <span class="logo-text">Pea Pod</span>
+            <span class="logo-subtitle">Network</span>
+          </span>
+        </a>
+
+        <div class="header-status" aria-label="Network status: online">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>Online</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================================================================
+         MAIN CONTENT
+         ================================================================ -->
+    <main id="main-content">
+
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <span class="hero-emoji" aria-hidden="true">🫛</span>
+        <h1 class="hero-title" id="hero-title">
+          Welcome to the<br />
+          <span class="highlight">Pea Pod Network</span>
+        </h1>
+        <p class="hero-description">
+          A cozy, green corner of the internet — quick access to my profiles
+          and a home for self-hosted services.
+        </p>
+      </section>
+
+      <!-- ──────────────────────────────────────────────────────────────
+           PROFILE SHORTCUTS
+           ──────────────────────────────────────────────────────────────-->
+      <section aria-labelledby="profile-heading">
+        <div class="section-header">
+          <h2 class="section-title" id="profile-heading">Profiles &amp; Links</h2>
+          <span class="section-line" aria-hidden="true"></span>
+        </div>
+
+        <div class="cards-grid" role="list">
+
+          <!-- Resume -->
+          <a
+            href="https://ks1686.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shortcut-card"
+            role="listitem"
+            aria-label="Open resume at ks1686.github.io"
+          >
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-icon-wrap" aria-hidden="true">📄</div>
+            <div class="card-content">
+              <div class="card-title">Resume</div>
+              <p class="card-description">
+                My interactive résumé — projects, experience, and skills.
+              </p>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">ks1686.github.io</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+          <!-- GitHub -->
+          <a
+            href="https://github.com/ks1686"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shortcut-card"
+            role="listitem"
+            aria-label="Open GitHub profile"
+          >
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-icon-wrap" aria-hidden="true">🐙</div>
+            <div class="card-content">
+              <div class="card-title">GitHub</div>
+              <p class="card-description">
+                Open-source projects, repositories, and contributions.
+              </p>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">github.com/ks1686</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://linkedin.com/in/ks1686"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shortcut-card"
+            role="listitem"
+            aria-label="Open LinkedIn profile"
+          >
+            <span class="card-shine" aria-hidden="true"></span>
+            <div class="card-icon-wrap" aria-hidden="true">💼</div>
+            <div class="card-content">
+              <div class="card-title">LinkedIn</div>
+              <p class="card-description">
+                Professional network, work history, and endorsements.
+              </p>
+            </div>
+            <div class="card-footer">
+              <span class="card-tag">linkedin.com/in/ks1686</span>
+              <span class="card-arrow" aria-hidden="true">↗</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <hr class="section-divider" aria-hidden="true" />
+
+      <!-- ──────────────────────────────────────────────────────────────
+           SELF-HOSTED SERVICES (dynamically populated by app.js)
+           Add entries to CONFIG.services in js/app.js to activate.
+           ──────────────────────────────────────────────────────────────-->
+      <section
+        id="services-section"
+        aria-labelledby="services-heading"
+        hidden
+      >
+        <div class="section-header">
+          <h2 class="section-title" id="services-heading">Self-Hosted Services</h2>
+          <span class="section-line" aria-hidden="true"></span>
+        </div>
+
+        <div class="cards-grid" id="services-grid" role="list">
+          <!-- Cards injected by app.js -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="footer-inner">
+        <span>🫛 Pea Pod Network</span>
+        <span class="footer-sep">·</span>
+        <span id="footer-clock" aria-label="Current time"></span>
+        <span class="footer-sep">·</span>
+        <span>Hosted on GitHub Pages &amp; Cloudflare</span>
+      </div>
+    </footer>
+
+  </div><!-- /.page-wrapper -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>
