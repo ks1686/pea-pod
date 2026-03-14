@@ -327,6 +327,12 @@ header {
   border-color: #fde047;
 }
 
+.badge.public {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
 /* ---- Sections ---- */
 .section {
   margin-bottom: 3.5rem;
