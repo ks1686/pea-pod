@@ -104,11 +104,8 @@
 
         <!-- ---- Self-Hosted Services ---- -->
         <!-- 
-          To activate a service:
-            1. Set data-url="https://your-service.domain"
-            2. Update the badge text to "Online"
-            3. Add class "online" to the badge, remove "coming-soon"
-          The JS in app.js will automatically make the card clickable.
+          Private services: only accessible on the internal network.
+          The JS in app.js automatically makes cards with data-url clickable.
         -->
         <section class="section" aria-labelledby="services-heading">
           <div class="section-label" id="services-heading">
@@ -116,32 +113,39 @@
           </div>
 
           <div class="services-grid">
-            <!-- Placeholder 1 -->
-            <div class="card service-card" aria-label="Service coming soon">
-              <span class="card-icon" aria-hidden="true">🖥️</span>
-              <span class="card-title">Service 1</span>
-              <span class="badge coming-soon">Coming Soon</span>
+            <!-- Forgejo -->
+            <div class="card service-card" data-url="https://forgejo.pea-pod.me" aria-label="Open Forgejo — private service">
+              <span class="card-icon" aria-hidden="true">⚗️</span>
+              <span class="card-title">Forgejo</span>
+              <span class="badge private">Private</span>
             </div>
 
-            <!-- Placeholder 2 -->
-            <div class="card service-card" aria-label="Service coming soon">
-              <span class="card-icon" aria-hidden="true">📦</span>
-              <span class="card-title">Service 2</span>
-              <span class="badge coming-soon">Coming Soon</span>
+            <!-- Homebridge -->
+            <div class="card service-card" data-url="https://homebridge.pea-pod.me" aria-label="Open Homebridge — private service">
+              <span class="card-icon" aria-hidden="true">🏠</span>
+              <span class="card-title">Homebridge</span>
+              <span class="badge private">Private</span>
             </div>
 
-            <!-- Placeholder 3 -->
-            <div class="card service-card" aria-label="Service coming soon">
-              <span class="card-icon" aria-hidden="true">📡</span>
-              <span class="card-title">Service 3</span>
-              <span class="badge coming-soon">Coming Soon</span>
+            <!-- code-server -->
+            <div class="card service-card" data-url="https://code.pea-pod.me" aria-label="Open code-server — private service">
+              <span class="card-icon" aria-hidden="true">💻</span>
+              <span class="card-title">code-server</span>
+              <span class="badge private">Private</span>
             </div>
 
-            <!-- Placeholder 4 -->
-            <div class="card service-card" aria-label="Service coming soon">
-              <span class="card-icon" aria-hidden="true">🔒</span>
-              <span class="card-title">Service 4</span>
-              <span class="badge coming-soon">Coming Soon</span>
+            <!-- Obsidian -->
+            <div class="card service-card" data-url="https://obsidian.pea-pod.me" aria-label="Open Obsidian — private service">
+              <span class="card-icon" aria-hidden="true">📓</span>
+              <span class="card-title">Obsidian</span>
+              <span class="badge private">Private</span>
+            </div>
+
+            <!-- AdGuard -->
+            <div class="card service-card" data-url="https://adguard.pea-pod.me" aria-label="Open AdGuard — private service">
+              <span class="card-icon" aria-hidden="true">🛡️</span>
+              <span class="card-title">AdGuard</span>
+              <span class="badge private">Private</span>
             </div>
           </div>
         </section>
