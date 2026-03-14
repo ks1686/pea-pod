@@ -321,6 +321,12 @@ header {
   border-color: #86efac;
 }
 
+.badge.private {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: #fde047;
+}
+
 /* ---- Sections ---- */
 .section {
   margin-bottom: 3.5rem;
