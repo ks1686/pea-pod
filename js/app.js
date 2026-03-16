@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initCardRipple();
   initServiceCards();
+  initBurgerMenu();
 });
 
 /**
@@ -102,3 +103,61 @@ function initServiceCards() {
   `;
   document.head.appendChild(style);
 })();
+
+/**
+ * Burger menu — toggles a left-side drawer with section quick-links.
+ */
+function initBurgerMenu() {
+  const burgerBtn = document.getElementById('burger-btn');
+  const sideMenu = document.getElementById('side-menu');
+  const overlay = document.getElementById('menu-overlay');
+  const closeBtn = document.getElementById('side-menu-close');
+
+  if (!burgerBtn || !sideMenu || !overlay || !closeBtn) return;
+
+  function openMenu() {
+    sideMenu.classList.add('open');
+    overlay.classList.add('open');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    sideMenu.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeMenu() {
+    sideMenu.classList.remove('open');
+    overlay.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    sideMenu.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    burgerBtn.focus();
+  }
+
+  burgerBtn.addEventListener('click', () => {
+    if (sideMenu.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideMenu.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+
+  // Close the menu when an anchor link is clicked (in-page or cross-page with hash)
+  sideMenu.querySelectorAll('.side-menu-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (link.hash) {
+        closeMenu();
+      }
+    });
+  });
+}
