@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="GPM — The Global Package Manager. Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
-    <meta name="theme-color" content="#4ade80" />
+    <meta name="theme-color" content="#000000" />
 
     <!-- Open Graph / Social preview -->
     <meta property="og:type" content="website" />
@@ -188,7 +188,7 @@
               <span class="gpm-feature-icon" aria-hidden="true">📄</span>
               <p class="gpm-feature-title">Declarative gpm.json</p>
               <p class="gpm-feature-desc">
-                Declare your packages in a single <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> file. Commit it, share it, version it — reproduce your environment anywhere.
+                Declare your packages in a single <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> file. Commit it, share it, version it — reproduce your environment anywhere.
               </p>
             </div>
             <div class="gpm-feature-card">
@@ -202,14 +202,14 @@
               <span class="gpm-feature-icon" aria-hidden="true">🔒</span>
               <p class="gpm-feature-title">Version Pinning</p>
               <p class="gpm-feature-desc">
-                Pin exact versions with semver constraints like <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">0.10.*</code>, or use <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">*</code> for always-latest. Reproducibility is first-class.
+                Pin exact versions with semver constraints like <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">0.10.*</code>, or use <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">*</code> for always-latest. Reproducibility is first-class.
               </p>
             </div>
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">👁️</span>
               <p class="gpm-feature-title">Dry-Run First</p>
               <p class="gpm-feature-desc">
-                Preview exactly what commands will run before committing. <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm install --dry-run</code> builds a full plan and shows it to you.
+                Preview exactly what commands will run before committing. <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm install --dry-run</code> builds a full plan and shows it to you.
               </p>
             </div>
             <div class="gpm-feature-card">
@@ -273,7 +273,7 @@ gpm add firefox --manager flatpak
 <span class="comment"># See what's tracked</span>
 gpm list
 
-<span class="comment"># Preview the install plan, then install</span>
+<span class="comment"># Install everything (dry-run first by default)</span>
 gpm install --dry-run
 gpm install</pre>
         </section>
@@ -289,7 +289,7 @@ gpm install [--dry-run] [--strict]
 gpm list
 gpm status          <span class="comment"># diff current host state against gpm.json</span></pre>
           <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.6rem;">
-            <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">--strict</code>
+            <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--strict</code>
             fails immediately if any package cannot be resolved. Without it, GPM warns and continues.
           </p>
         </section>
@@ -324,19 +324,19 @@ gpm status          <span class="comment"># diff current host state against gpm.
 }</pre>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
-              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">id</code>
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">id</code>
               — canonical name for the package (used by gpm)
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
-              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">version</code>
-              — version constraint; <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">"*"</code> means latest
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">version</code>
+              — version constraint; <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"*"</code> means latest
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
-              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">prefer</code>
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">prefer</code>
               — optional hint for which manager to use first
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
-              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">managers</code>
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">managers</code>
               — optional map of manager-specific identifiers for packages with different names across managers
             </li>
           </ul>
@@ -361,7 +361,7 @@ gpm status          <span class="comment"># diff current host state against gpm.
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">3️⃣</span>
               <p class="gpm-feature-title">Score</p>
-              <p class="gpm-feature-desc">Candidates are ranked by your <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">prefer</code> hint, then by built-in OS priority.</p>
+              <p class="gpm-feature-desc">Candidates are ranked by your <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">prefer</code> hint, then by built-in OS priority.</p>
             </div>
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">4️⃣</span>
@@ -379,7 +379,7 @@ gpm status          <span class="comment"># diff current host state against gpm.
           <ul class="gpm-roadmap-list" aria-label="Roadmap milestones">
             <li>
               <span class="milestone-badge">M1</span>
-              <span class="milestone-text">Core CLI and <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> spec validation</span>
+              <span class="milestone-text">Core CLI and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> spec validation</span>
             </li>
             <li>
               <span class="milestone-badge">M2</span>
@@ -387,7 +387,7 @@ gpm status          <span class="comment"># diff current host state against gpm.
             </li>
             <li>
               <span class="milestone-badge">M3</span>
-              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file support, and <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
+              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file support, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
             </li>
             <li>
               <span class="milestone-badge">M4</span>
