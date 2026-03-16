@@ -1,21 +1,368 @@
 /* =============================================
    GPM — Global Package Manager
-   Background override: neutral gray instead of green
+   Dark mode monochrome theme
    ============================================= */
 
-body {
-  background-color: #f5f5f5;
+/* ---- CSS Variable Overrides (dark grayscale) ---- */
+:root {
+  --green-50:  #0f0f0f;
+  --green-100: #1a1a1a;
+  --green-200: #2e2e2e;
+  --green-300: #464646;
+  --green-400: #5e5e5e;
+  --green-500: #7a7a7a;
+  --green-600: #9a9a9a;
+  --green-700: #b8b8b8;
+  --green-800: #d4d4d4;
+  --green-900: #eeeeee;
+  --green-950: #f9f9f9;
+
+  --card-bg: rgba(20, 20, 20, 0.9);
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+
+  --gpm-text-muted: #9a9a9a;
+  --gpm-accent: #c0c0c0;
 }
 
-/* ---- Background blobs (gray tones instead of green) ---- */
-.blob-1 {
-  background: radial-gradient(circle, #d4d4d4, #b8b8b8);
+/* ---- Hard-coded color overrides ---- */
+.card {
+  border-color: rgba(70, 70, 70, 0.5);
 }
 
-.blob-2 {
-  background: radial-gradient(circle, #e0e0e0, #c8c8c8);
+.card::before {
+  background: linear-gradient(135deg, rgba(80, 80, 80, 0.10), rgba(60, 60, 60, 0.05));
 }
 
-.blob-3 {
-  background: radial-gradient(circle, #e8e8e8, #d4d4d4);
+.card.service-card:hover,
+.card.service-card:focus-visible {
+  border-color: rgba(70, 70, 70, 0.5);
+}
+
+.burger-btn {
+  border-color: rgba(70, 70, 70, 0.5);
+}
+
+.logo-icon {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.menu-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.changelog-body {
+  border-color: rgba(70, 70, 70, 0.5);
+}
+
+/* ---- GPM Hero Tagline ---- */
+.gpm-hero-tagline {
+  font-size: 1.05rem;
+  color: var(--gpm-text-muted);
+  margin-bottom: 1.25rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* ---- Install Command Block ---- */
+.gpm-install-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.5rem;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--green-900);
+  letter-spacing: 0.01em;
+  user-select: all;
+  cursor: text;
+}
+
+.gpm-install-block .prompt {
+  color: var(--gpm-accent);
+  font-weight: 700;
+  user-select: none;
+}
+
+/* ---- CTA Buttons ---- */
+.gpm-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: rgba(80, 80, 80, 0.85);
+  color: #f0f0f0;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(120, 120, 120, 0.5);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: rgba(105, 105, 105, 0.9);
+  border-color: rgba(160, 160, 160, 0.6);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: transparent;
+  color: var(--green-800);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(70, 70, 70, 0.55);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: rgba(50, 50, 50, 0.6);
+  border-color: rgba(120, 120, 120, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ---- Features Grid ---- */
+.gpm-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ---- Feature Cards ---- */
+.gpm-feature-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: var(--transition);
+  animation: fadeUp 0.6s ease both;
+}
+
+.gpm-feature-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--card-hover-shadow);
+  border-color: rgba(110, 110, 110, 0.55);
+}
+
+.gpm-feature-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.gpm-feature-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green-800);
+}
+
+.gpm-feature-desc {
+  font-size: 0.88rem;
+  color: var(--gpm-text-muted);
+  line-height: 1.6;
+}
+
+/* ---- Platforms Table ---- */
+.gpm-platform-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.gpm-platform-table th {
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gpm-accent);
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(70, 70, 70, 0.5);
+}
+
+.gpm-platform-table td {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--green-900);
+  border-bottom: 1px solid rgba(50, 50, 50, 0.5);
+}
+
+.gpm-platform-table tr:last-child td {
+  border-bottom: none;
+}
+
+.gpm-platform-table tr:hover td {
+  background: rgba(55, 55, 55, 0.3);
+}
+
+.code-tag {
+  display: inline-block;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(80, 80, 80, 0.5);
+  border-radius: 0.3rem;
+  color: var(--gpm-accent);
+  margin: 0.1em 0.2em;
+}
+
+/* ---- Code Blocks ---- */
+.gpm-code-block {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: 0.875rem;
+  padding: 1.4rem 1.5rem;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.875rem;
+  color: #e0e0e0;
+  line-height: 1.75;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+  box-shadow: var(--card-shadow);
+}
+
+.gpm-code-block .comment {
+  color: #6a6a6a;
+  font-style: italic;
+}
+
+/* ---- Roadmap List ---- */
+.gpm-roadmap-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gpm-roadmap-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--card-bg);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: 0.875rem;
+  transition: var(--transition);
+}
+
+.gpm-roadmap-list li:hover {
+  border-color: rgba(110, 110, 110, 0.55);
+  box-shadow: var(--card-shadow);
+}
+
+.milestone-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2rem;
+  height: 1.7rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 0.5em;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(100, 100, 100, 0.5);
+  border-radius: 999px;
+  color: var(--gpm-accent);
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+
+.milestone-text {
+  font-size: 0.9rem;
+  color: var(--green-800);
+  line-height: 1.5;
+}
+
+/* ---- CTA Section ---- */
+.gpm-cta {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(70, 70, 70, 0.5);
+  border-radius: var(--border-radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+.gpm-cta-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--green-900);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+.gpm-cta-desc {
+  font-size: 0.95rem;
+  color: var(--gpm-text-muted);
+  max-width: 540px;
+  margin: 0 auto 0.5rem;
+  line-height: 1.6;
+}
+
+/* ---- Announcement Banner (dark gradient) ---- */
+.announcement-banner {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
+  border-bottom: 1px solid rgba(70, 70, 70, 0.5);
+}
+
+/* ---- Side Menu Section Label ---- */
+.side-menu-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gpm-text-muted);
+  padding: 0.9rem 1.5rem 0.4rem;
+  margin: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .gpm-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpm-cta {
+    padding: 2rem 1.25rem;
+  }
+
+  .gpm-install-block {
+    font-size: 0.82rem;
+    padding: 0.75rem 1.1rem;
+  }
 }
