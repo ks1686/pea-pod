@@ -5,7 +5,7 @@
 
 /* ---- Dark mode overrides ---- */
 :root {
-  --gpm-bg: #0b1a12;
+  --gpm-bg: #000000;
   --gpm-surface: rgba(255, 255, 255, 0.05);
   --gpm-surface-hover: rgba(255, 255, 255, 0.09);
   --gpm-border: rgba(74, 222, 128, 0.2);
@@ -16,7 +16,7 @@
   --gpm-accent-dim: rgba(74, 222, 128, 0.15);
   --gpm-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   --gpm-shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
-  --gpm-code-bg: rgba(0, 0, 0, 0.45);
+  --gpm-code-bg: rgba(255, 255, 255, 0.06);
   --gpm-heading: #86efac;
 }
 
@@ -70,7 +70,7 @@ body {
 
 /* ---- Side menu ---- */
 .side-menu {
-  background: #0f2318;
+  background: #111111;
   border-right-color: rgba(74, 222, 128, 0.15);
 }
 
@@ -111,6 +111,18 @@ body {
 /* ---- Menu overlay ---- */
 .menu-overlay {
   background: rgba(0, 0, 0, 0.65);
+}
+
+/* ---- In-page section shortcuts divider ---- */
+.side-menu-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gpm-text-muted);
+  padding: 0.85rem 1.5rem 0.35rem;
+  border-top: 1px solid rgba(74, 222, 128, 0.12);
+  margin-top: 0.35rem;
 }
 
 /* ---- Section labels ---- */
@@ -384,7 +396,7 @@ footer a {
   gap: 0.45rem;
   padding: 0.65rem 1.5rem;
   background: var(--gpm-accent);
-  color: #0b1a12;
+  color: #000000;
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 700;
