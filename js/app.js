@@ -123,7 +123,7 @@ function initAnnouncementBanner() {
     localStorage.setItem('gpm-banner-dismissed', '1');
   });
 }
- */
+
 function initBurgerMenu() {
   const burgerBtn = document.getElementById('burger-btn');
   const sideMenu = document.getElementById('side-menu');
