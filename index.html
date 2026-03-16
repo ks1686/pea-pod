@@ -35,6 +35,44 @@
       <div class="blob blob-3"></div>
     </div>
 
+    <!-- ========== Burger Menu ========== -->
+    <button class="burger-btn" id="burger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="side-menu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <!-- Menu backdrop -->
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+    <!-- Side drawer -->
+    <nav class="side-menu" id="side-menu" aria-label="Site navigation" aria-hidden="true">
+      <div class="side-menu-header">
+        <span class="side-menu-title">Navigation</span>
+        <button class="side-menu-close" id="side-menu-close" aria-label="Close navigation menu">✕</button>
+      </div>
+      <ul class="side-menu-list">
+        <li>
+          <a class="side-menu-link" href="#karim-work">
+            <span class="side-menu-icon" aria-hidden="true">🌟</span>
+            <span>Karim's Work</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="#self-hosted">
+            <span class="side-menu-icon" aria-hidden="true">🖥️</span>
+            <span>Self-Hosted Services</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="/changelogs">
+            <span class="side-menu-icon" aria-hidden="true">📋</span>
+            <span>Changelogs</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
     <!-- ========== Header ========== -->
     <header>
       <div class="container">
@@ -51,9 +89,9 @@
       <div class="container">
 
         <!-- ---- Profile Shortcuts ---- -->
-        <section class="section" aria-labelledby="profile-heading">
+        <section id="karim-work" class="section" aria-labelledby="profile-heading">
           <div class="section-label" id="profile-heading">
-            <span>Quick Links</span>
+            <span>Check Out Karim's Work</span>
           </div>
 
           <div class="shortcuts-grid">
@@ -98,18 +136,6 @@
               <span class="card-desc">Connect with me professionally</span>
               <span class="card-arrow" aria-hidden="true">→</span>
             </a>
-
-            <!-- Changelogs -->
-            <a
-              class="card"
-              href="/changelogs"
-              aria-label="View site changelogs"
-            >
-              <span class="card-icon" aria-hidden="true">📋</span>
-              <span class="card-title">Changelogs</span>
-              <span class="card-desc">Track the development &amp; progress of this site</span>
-              <span class="card-arrow" aria-hidden="true">→</span>
-            </a>
           </div>
         </section>
 
@@ -118,7 +144,7 @@
           Private services: only accessible on the internal network.
           The JS in app.js automatically makes cards with data-url clickable.
         -->
-        <section class="section" aria-labelledby="services-heading">
+        <section id="self-hosted" class="section" aria-labelledby="services-heading">
           <div class="section-label" id="services-heading">
             <span>Self-Hosted Services</span>
           </div>
