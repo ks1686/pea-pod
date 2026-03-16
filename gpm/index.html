@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GPM — The Global Package Manager. Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
+    <meta name="theme-color" content="#4ade80" />
+
+    <!-- Open Graph / Social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GPM — Global Package Manager" />
+    <meta property="og:description" content="Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
+    <meta property="og:image" content="https://ks1686.github.io/favicon.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/gpm.css" />
+
+    <title>GPM — Global Package Manager</title>
+  </head>
+  <body>
+    <!-- Animated background blobs -->
+    <div class="bg-decoration" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <!-- ========== Burger Menu ========== -->
+    <button class="burger-btn" id="burger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="side-menu">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <!-- Menu backdrop -->
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+    <!-- Side drawer -->
+    <nav class="side-menu" id="side-menu" aria-label="Site navigation" aria-hidden="true">
+      <div class="side-menu-header">
+        <span class="side-menu-title">Navigation</span>
+        <button class="side-menu-close" id="side-menu-close" aria-label="Close navigation menu">✕</button>
+      </div>
+      <ul class="side-menu-list">
+        <li>
+          <a class="side-menu-link" href="/#karim-work">
+            <span class="side-menu-icon" aria-hidden="true">🌟</span>
+            <span>Karim's Work</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="/#self-hosted">
+            <span class="side-menu-icon" aria-hidden="true">🖥️</span>
+            <span>Self-Hosted Services</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="/changelogs">
+            <span class="side-menu-icon" aria-hidden="true">📋</span>
+            <span>Changelogs</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="/gpm" aria-current="page">
+            <span class="side-menu-icon" aria-hidden="true">📦</span>
+            <span>GPM</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ========== Header ========== -->
+    <header>
+      <div class="container">
+        <div class="logo-wrap">
+          <span class="logo-icon" aria-hidden="true">📦</span>
+          <h1 class="site-title">GPM</h1>
+        </div>
+        <p class="site-tagline">Global Package Manager ✦ Track, sync, and reproduce your environment</p>
+      </div>
+    </header>
+
+    <!-- ========== Main Content ========== -->
+    <main>
+      <div class="container">
+
+        <!-- Back to home -->
+        <a class="nav-back" href="/" aria-label="Back to home">← Back to Home</a>
+
+        <!-- ---- Hero install command ---- -->
+        <section class="section" aria-labelledby="install-heading">
+          <div class="section-label" id="install-heading">
+            <span>Get Started</span>
+          </div>
+          <p class="gpm-hero-tagline">
+            A thin, declarative layer on top of your existing package managers. Define once, install anywhere.
+          </p>
+          <div class="gpm-install-block" aria-label="Install command">
+            <span class="prompt">$</span>
+            <span>go install github.com/ks1686/gpm@latest</span>
+          </div>
+          <div class="gpm-cta-buttons" style="margin-top:1.25rem;">
+            <a class="btn-primary" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">
+              ⭐ View on GitHub
+            </a>
+            <a class="btn-secondary" href="https://github.com/ks1686/gpm/releases" target="_blank" rel="noopener noreferrer">
+              ↓ Download Binary
+            </a>
+          </div>
+        </section>
+
+        <!-- ---- Features ---- -->
+        <section class="section" aria-labelledby="features-heading">
+          <div class="section-label" id="features-heading">
+            <span>Features</span>
+          </div>
+          <div class="gpm-features-grid">
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">🌍</span>
+              <p class="gpm-feature-title">Cross-Platform</p>
+              <p class="gpm-feature-desc">
+                Works seamlessly on Linux, macOS, and Windows (via WSL2). GPM detects the available package managers on your current host automatically.
+              </p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">📄</span>
+              <p class="gpm-feature-title">Declarative gpm.json</p>
+              <p class="gpm-feature-desc">
+                Declare your packages in a single <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> file. Commit it, share it, version it — reproduce your environment anywhere.
+              </p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">🔍</span>
+              <p class="gpm-feature-title">Smart Resolution</p>
+              <p class="gpm-feature-desc">
+                GPM automatically finds the intersection of available managers and the ones that carry your package, scoring by your preferred manager and built-in priority.
+              </p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">🔒</span>
+              <p class="gpm-feature-title">Version Pinning</p>
+              <p class="gpm-feature-desc">
+                Pin exact versions with semver constraints like <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">0.10.*</code>, or use <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">*</code> for always-latest. Reproducibility is first-class.
+              </p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">👁️</span>
+              <p class="gpm-feature-title">Dry-Run First</p>
+              <p class="gpm-feature-desc">
+                Preview exactly what commands will run before committing. <code style="font-size:0.82rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm install --dry-run</code> builds a full plan and shows it to you.
+              </p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">⚡</span>
+              <p class="gpm-feature-title">Minimal Learning Curve</p>
+              <p class="gpm-feature-desc">
+                Inspired by NixOS's declarative model — without the complexity. If you know how to use a package manager, you already know GPM.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Platforms ---- -->
+        <section class="section" aria-labelledby="platforms-heading">
+          <div class="section-label" id="platforms-heading">
+            <span>Supported Platforms &amp; Package Managers</span>
+          </div>
+          <table class="gpm-platform-table" aria-label="Supported platforms and package managers">
+            <thead>
+              <tr>
+                <th scope="col">Platform</th>
+                <th scope="col">Package Managers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Linux</td>
+                <td>
+                  <span class="code-tag">apt</span>
+                  <span class="code-tag">dnf</span>
+                  <span class="code-tag">pacman</span>
+                  <span class="code-tag">linuxbrew</span>
+                  <span class="code-tag">flatpak</span>
+                  <span class="code-tag">snap</span>
+                </td>
+              </tr>
+              <tr>
+                <td>macOS</td>
+                <td>
+                  <span class="code-tag">brew</span> (formulae + casks)
+                </td>
+              </tr>
+              <tr>
+                <td>Windows / WSL2</td>
+                <td>Targets the Linux userland inside WSL2</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- ---- Quick Start ---- -->
+        <section class="section" aria-labelledby="quickstart-heading">
+          <div class="section-label" id="quickstart-heading">
+            <span>Quick Start</span>
+          </div>
+          <pre class="gpm-code-block" aria-label="Quick start commands"><span class="comment"># Add packages to your gpm.json</span>
+gpm add git
+gpm add neovim --version "0.10.*"
+gpm add firefox --manager flatpak
+
+<span class="comment"># See what's tracked</span>
+gpm list
+
+<span class="comment"># Preview the install plan, then install</span>
+gpm install --dry-run
+gpm install</pre>
+        </section>
+
+        <!-- ---- CLI Reference ---- -->
+        <section class="section" aria-labelledby="cli-heading">
+          <div class="section-label" id="cli-heading">
+            <span>CLI Reference</span>
+          </div>
+          <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt; [--version &lt;ver&gt;] [--manager &lt;mgr&gt;]
+gpm remove &lt;id&gt;
+gpm install [--dry-run] [--strict]
+gpm list
+gpm status          <span class="comment"># diff current host state against gpm.json</span></pre>
+          <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.6rem;">
+            <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">--strict</code>
+            fails immediately if any package cannot be resolved. Without it, GPM warns and continues.
+          </p>
+        </section>
+
+        <!-- ---- gpm.json format ---- -->
+        <section class="section" aria-labelledby="format-heading">
+          <div class="section-label" id="format-heading">
+            <span>gpm.json Format</span>
+          </div>
+          <pre class="gpm-code-block" aria-label="gpm.json example">{
+  "schemaVersion": "1",
+  "packages": [
+    {
+      "id": "git",
+      "version": "*"
+    },
+    {
+      "id": "neovim",
+      "version": "0.10.*",
+      "prefer": "brew"
+    },
+    {
+      "id": "firefox",
+      "version": "*",
+      "managers": {
+        "flatpak": "org.mozilla.firefox",
+        "brew":    "firefox",
+        "snap":    "firefox"
+      }
+    }
+  ]
+}</pre>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">id</code>
+              — canonical name for the package (used by gpm)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">version</code>
+              — version constraint; <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">"*"</code> means latest
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">prefer</code>
+              — optional hint for which manager to use first
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;color:#a3e8bb;">managers</code>
+              — optional map of manager-specific identifiers for packages with different names across managers
+            </li>
+          </ul>
+        </section>
+
+        <!-- ---- How Resolution Works ---- -->
+        <section class="section" aria-labelledby="resolution-heading">
+          <div class="section-label" id="resolution-heading">
+            <span>How Resolution Works</span>
+          </div>
+          <div class="gpm-features-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">1️⃣</span>
+              <p class="gpm-feature-title">Detect</p>
+              <p class="gpm-feature-desc">GPM scans which package managers are available on the current host.</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">2️⃣</span>
+              <p class="gpm-feature-title">Intersect</p>
+              <p class="gpm-feature-desc">For each package, it finds the intersection of available managers and ones that carry it.</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">3️⃣</span>
+              <p class="gpm-feature-title">Score</p>
+              <p class="gpm-feature-desc">Candidates are ranked by your <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">prefer</code> hint, then by built-in OS priority.</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">4️⃣</span>
+              <p class="gpm-feature-title">Plan &amp; Preview</p>
+              <p class="gpm-feature-desc">A full command plan is built and shown to you before anything runs.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Roadmap ---- -->
+        <section class="section" aria-labelledby="roadmap-heading">
+          <div class="section-label" id="roadmap-heading">
+            <span>Roadmap</span>
+          </div>
+          <ul class="gpm-roadmap-list" aria-label="Roadmap milestones">
+            <li>
+              <span class="milestone-badge">M1</span>
+              <span class="milestone-text">Core CLI and <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> spec validation</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M2</span>
+              <span class="milestone-text">Install planner + resolver for Linux, macOS, and WSL2</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M3</span>
+              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file support, and <code style="font-size:0.8rem;background:rgba(0,0,0,0.3);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
+            </li>
+            <li>
+              <span class="milestone-badge">M4</span>
+              <span class="milestone-text">Reliability, automation, and release hardening</span>
+            </li>
+          </ul>
+          <p style="font-size:0.85rem;color:var(--gpm-text-muted);margin-top:0.75rem;">
+            Full milestones and detailed checklists are tracked in the
+            <a href="https://github.com/ks1686/gpm/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer" style="color:var(--gpm-accent);font-weight:600;text-decoration:none;">ROADMAP.md</a>
+            on GitHub.
+          </p>
+        </section>
+
+        <!-- ---- CTA ---- -->
+        <section class="section" aria-labelledby="cta-heading">
+          <div class="gpm-cta">
+            <p class="gpm-cta-title" id="cta-heading">Ready to get started?</p>
+            <p class="gpm-cta-desc">
+              GPM is open-source and in active development. Contributions are welcome — especially adapter quality improvements.
+            </p>
+            <div class="gpm-cta-buttons">
+              <a class="btn-primary" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">
+                ⭐ Star on GitHub
+              </a>
+              <a class="btn-secondary" href="https://github.com/ks1686/gpm/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
+                🤝 Contributing Guide
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========== Footer ========== -->
+    <footer>
+      <div class="container">
+        <p>
+          📦 GPM &mdash; part of
+          <a href="/" >Pea Pod Network</a>
+          &mdash; MIT License
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+  </body>
+</html>

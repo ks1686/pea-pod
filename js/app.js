@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardRipple();
   initServiceCards();
   initBurgerMenu();
+  initAnnouncementBanner();
 });
 
 /**
@@ -105,7 +106,23 @@ function initServiceCards() {
 })();
 
 /**
- * Burger menu — toggles a left-side drawer with section quick-links.
+ * Announcement banner — dismissible, remembers state in localStorage.
+ */
+function initAnnouncementBanner() {
+  const banner = document.getElementById('announcement-banner');
+  const closeBtn = document.getElementById('banner-close');
+  if (!banner || !closeBtn) return;
+
+  if (localStorage.getItem('gpm-banner-dismissed') === '1') {
+    banner.classList.add('hidden');
+    return;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    banner.classList.add('hidden');
+    localStorage.setItem('gpm-banner-dismissed', '1');
+  });
+}
  */
 function initBurgerMenu() {
   const burgerBtn = document.getElementById('burger-btn');

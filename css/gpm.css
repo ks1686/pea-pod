@@ -1,0 +1,444 @@
+/* =============================================
+   GPM — Global Package Manager — Dark Mode Page
+   Shares the same design language as Pea Pod Network
+   ============================================= */
+
+/* ---- Dark mode overrides ---- */
+:root {
+  --gpm-bg: #0b1a12;
+  --gpm-surface: rgba(255, 255, 255, 0.05);
+  --gpm-surface-hover: rgba(255, 255, 255, 0.09);
+  --gpm-border: rgba(74, 222, 128, 0.2);
+  --gpm-border-hover: rgba(74, 222, 128, 0.5);
+  --gpm-text: #e2f5e9;
+  --gpm-text-muted: rgba(186, 230, 200, 0.7);
+  --gpm-accent: #4ade80;
+  --gpm-accent-dim: rgba(74, 222, 128, 0.15);
+  --gpm-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --gpm-shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --gpm-code-bg: rgba(0, 0, 0, 0.45);
+  --gpm-heading: #86efac;
+}
+
+body {
+  background-color: var(--gpm-bg);
+  color: var(--gpm-text);
+}
+
+/* ---- Background blobs (dark tinted) ---- */
+.blob-1 {
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.18), rgba(21, 128, 61, 0.08));
+  opacity: 0.6;
+}
+
+.blob-2 {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12), rgba(22, 163, 74, 0.06));
+  opacity: 0.5;
+}
+
+.blob-3 {
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.1), rgba(21, 128, 61, 0.05));
+  opacity: 0.5;
+}
+
+/* ---- Header ---- */
+.site-title {
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.site-tagline {
+  color: var(--gpm-text-muted);
+}
+
+/* ---- Burger button ---- */
+.burger-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--gpm-border);
+}
+
+.burger-btn:hover {
+  background: var(--gpm-accent-dim);
+  border-color: var(--gpm-accent);
+}
+
+.burger-line {
+  background: var(--gpm-accent);
+}
+
+/* ---- Side menu ---- */
+.side-menu {
+  background: #0f2318;
+  border-right-color: rgba(74, 222, 128, 0.15);
+}
+
+.side-menu-header {
+  border-bottom-color: rgba(74, 222, 128, 0.15);
+}
+
+.side-menu-title {
+  color: var(--gpm-accent);
+}
+
+.side-menu-close {
+  color: var(--gpm-text-muted);
+}
+
+.side-menu-close:hover {
+  background: var(--gpm-accent-dim);
+  color: var(--gpm-text);
+}
+
+.side-menu-link {
+  color: var(--gpm-text);
+}
+
+.side-menu-link:hover,
+.side-menu-link:focus-visible {
+  background: var(--gpm-accent-dim);
+  color: var(--gpm-accent);
+  border-left-color: var(--gpm-accent);
+}
+
+.side-menu-link[aria-current="page"] {
+  background: var(--gpm-accent-dim);
+  color: var(--gpm-accent);
+  border-left-color: var(--gpm-accent);
+}
+
+/* ---- Menu overlay ---- */
+.menu-overlay {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* ---- Section labels ---- */
+.section-label {
+  color: var(--gpm-accent);
+}
+
+.section-label::before,
+.section-label::after {
+  background: rgba(74, 222, 128, 0.2);
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--gpm-surface);
+  border-color: var(--gpm-border);
+  box-shadow: var(--gpm-shadow);
+  color: var(--gpm-text);
+}
+
+.card::before {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(34, 197, 94, 0.05));
+}
+
+.card:hover,
+.card:focus-visible {
+  box-shadow: var(--gpm-shadow-hover);
+  border-color: var(--gpm-border-hover);
+}
+
+.card-title {
+  color: var(--gpm-heading);
+}
+
+.card-desc {
+  color: var(--gpm-text-muted);
+}
+
+.card-arrow {
+  color: var(--gpm-accent);
+}
+
+/* ---- Nav back ---- */
+.nav-back {
+  background: var(--gpm-accent-dim);
+  border-color: rgba(74, 222, 128, 0.25);
+  color: var(--gpm-accent);
+}
+
+.nav-back:hover {
+  background: rgba(74, 222, 128, 0.2);
+  color: #86efac;
+}
+
+/* ---- Footer ---- */
+footer {
+  color: var(--gpm-text-muted);
+}
+
+footer a {
+  color: var(--gpm-accent);
+}
+
+/* ---- GPM-specific components ---- */
+
+/* Hero tagline */
+.gpm-hero-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--gpm-text-muted);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  animation: fadeDown 0.7s 0.2s ease both;
+}
+
+/* Install command block */
+.gpm-install-block {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--gpm-code-bg);
+  border: 1px solid var(--gpm-border);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.92rem;
+  color: var(--gpm-accent);
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.gpm-install-block .prompt {
+  color: var(--gpm-text-muted);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Code block */
+.gpm-code-block {
+  background: var(--gpm-code-bg);
+  border: 1px solid var(--gpm-border);
+  border-radius: 0.75rem;
+  padding: 1.1rem 1.4rem;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.85rem;
+  color: #a3e8bb;
+  overflow-x: auto;
+  line-height: 1.7;
+  margin: 0.75rem 0;
+  white-space: pre;
+}
+
+.gpm-code-block .comment {
+  color: rgba(163, 232, 187, 0.5);
+}
+
+/* Feature grid */
+.gpm-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.gpm-feature-card {
+  background: var(--gpm-surface);
+  border: 1px solid var(--gpm-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--gpm-shadow);
+  transition: var(--transition);
+  animation: fadeUp 0.6s ease both;
+}
+
+.gpm-feature-card:hover {
+  border-color: var(--gpm-border-hover);
+  box-shadow: var(--gpm-shadow-hover);
+  transform: translateY(-3px);
+}
+
+.gpm-feature-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.gpm-feature-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gpm-heading);
+  margin-bottom: 0.4rem;
+}
+
+.gpm-feature-desc {
+  font-size: 0.88rem;
+  color: var(--gpm-text-muted);
+  line-height: 1.6;
+}
+
+/* Platform table */
+.gpm-platform-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.gpm-platform-table th,
+.gpm-platform-table td {
+  text-align: left;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--gpm-border);
+}
+
+.gpm-platform-table th {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gpm-accent);
+}
+
+.gpm-platform-table td:first-child {
+  font-weight: 600;
+  color: var(--gpm-heading);
+}
+
+.gpm-platform-table td code,
+.gpm-platform-table td .code-tag {
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  font-size: 0.8rem;
+  background: var(--gpm-code-bg);
+  border: 1px solid var(--gpm-border);
+  border-radius: 0.3rem;
+  padding: 0.1em 0.45em;
+  color: #a3e8bb;
+}
+
+/* Roadmap list */
+.gpm-roadmap-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0.75rem 0;
+}
+
+.gpm-roadmap-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--gpm-text-muted);
+}
+
+.gpm-roadmap-list .milestone-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--gpm-accent-dim);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 999px;
+  padding: 0.2em 0.65em;
+  color: var(--gpm-accent);
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.gpm-roadmap-list .milestone-text {
+  line-height: 1.5;
+}
+
+/* CTA block */
+.gpm-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  padding: 2.5rem 1.5rem;
+  background: var(--gpm-surface);
+  border: 1px solid var(--gpm-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--gpm-shadow);
+  animation: fadeUp 0.6s ease both;
+}
+
+.gpm-cta-title {
+  font-size: clamp(1.3rem, 3vw, 1.75rem);
+  font-weight: 800;
+  color: var(--gpm-heading);
+}
+
+.gpm-cta-desc {
+  font-size: 0.95rem;
+  color: var(--gpm-text-muted);
+  max-width: 520px;
+}
+
+.gpm-cta-buttons {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--gpm-accent);
+  color: #0b1a12;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: #86efac;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.5rem;
+  background: transparent;
+  color: var(--gpm-accent);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(74, 222, 128, 0.4);
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: var(--gpm-accent-dim);
+  border-color: var(--gpm-accent);
+  transform: translateY(-2px);
+}
+
+/* stagger feature card animations */
+.gpm-feature-card:nth-child(1) { animation-delay: 0.05s; }
+.gpm-feature-card:nth-child(2) { animation-delay: 0.12s; }
+.gpm-feature-card:nth-child(3) { animation-delay: 0.19s; }
+.gpm-feature-card:nth-child(4) { animation-delay: 0.26s; }
+.gpm-feature-card:nth-child(5) { animation-delay: 0.33s; }
+.gpm-feature-card:nth-child(6) { animation-delay: 0.40s; }
+
+@media (max-width: 768px) {
+  .gpm-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gpm-platform-table th,
+  .gpm-platform-table td {
+    padding: 0.6rem 0.6rem;
+    font-size: 0.82rem;
+  }
+}
