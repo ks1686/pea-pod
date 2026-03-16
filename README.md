@@ -52,7 +52,6 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 | ⚗️ | **Forgejo** | forgejo.pea-pod.me | 🔒 Private |
 | 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
 | 💻 | **code-server** | code.pea-pod.me | 🔒 Private |
-| 📓 | **Obsidian** | obsidian.pea-pod.me | 🔒 Private |
 | 🛡️ | **AdGuard** | adguard.pea-pod.me | 🔒 Private |
 | 📊 | **Status Monitor** | [monitor.pea-pod.me](https://monitor.pea-pod.me) | 🌐 Public |
 
