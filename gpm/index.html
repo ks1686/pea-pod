@@ -221,7 +221,7 @@
               <span class="gpm-feature-icon" aria-hidden="true">👁️</span>
               <p class="gpm-feature-title">Dry-Run First</p>
               <p class="gpm-feature-desc">
-                Preview exactly what commands will run before committing. <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm install --dry-run</code> builds a full plan and shows it to you.
+                Preview exactly what commands will run before committing. <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm apply --dry-run</code> builds a full plan and shows it to you.
               </p>
             </div>
             <div class="gpm-feature-card">
@@ -253,6 +253,8 @@
                   <span class="code-tag">apt</span>
                   <span class="code-tag">dnf</span>
                   <span class="code-tag">pacman</span>
+                  <span class="code-tag">paru</span>
+                  <span class="code-tag">yay</span>
                   <span class="code-tag">linuxbrew</span>
                   <span class="code-tag">flatpak</span>
                   <span class="code-tag">snap</span>
@@ -262,6 +264,7 @@
                 <td>macOS</td>
                 <td>
                   <span class="code-tag">brew</span> (formulae + casks)
+                  <span class="code-tag">macports</span>
                 </td>
               </tr>
               <tr>
@@ -277,17 +280,23 @@
           <div class="section-label" id="quickstart-heading">
             <span>Quick Start</span>
           </div>
-          <pre class="gpm-code-block" aria-label="Quick start commands"><span class="comment"># Add packages to your gpm.json</span>
+          <pre class="gpm-code-block" aria-label="Quick start commands"><span class="comment"># Add packages — each one is tracked in gpm.json and installed immediately</span>
 gpm add git
 gpm add neovim --version "0.10.*"
-gpm add firefox --manager flatpak
+gpm add firefox --manager flatpak:org.mozilla.firefox
 
-<span class="comment"># See what's tracked</span>
+<span class="comment"># See what is currently installed by gpm (reads gpm.lock.json)</span>
 gpm list
 
-<span class="comment"># Install everything (dry-run first by default)</span>
-gpm install --dry-run
-gpm install</pre>
+<span class="comment"># Edit gpm.json directly in your $EDITOR</span>
+gpm edit
+
+<span class="comment"># Reconcile — installs newly added packages, removes deleted ones</span>
+gpm apply --dry-run   <span class="comment"># preview the delta first</span>
+gpm apply             <span class="comment"># apply it</span>
+
+<span class="comment"># Remove a package — uninstalls it and removes it from the spec</span>
+gpm remove git</pre>
         </section>
 
         <!-- ---- CLI Reference ---- -->
@@ -295,15 +304,38 @@ gpm install</pre>
           <div class="section-label" id="cli-heading">
             <span>CLI Reference</span>
           </div>
-          <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt; [--version &lt;ver&gt;] [--manager &lt;mgr&gt;]
+          <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt; [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
 gpm remove &lt;id&gt;
-gpm install [--dry-run] [--strict]
 gpm list
-gpm status          <span class="comment"># diff current host state against gpm.json</span></pre>
-          <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.6rem;">
-            <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--strict</code>
-            fails immediately if any package cannot be resolved. Without it, GPM warns and continues.
-          </p>
+gpm apply [--dry-run] [--strict]
+gpm edit
+gpm help</pre>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--version &lt;ver&gt;</code>
+              — version constraint, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"0.10.*"</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--prefer &lt;mgr&gt;</code>
+              — preferred manager, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">brew</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--manager &lt;mgr:name,...&gt;</code>
+              — manager-specific names, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">flatpak:org.mozilla.firefox</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--dry-run</code>
+              — print the reconcile plan without executing (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--strict</code>
+              — exit with an error if any package cannot be resolved (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--file &lt;path&gt;</code>
+              — path to gpm.json, default: <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">./gpm.json</code> (all commands)
+            </li>
+          </ul>
         </section>
 
         <!-- ---- gpm.json format ---- -->
@@ -315,8 +347,7 @@ gpm status          <span class="comment"># diff current host state against gpm.
   "schemaVersion": "1",
   "packages": [
     {
-      "id": "git",
-      "version": "*"
+      "id": "git"
     },
     {
       "id": "neovim",
@@ -325,7 +356,6 @@ gpm status          <span class="comment"># diff current host state against gpm.
     },
     {
       "id": "firefox",
-      "version": "*",
       "managers": {
         "flatpak": "org.mozilla.firefox",
         "brew":    "firefox",
@@ -341,7 +371,7 @@ gpm status          <span class="comment"># diff current host state against gpm.
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">version</code>
-              — version constraint; <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"*"</code> means latest
+              — optional version constraint; omit for latest
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">prefer</code>
@@ -363,22 +393,22 @@ gpm status          <span class="comment"># diff current host state against gpm.
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">1️⃣</span>
               <p class="gpm-feature-title">Detect</p>
-              <p class="gpm-feature-desc">GPM scans which package managers are available on the current host.</p>
+              <p class="gpm-feature-desc">GPM detects which package managers are available on the current host.</p>
             </div>
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">2️⃣</span>
-              <p class="gpm-feature-title">Intersect</p>
-              <p class="gpm-feature-desc">For each package, it finds the intersection of available managers and ones that carry it.</p>
+              <p class="gpm-feature-title">Honour Preference</p>
+              <p class="gpm-feature-desc">Honours the <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">prefer</code> hint if that manager is available on the host.</p>
             </div>
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">3️⃣</span>
-              <p class="gpm-feature-title">Score</p>
-              <p class="gpm-feature-desc">Candidates are ranked by your <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">prefer</code> hint, then by built-in OS priority.</p>
+              <p class="gpm-feature-title">Managers Map</p>
+              <p class="gpm-feature-desc">Falls back to the first available manager listed in the <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">managers</code> map.</p>
             </div>
             <div class="gpm-feature-card">
               <span class="gpm-feature-icon" aria-hidden="true">4️⃣</span>
-              <p class="gpm-feature-title">Plan &amp; Preview</p>
-              <p class="gpm-feature-desc">A full command plan is built and shown to you before anything runs.</p>
+              <p class="gpm-feature-title">Registry Fallback</p>
+              <p class="gpm-feature-desc">Falls back to the first available manager in the registry, using the package ID as the name. Unresolved packages produce a warning; use <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--strict</code> to treat them as errors.</p>
             </div>
           </div>
         </section>
@@ -395,11 +425,11 @@ gpm status          <span class="comment"># diff current host state against gpm.
             </li>
             <li>
               <span class="milestone-badge">M2</span>
-              <span class="milestone-text">Install planner + resolver for Linux, macOS, and WSL2</span>
+              <span class="milestone-text">Resolver + adapter layer, declarative apply, uninstall, cache clean</span>
             </li>
             <li>
               <span class="milestone-badge">M3</span>
-              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file support, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
+              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file pinning, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
             </li>
             <li>
               <span class="milestone-badge">M4</span>
