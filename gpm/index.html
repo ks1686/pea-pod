@@ -32,11 +32,11 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">New</span>
+        <span class="banner-badge" aria-hidden="true">Stable</span>
         <p class="banner-text">
-          <strong>GPM</strong> is open-source and in active development — contributions and feedback are welcome!
+          <strong>GPM v0.1.0</strong> — First stable release! Milestones M1 and M2 complete, validated on Linux.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+        <a class="banner-link" href="https://github.com/ks1686/gpm/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -169,9 +169,28 @@
           <p class="gpm-hero-tagline">
             A thin, declarative layer on top of your existing package managers. Define once, install anywhere.
           </p>
-          <div class="gpm-install-block" aria-label="Install command">
-            <span class="prompt">$</span>
-            <span>go install github.com/ks1686/gpm@latest</span>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div>
+              <p style="font-size:0.78rem;color:var(--gpm-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">macOS</p>
+              <div class="gpm-install-block" aria-label="Install command for macOS">
+                <span class="prompt">$</span>
+                <span>brew tap ks1686/tap &amp;&amp; brew install gpm</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size:0.78rem;color:var(--gpm-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Arch Linux (AUR)</p>
+              <div class="gpm-install-block" aria-label="Install command for Arch Linux via AUR">
+                <span class="prompt">$</span>
+                <span>paru -S gpm-bin</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size:0.78rem;color:var(--gpm-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Any platform — Go 1.21+</p>
+              <div class="gpm-install-block" aria-label="Install command via Go">
+                <span class="prompt">$</span>
+                <span>go install github.com/ks1686/gpm@latest</span>
+              </div>
+            </div>
           </div>
           <div class="gpm-cta-buttons" style="margin-top:1.25rem;">
             <a class="btn-primary" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">
@@ -285,6 +304,12 @@ gpm add git
 gpm add neovim --version "0.10.*"
 gpm add firefox --manager flatpak:org.mozilla.firefox
 
+<span class="comment"># Adopt a package that's already installed — track it without reinstalling</span>
+gpm adopt ripgrep
+
+<span class="comment"># Disown a package — stop tracking it without uninstalling it</span>
+gpm disown ripgrep
+
 <span class="comment"># See what is currently installed by gpm (reads gpm.lock.json)</span>
 gpm list
 
@@ -304,28 +329,32 @@ gpm remove git</pre>
           <div class="section-label" id="cli-heading">
             <span>CLI Reference</span>
           </div>
-          <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt; [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
+          <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt;    [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
 gpm remove &lt;id&gt;
+gpm adopt &lt;id&gt;  [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
+gpm disown &lt;id&gt;
 gpm list
-gpm apply [--dry-run] [--strict]
+gpm apply       [--dry-run] [--strict]
+gpm clean       [--dry-run]
 gpm edit
+gpm version
 gpm help</pre>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--version &lt;ver&gt;</code>
-              — version constraint, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"0.10.*"</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+              — version constraint, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"0.10.*"</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--prefer &lt;mgr&gt;</code>
-              — preferred manager, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">brew</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+              — preferred manager, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">brew</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--manager &lt;mgr:name,...&gt;</code>
-              — manager-specific names, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">flatpak:org.mozilla.firefox</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code>)
+              — manager-specific names, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">flatpak:org.mozilla.firefox</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--dry-run</code>
-              — print the reconcile plan without executing (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code>)
+              — print the plan without executing (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm clean</code>)
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--strict</code>
@@ -420,20 +449,24 @@ gpm help</pre>
           </div>
           <ul class="gpm-roadmap-list" aria-label="Roadmap milestones">
             <li>
-              <span class="milestone-badge">M1</span>
+              <span class="milestone-badge complete">M1 ✓</span>
               <span class="milestone-text">Core CLI and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> spec validation</span>
             </li>
             <li>
-              <span class="milestone-badge">M2</span>
-              <span class="milestone-text">Resolver + adapter layer, declarative apply, uninstall, cache clean</span>
+              <span class="milestone-badge complete">M2 ✓</span>
+              <span class="milestone-text">Resolver + adapter layer, declarative apply, adopt/disown, cache clean</span>
             </li>
             <li>
               <span class="milestone-badge">M3</span>
-              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file pinning, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm sync</code></span>
+              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file pinning, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm status</code></span>
             </li>
             <li>
               <span class="milestone-badge">M4</span>
               <span class="milestone-text">Reliability, automation, and release hardening</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M5</span>
+              <span class="milestone-text">macOS and WSL2 validation and automated testing</span>
             </li>
           </ul>
           <p style="font-size:0.85rem;color:var(--gpm-text-muted);margin-top:0.75rem;">
@@ -448,7 +481,7 @@ gpm help</pre>
           <div class="gpm-cta">
             <p class="gpm-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="gpm-cta-desc">
-              GPM is open-source and in active development. Contributions are welcome — especially adapter quality improvements.
+              GPM v0.1.0 is here — open-source and MIT licensed. Adapter quality is where contributions matter most.
             </p>
             <div class="gpm-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">
