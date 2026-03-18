@@ -302,6 +302,12 @@
   margin-top: 0.05rem;
 }
 
+.milestone-badge.complete {
+  background: rgba(50, 50, 50, 0.6);
+  border-color: rgba(180, 180, 180, 0.7);
+  color: var(--green-950);
+}
+
 .milestone-text {
   font-size: 0.9rem;
   color: var(--green-800);
