@@ -53,6 +53,7 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 | 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
 | 💻 | **code-server** | code.pea-pod.me | 🔒 Private |
 | 🛡️ | **AdGuard** | adguard.pea-pod.me | 🔒 Private |
+| 🤖 | **Open WebUI** | chat.pea-pod.me | 🔒 Private |
 | 📊 | **Status Monitor** | [monitor.pea-pod.me](https://monitor.pea-pod.me) | 🌐 Public |
 
 > **Private** services are only reachable on the internal home network. **Public** services are accessible from anywhere.
