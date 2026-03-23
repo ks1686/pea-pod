@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="GENV — The Global Package Manager. Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
+    <meta name="description" content="GENV — The Global Environment Manager. Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
     <meta name="theme-color" content="#000000" />
 
     <!-- Open Graph / Social preview -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="GENV — Global Package Manager" />
+    <meta property="og:title" content="GENV — Global Environment Manager" />
     <meta property="og:description" content="Track, sync, and reproduce your software environment across Linux, macOS, and WSL2." />
     <meta property="og:image" content="https://ks1686.github.io/favicon.png" />
 
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/genv.css" />
 
-    <title>GENV — Global Package Manager</title>
+    <title>GENV — Global Environment Manager</title>
   </head>
   <body>
     <!-- ========== Announcement Banner ========== -->
@@ -168,7 +168,7 @@
           <span class="logo-icon" aria-hidden="true">📦</span>
           <h1 class="site-title">GENV</h1>
         </div>
-        <p class="site-tagline">Global Package Manager ✦ Track, sync, and reproduce your environment</p>
+        <p class="site-tagline">Global Environment Manager ✦ Track, sync, and reproduce your environment</p>
       </div>
     </header>
 
@@ -678,6 +678,14 @@ genv apply --yes --json 2>/dev/null</pre>
             <li>
               <span class="milestone-badge">M7</span>
               <span class="milestone-text">Shell completions, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv validate</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv upgrade</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv init</code>, improved errors</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M8</span>
+              <span class="milestone-text">Environment variables and shell globals — declarative <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">env</code> block in <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv.json</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv env set/unset/list</code></span>
+            </li>
+            <li>
+              <span class="milestone-badge">M9</span>
+              <span class="milestone-text">Shell configuration management — aliases, functions, and rc snippets as a reproducible environment concern</span>
             </li>
           </ul>
           <p style="font-size:0.85rem;color:var(--genv-text-muted);margin-top:0.75rem;">
