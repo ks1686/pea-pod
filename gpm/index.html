@@ -32,11 +32,11 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">Stable</span>
+        <span class="banner-badge" aria-hidden="true">v0.2.0</span>
         <p class="banner-text">
-          <strong>GPM v0.1.0</strong> — First stable release! Milestones M1 and M2 complete, validated on Linux.
+          <strong>GPM v0.2.0</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">scan</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">status</code> commands, macOS/WSL2 support, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--json</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--yes</code> flags, reproducible builds, and signed releases.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/gpm/releases/tag/v0.1.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/gpm/releases/tag/v0.2.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -129,6 +129,24 @@
           </a>
         </li>
         <li>
+          <a class="side-menu-link" href="#declarative-model">
+            <span class="side-menu-icon" aria-hidden="true">🔄</span>
+            <span>Declarative Model</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="#json-output">
+            <span class="side-menu-icon" aria-hidden="true">🖥️</span>
+            <span>Machine-readable Output</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="#exit-codes">
+            <span class="side-menu-icon" aria-hidden="true">🔢</span>
+            <span>Exit Codes</span>
+          </a>
+        </li>
+        <li>
           <a class="side-menu-link" href="#resolution">
             <span class="side-menu-icon" aria-hidden="true">🔍</span>
             <span>Resolution</span>
@@ -182,6 +200,13 @@
               <div class="gpm-install-block" aria-label="Install command for Arch Linux via AUR">
                 <span class="prompt">$</span>
                 <span>paru -S gpm-bin</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size:0.78rem;color:var(--gpm-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Linux — Other Distros</p>
+              <div class="gpm-install-block" aria-label="Install command for Linux via pre-built binary" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.5rem;width:100%;box-sizing:border-box;">
+                <div><span class="prompt">$</span><span>curl -Lo gpm.tar.gz https://github.com/ks1686/gpm/releases/latest/download/gpm_linux_amd64.tar.gz</span></div>
+                <div><span class="prompt">$</span><span>tar -xzf gpm.tar.gz &amp;&amp; sudo mv gpm /usr/local/bin/</span></div>
               </div>
             </div>
             <div>
@@ -304,21 +329,32 @@ gpm add git
 gpm add neovim --version "0.10.*"
 gpm add firefox --manager flatpak:org.mozilla.firefox
 
-<span class="comment"># Adopt a package that's already installed — track it without reinstalling</span>
+<span class="comment"># Bulk-adopt all packages already installed on this machine</span>
+gpm scan
+
+<span class="comment"># Adopt a single already-installed package — track it without reinstalling</span>
 gpm adopt ripgrep
 
 <span class="comment"># Disown a package — stop tracking it without uninstalling it</span>
 gpm disown ripgrep
 
-<span class="comment"># See what is currently installed by gpm (reads gpm.lock.json)</span>
+<span class="comment"># Check if gpm.json and the lock file are in sync</span>
+gpm status
+
+<span class="comment"># See what is currently tracked by gpm (reads gpm.lock.json)</span>
 gpm list
 
 <span class="comment"># Edit gpm.json directly in your $EDITOR</span>
 gpm edit
 
 <span class="comment"># Reconcile — installs newly added packages, removes deleted ones</span>
-gpm apply --dry-run   <span class="comment"># preview the delta first</span>
-gpm apply             <span class="comment"># apply it</span>
+gpm apply --dry-run          <span class="comment"># preview the delta first</span>
+gpm apply                    <span class="comment"># apply it (prompts for confirmation)</span>
+gpm apply --yes              <span class="comment"># apply without prompting (for CI / scripts)</span>
+
+<span class="comment"># Machine-readable output for pipelines</span>
+gpm apply --dry-run --json
+gpm status --json
 
 <span class="comment"># Remove a package — uninstalls it and removes it from the spec</span>
 gpm remove git</pre>
@@ -330,39 +366,83 @@ gpm remove git</pre>
             <span>CLI Reference</span>
           </div>
           <pre class="gpm-code-block" aria-label="CLI reference">gpm add &lt;id&gt;    [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
-gpm remove &lt;id&gt;
+gpm remove &lt;id&gt;                                                   <span class="comment"># alias: rm</span>
 gpm adopt &lt;id&gt;  [--version &lt;ver&gt;] [--prefer &lt;mgr&gt;] [--manager &lt;mgr:name,...&gt;]
 gpm disown &lt;id&gt;
-gpm list
-gpm apply       [--dry-run] [--strict]
+gpm scan        [--json] [--debug]
+gpm status      [--json] [--debug]
+gpm list                                                          <span class="comment"># alias: ls</span>
+gpm apply       [--dry-run] [--strict] [--yes] [--json] [--timeout &lt;dur&gt;] [--debug]
 gpm clean       [--dry-run]
 gpm edit
 gpm version
 gpm help</pre>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
+          <p style="font-size:0.82rem;font-weight:700;color:var(--gpm-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            gpm add / gpm adopt flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--version &lt;ver&gt;</code>
-              — version constraint, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"0.10.*"</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
+              — version constraint, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"0.10.*"</code>
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--prefer &lt;mgr&gt;</code>
-              — preferred manager, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">brew</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
+              — preferred manager, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">brew</code>
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--manager &lt;mgr:name,...&gt;</code>
-              — manager-specific names, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">flatpak:org.mozilla.firefox</code> (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm add</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm adopt</code>)
+              — manager-specific names, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">flatpak:org.mozilla.firefox</code>
             </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--gpm-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            gpm apply flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--dry-run</code>
-              — print the plan without executing (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code> and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm clean</code>)
+              — print the reconcile plan without executing
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--strict</code>
-              — exit with an error if any package cannot be resolved (for <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm apply</code>)
+              — exit with an error if any package cannot be resolved
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--yes</code>
+              — skip the confirmation prompt (for CI and scripts)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>
+              — emit machine-readable JSON to stdout instead of human-readable text
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--timeout &lt;duration&gt;</code>
+              — per-subprocess deadline, e.g. <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">5m</code> or <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">30s</code> (0 = no timeout)
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--debug</code>
+              — emit debug-level structured logs to stderr
+            </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--gpm-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            gpm status / gpm scan flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>
+              — emit machine-readable JSON to stdout
+            </li>
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--debug</code>
+              — emit debug-level structured logs to stderr
+            </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--gpm-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            Common flag (all commands)
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--file &lt;path&gt;</code>
-              — path to gpm.json, default: <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">./gpm.json</code> (all commands)
+              — path to gpm.json (default: <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">$XDG_CONFIG_HOME/gpm/gpm.json</code> or <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">~/.config/gpm/gpm.json</code>)
             </li>
           </ul>
         </section>
@@ -400,7 +480,7 @@ gpm help</pre>
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">version</code>
-              — optional version constraint; omit for latest
+              — optional version constraint; omit for latest; supports <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"x.y.*"</code> prefix wildcards
             </li>
             <li style="font-size:0.88rem;color:var(--gpm-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">prefer</code>
@@ -411,6 +491,129 @@ gpm help</pre>
               — optional map of manager-specific identifiers for packages with different names across managers
             </li>
           </ul>
+        </section>
+
+        <!-- ---- Declarative Model ---- -->
+        <section id="declarative-model" class="section" aria-labelledby="declarative-heading">
+          <div class="section-label" id="declarative-heading">
+            <span>How the Declarative Model Works</span>
+          </div>
+          <p style="font-size:0.92rem;color:var(--gpm-text-muted);margin-bottom:1rem;">
+            GPM maintains two files side by side:
+          </p>
+          <table class="gpm-platform-table" aria-label="GPM file roles">
+            <thead>
+              <tr>
+                <th scope="col">File</th>
+                <th scope="col">Default location</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-tag">gpm.json</span></td>
+                <td><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">~/.config/gpm/gpm.json</code></td>
+                <td><strong>Desired state</strong> — what you want installed. Edit via <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm add</code> / <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm remove</code> / <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm edit</code> / <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>.</td>
+              </tr>
+              <tr>
+                <td><span class="code-tag">gpm.lock.json</span></td>
+                <td><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">~/.config/gpm/gpm.lock.json</code></td>
+                <td><strong>Applied state</strong> — what gpm last installed, via which manager. Auto-managed; do not edit by hand.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.92rem;color:var(--gpm-text-muted);margin-top:1rem;margin-bottom:0.5rem;">When you run <code style="font-size:0.85rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm apply</code>:</p>
+          <div class="gpm-features-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">📖</span>
+              <p class="gpm-feature-title">Read</p>
+              <p class="gpm-feature-desc">gpm reads <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> (desired) and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.lock.json</code> (last applied).</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">➕</span>
+              <p class="gpm-feature-title">Install</p>
+              <p class="gpm-feature-desc">Packages in desired but not in the lock → <strong>install</strong>.</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">➖</span>
+              <p class="gpm-feature-title">Uninstall</p>
+              <p class="gpm-feature-desc">Packages in the lock but not in desired → <strong>uninstall</strong> using the manager recorded in the lock.</p>
+            </div>
+            <div class="gpm-feature-card">
+              <span class="gpm-feature-icon" aria-hidden="true">✅</span>
+              <p class="gpm-feature-title">Skip</p>
+              <p class="gpm-feature-desc">Packages in both → <strong>skip</strong> (already up to date). Lock file is updated after each run.</p>
+            </div>
+          </div>
+          <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.75rem;">
+            <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm scan</code> discovers every package currently installed across all available managers and bulk-adopts them into your spec and lock — useful for generating a baseline spec from an existing machine.
+            <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm status</code> compares your spec and lock and reports any drift.
+          </p>
+        </section>
+
+        <!-- ---- Machine-readable Output ---- -->
+        <section id="json-output" class="section" aria-labelledby="json-heading">
+          <div class="section-label" id="json-heading">
+            <span>Machine-readable Output (--json)</span>
+          </div>
+          <p style="font-size:0.92rem;color:var(--gpm-text-muted);margin-bottom:0.75rem;">
+            When <code style="font-size:0.85rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--json</code> is passed, the command writes a single JSON object to stdout and routes all subprocess output to stderr, keeping stdout clean for piping.
+          </p>
+          <pre class="gpm-code-block" aria-label="--json usage examples"><span class="comment"># Parse the plan in CI</span>
+gpm apply --dry-run --json | jq '.data.toInstall[].id'
+
+<span class="comment"># Check status in a script</span>
+gpm status --json | jq '.ok'
+
+<span class="comment"># Non-interactive apply in a bootstrap script</span>
+gpm apply --yes --json 2>/dev/null</pre>
+          <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.75rem;margin-bottom:0.5rem;">The envelope format:</p>
+          <pre class="gpm-code-block" aria-label="JSON envelope format">{
+  "command": "apply",
+  "ok": true,
+  "data": { ... },
+  "errors": []
+}</pre>
+          <p style="font-size:0.88rem;color:var(--gpm-text-muted);margin-top:0.75rem;">
+            <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">ok</code> is <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">false</code> when the command encountered an error or found drift (<code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">gpm status</code>). Exit codes are unchanged regardless of <code style="font-size:0.82rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>.
+          </p>
+        </section>
+
+        <!-- ---- Exit Codes ---- -->
+        <section id="exit-codes" class="section" aria-labelledby="exitcodes-heading">
+          <div class="section-label" id="exitcodes-heading">
+            <span>Exit Codes</span>
+          </div>
+          <table class="gpm-platform-table" aria-label="Exit codes">
+            <thead>
+              <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-tag">0</span></td>
+                <td>Success</td>
+              </tr>
+              <tr>
+                <td><span class="code-tag">1</span></td>
+                <td>Bad arguments or unknown command</td>
+              </tr>
+              <tr>
+                <td><span class="code-tag">2</span></td>
+                <td>Filesystem or serialisation error</td>
+              </tr>
+              <tr>
+                <td><span class="code-tag">3</span></td>
+                <td><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm.json</code> fails schema validation</td>
+              </tr>
+              <tr>
+                <td><span class="code-tag">4</span></td>
+                <td>Semantic error — also returned by <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm status</code> when drift or extra entries exist</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <!-- ---- How Resolution Works ---- -->
@@ -457,16 +660,24 @@ gpm help</pre>
               <span class="milestone-text">Resolver + adapter layer, declarative apply, adopt/disown, cache clean</span>
             </li>
             <li>
-              <span class="milestone-badge">M3</span>
+              <span class="milestone-badge complete">M3 ✓</span>
               <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm scan</code>, lock file pinning, and <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm status</code></span>
             </li>
             <li>
-              <span class="milestone-badge">M4</span>
-              <span class="milestone-text">Reliability, automation, and release hardening</span>
+              <span class="milestone-badge complete">M4 ✓</span>
+              <span class="milestone-text"><code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--json</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--yes</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--timeout</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">--debug</code>, signed releases</span>
             </li>
             <li>
-              <span class="milestone-badge">M5</span>
+              <span class="milestone-badge complete">M5 ✓</span>
               <span class="milestone-text">macOS and WSL2 validation and automated testing</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M6</span>
+              <span class="milestone-text">API stability, test coverage, performance benchmarks, security audit</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M7</span>
+              <span class="milestone-text">Shell completions, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm validate</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm upgrade</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">gpm init</code>, improved errors</span>
             </li>
           </ul>
           <p style="font-size:0.85rem;color:var(--gpm-text-muted);margin-top:0.75rem;">
@@ -481,7 +692,7 @@ gpm help</pre>
           <div class="gpm-cta">
             <p class="gpm-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="gpm-cta-desc">
-              GPM v0.1.0 is here — open-source and MIT licensed. Adapter quality is where contributions matter most.
+              GPM v0.2.0 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
             </p>
             <div class="gpm-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/gpm" target="_blank" rel="noopener noreferrer">
