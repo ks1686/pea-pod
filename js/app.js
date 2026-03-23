@@ -113,14 +113,14 @@ function initAnnouncementBanner() {
   const closeBtn = document.getElementById('banner-close');
   if (!banner || !closeBtn) return;
 
-  if (localStorage.getItem('gpm-banner-dismissed') === '1') {
+  if (localStorage.getItem('genv-banner-dismissed') === '1') {
     banner.classList.add('hidden');
     return;
   }
 
   closeBtn.addEventListener('click', () => {
     banner.classList.add('hidden');
-    localStorage.setItem('gpm-banner-dismissed', '1');
+    localStorage.setItem('genv-banner-dismissed', '1');
   });
 }
 
