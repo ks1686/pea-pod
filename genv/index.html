@@ -32,11 +32,11 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">v0.2.0</span>
+        <span class="banner-badge" aria-hidden="true">v1.0.1</span>
         <p class="banner-text">
-          <strong>GENV v0.2.0</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">scan</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">status</code> commands, macOS/WSL2 support, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--json</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--yes</code> flags, reproducible builds, and signed releases.
+          <strong>GENV v1.0.1</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">completion</code>, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">validate</code>, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">upgrade</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">init</code> commands, shell completions, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--quiet</code> flag, API stability, and full test coverage.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v0.2.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v1.0.1" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -372,9 +372,13 @@ genv disown &lt;id&gt;
 genv scan        [--json] [--debug]
 genv status      [--json] [--debug]
 genv list                                                          <span class="comment"># alias: ls</span>
-genv apply       [--dry-run] [--strict] [--yes] [--json] [--timeout &lt;dur&gt;] [--debug]
+genv apply       [--dry-run] [--strict] [--yes] [--quiet] [--json] [--timeout &lt;dur&gt;] [--debug]
 genv clean       [--dry-run]
 genv edit
+genv completion  &lt;shell&gt;                                           <span class="comment"># bash, zsh, or fish</span>
+genv validate
+genv upgrade     [--dry-run] [--yes] [--debug]
+genv init
 genv version
 genv help</pre>
           <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
@@ -411,6 +415,10 @@ genv help</pre>
               — skip the confirmation prompt (for CI and scripts)
             </li>
             <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--quiet</code>
+              — suppress plan output (useful in scripts)
+            </li>
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>
               — emit machine-readable JSON to stdout instead of human-readable text
             </li>
@@ -430,6 +438,23 @@ genv help</pre>
             <li style="font-size:0.88rem;color:var(--genv-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>
               — emit machine-readable JSON to stdout
+            </li>
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--debug</code>
+              — emit debug-level structured logs to stderr
+            </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            genv upgrade flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--dry-run</code>
+              — print the upgrade commands without executing
+            </li>
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--yes</code>
+              — skip the confirmation prompt
             </li>
             <li style="font-size:0.88rem;color:var(--genv-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--debug</code>
@@ -672,11 +697,11 @@ genv apply --yes --json 2>/dev/null</pre>
               <span class="milestone-text">macOS and WSL2 validation and automated testing</span>
             </li>
             <li>
-              <span class="milestone-badge">M6</span>
+              <span class="milestone-badge complete">M6 ✓</span>
               <span class="milestone-text">API stability, test coverage, performance benchmarks, security audit</span>
             </li>
             <li>
-              <span class="milestone-badge">M7</span>
+              <span class="milestone-badge complete">M7 ✓</span>
               <span class="milestone-text">Shell completions, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv validate</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv upgrade</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv init</code>, improved errors</span>
             </li>
             <li>
@@ -700,7 +725,7 @@ genv apply --yes --json 2>/dev/null</pre>
           <div class="genv-cta">
             <p class="genv-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="genv-cta-desc">
-              GENV v0.2.0 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
+              GENV v1.0.1 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
             </p>
             <div class="genv-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/genv" target="_blank" rel="noopener noreferrer">
