@@ -32,11 +32,11 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">v1.0.1</span>
+        <span class="banner-badge" aria-hidden="true">v2.0.1</span>
         <p class="banner-text">
-          <strong>GENV v1.0.1</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">completion</code>, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">validate</code>, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">upgrade</code> &amp; <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">init</code> commands, shell completions, <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">--quiet</code> flag, API stability, and full test coverage.
+          <strong>GENV v2.0.1</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">genv env</code> and <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">genv shell</code> commands, declarative <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">env</code> and <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">shell</code> blocks in genv.json, and full environment reproducibility (packages, env vars, shell aliases).
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v1.0.1" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v2.0.1" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -357,7 +357,17 @@ genv apply --dry-run --json
 genv status --json
 
 <span class="comment"># Remove a package — uninstalls it and removes it from the spec</span>
-genv remove git</pre>
+genv remove git
+
+<span class="comment"># Declare environment variables — written to genv.json and exported on apply</span>
+genv env set EDITOR nvim
+genv env set GITHUB_TOKEN ghp_... --sensitive  <span class="comment"># redacted in output and logs</span>
+genv env list                                   <span class="comment"># show all declared variables</span>
+
+<span class="comment"># Manage shell aliases — applied to bash, zsh, and/or fish on apply</span>
+genv shell alias set gs "git status"
+genv shell alias set ll "ls -la" --shell bash
+genv shell status                               <span class="comment"># show shell config drift</span></pre>
         </section>
 
         <!-- ---- CLI Reference ---- -->
@@ -379,6 +389,13 @@ genv completion  &lt;shell&gt;                                           <span c
 genv validate
 genv upgrade     [--dry-run] [--yes] [--debug]
 genv init
+genv env         set &lt;NAME&gt; &lt;value&gt; [--sensitive]
+genv env         unset &lt;NAME&gt;
+genv env         list [--json]
+genv shell       alias set &lt;name&gt; &lt;value&gt; [--shell bash|zsh|fish]
+genv shell       alias unset &lt;name&gt;
+genv shell       status [--json]
+genv shell       edit
 genv version
 genv help</pre>
           <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
@@ -470,6 +487,33 @@ genv help</pre>
               — path to genv.json (default: <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">$XDG_CONFIG_HOME/genv/genv.json</code> or <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">~/.config/genv/genv.json</code>)
             </li>
           </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            genv env set flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--sensitive</code>
+              — mark the value as sensitive (redacted in output and logs)
+            </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            genv env list / genv shell status flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--json</code>
+              — emit machine-readable JSON to stdout
+            </li>
+          </ul>
+          <p style="font-size:0.82rem;font-weight:700;color:var(--genv-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1rem;margin-bottom:0.5rem;">
+            genv shell alias set flags
+          </p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">--shell &lt;target&gt;</code>
+              — target shell: <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">bash</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">zsh</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">fish</code>, or omit for all
+            </li>
+          </ul>
         </section>
 
         <!-- ---- genv.json format ---- -->
@@ -478,7 +522,7 @@ genv help</pre>
             <span>genv.json Format</span>
           </div>
           <pre class="genv-code-block" aria-label="genv.json example">{
-  "schemaVersion": "1",
+  "schemaVersion": "3",
   "packages": [
     {
       "id": "git"
@@ -496,7 +540,17 @@ genv help</pre>
         "snap":    "firefox"
       }
     }
-  ]
+  ],
+  "env": {
+    "EDITOR": { "value": "nvim" },
+    "GITHUB_TOKEN": { "value": "ghp_...", "sensitive": true }
+  },
+  "shell": {
+    "aliases": {
+      "gs": { "value": "git status" },
+      "ll": { "value": "ls -la", "shell": "bash" }
+    }
+  }
 }</pre>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;margin-top:0.75rem;">
             <li style="font-size:0.88rem;color:var(--genv-text-muted);">
@@ -514,6 +568,14 @@ genv help</pre>
             <li style="font-size:0.88rem;color:var(--genv-text-muted);">
               <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">managers</code>
               — optional map of manager-specific identifiers for packages with different names across managers
+            </li>
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">env</code>
+              — optional map of environment variable declarations; each entry has a <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">value</code> and optional <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">sensitive</code> flag (introduced in schemaVersion <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"2"</code>)
+            </li>
+            <li style="font-size:0.88rem;color:var(--genv-text-muted);">
+              <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">shell.aliases</code>
+              — optional map of shell alias declarations; each entry has a <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">value</code> and optional <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">shell</code> target (<code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">bash</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">zsh</code>, or <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">fish</code>; omit for all) (introduced in schemaVersion <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;color:#c8d3e8;">"3"</code>)
             </li>
           </ul>
         </section>
@@ -705,12 +767,28 @@ genv apply --yes --json 2>/dev/null</pre>
               <span class="milestone-text">Shell completions, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv validate</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv upgrade</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv init</code>, improved errors</span>
             </li>
             <li>
-              <span class="milestone-badge">M8</span>
+              <span class="milestone-badge complete">M8 ✓</span>
               <span class="milestone-text">Environment variables and shell globals — declarative <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">env</code> block in <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv.json</code>, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv env set/unset/list</code></span>
             </li>
             <li>
-              <span class="milestone-badge">M9</span>
+              <span class="milestone-badge complete">M9 ✓</span>
               <span class="milestone-text">Shell configuration management — aliases, functions, and rc snippets as a reproducible environment concern</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M10</span>
+              <span class="milestone-text">Services management — declarative <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">services</code> block, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv service add/remove/start/stop/status</code>, systemd and launchd integration</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M11</span>
+              <span class="milestone-text">Updates daemon — optional background process to check and auto-apply package updates on a configurable schedule</span>
+            </li>
+            <li>
+              <span class="milestone-badge">M12</span>
+              <span class="milestone-text">Named profiles — multiple named environment profiles with inheritance, <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">genv profile switch/list/create</code></span>
+            </li>
+            <li>
+              <span class="milestone-badge">M13</span>
+              <span class="milestone-text">Hooks and lifecycle scripts — declarative <code style="font-size:0.8rem;background:rgba(255,255,255,0.08);padding:0.1em 0.4em;border-radius:0.3rem;">hooks</code> block for pre/post events on apply, add, remove, and upgrade</span>
             </li>
           </ul>
           <p style="font-size:0.85rem;color:var(--genv-text-muted);margin-top:0.75rem;">
@@ -725,7 +803,7 @@ genv apply --yes --json 2>/dev/null</pre>
           <div class="genv-cta">
             <p class="genv-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="genv-cta-desc">
-              GENV v1.0.1 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
+              GENV v2.0.1 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
             </p>
             <div class="genv-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/genv" target="_blank" rel="noopener noreferrer">
