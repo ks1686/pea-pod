@@ -191,29 +191,40 @@
             <div>
               <p style="font-size:0.78rem;color:var(--genv-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">macOS</p>
               <div class="genv-install-block" aria-label="Install command for macOS">
-                <span class="prompt">$</span>
-                <span>brew tap ks1686/tap &amp;&amp; brew install genv</span>
+                <span class="install-cmd">brew tap ks1686/tap &amp;&amp; brew install genv</span>
+                <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                </button>
               </div>
             </div>
             <div>
               <p style="font-size:0.78rem;color:var(--genv-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Arch Linux (AUR)</p>
               <div class="genv-install-block" aria-label="Install command for Arch Linux via AUR">
-                <span class="prompt">$</span>
-                <span>paru -S genv</span>
+                <span class="install-cmd">paru -S genv</span>
+                <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                </button>
               </div>
             </div>
             <div>
               <p style="font-size:0.78rem;color:var(--genv-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Linux — Other Distros</p>
-              <div class="genv-install-block" aria-label="Install command for Linux via pre-built binary" style="display:flex;flex-direction:column;align-items:flex-start;gap:0.5rem;width:100%;box-sizing:border-box;">
-                <div><span class="prompt">$</span><span>curl -Lo genv.tar.gz https://github.com/ks1686/genv/releases/latest/download/genv_linux_amd64.tar.gz</span></div>
-                <div><span class="prompt">$</span><span>tar -xzf genv.tar.gz &amp;&amp; sudo mv genv /usr/local/bin/</span></div>
+              <div class="genv-install-block" aria-label="Install command for Linux via pre-built binary" style="align-items:flex-start;width:100%;box-sizing:border-box;">
+                <div style="display:flex;flex-direction:column;gap:0.5rem;flex:1;">
+                  <span class="install-cmd">curl -Lo genv.tar.gz https://github.com/ks1686/genv/releases/latest/download/genv_linux_amd64.tar.gz</span>
+                  <span class="install-cmd">tar -xzf genv.tar.gz &amp;&amp; sudo mv genv /usr/local/bin/</span>
+                </div>
+                <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy" style="align-self:flex-start;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                </button>
               </div>
             </div>
             <div>
               <p style="font-size:0.78rem;color:var(--genv-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Any platform — Go 1.21+</p>
               <div class="genv-install-block" aria-label="Install command via Go">
-                <span class="prompt">$</span>
-                <span>go install github.com/ks1686/genv@latest</span>
+                <span class="install-cmd">go install github.com/ks1686/genv@latest</span>
+                <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                </button>
               </div>
             </div>
           </div>
