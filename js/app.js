@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initServiceCards();
   initBurgerMenu();
   initAnnouncementBanner();
+  initCopyButtons();
 });
 
 /**
@@ -175,6 +176,36 @@ function initBurgerMenu() {
       if (link.hash) {
         closeMenu();
       }
+    });
+  });
+}
+
+/**
+ * Copy-to-clipboard buttons on .genv-install-block elements.
+ * Each .copy-btn collects text from sibling .install-cmd spans and writes
+ * them to the clipboard joined by newlines.
+ */
+function initCopyButtons() {
+  const checkSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
+  const clipSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>';
+
+  document.querySelectorAll('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const block = btn.closest('.genv-install-block');
+      const lines = Array.from(block.querySelectorAll('.install-cmd')).map((el) => el.textContent.trim());
+      const text = lines.join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = checkSVG;
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = clipSVG;
+        }, 2000);
+      }).catch(() => {
+        btn.title = 'Copy failed';
+        setTimeout(() => { btn.title = 'Copy'; }, 2000);
+      });
     });
   });
 }

@@ -77,14 +77,41 @@
   font-size: 0.95rem;
   color: var(--green-900);
   letter-spacing: 0.01em;
-  user-select: all;
-  cursor: text;
 }
 
-.genv-install-block .prompt {
-  color: var(--genv-accent);
-  font-weight: 700;
-  user-select: none;
+/* ---- Copy Button ---- */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(100, 100, 100, 0.4);
+  border-radius: 0.375rem;
+  color: var(--genv-text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.copy-btn:hover {
+  background: rgba(80, 80, 80, 0.4);
+  border-color: rgba(160, 160, 160, 0.5);
+  color: var(--green-900);
+}
+
+.copy-btn.copied {
+  border-color: rgba(180, 180, 180, 0.7);
+  color: var(--green-950);
+}
+
+.copy-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  pointer-events: none;
 }
 
 /* ---- CTA Buttons ---- */
