@@ -1,0 +1,62 @@
+# Global options
+{
+	email k.smires101@icloud.com
+	acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+}
+
+# Main website
+pea-pod.me, www.pea-pod.me {
+	# Cloudflare DNS challenge for SSL certs
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	# Serve static files
+	root * /srv
+	file_server
+}
+
+# Portainer - Container Management
+portainer.pea-pod.me {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	reverse_proxy http://portainer:9000
+}
+
+# Gitea - Git Hosting
+gitea.pea-pod.me {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	reverse_proxy http://gitea:3000
+}
+
+# AdGuard Home - Ad Blocking
+adguard.pea-pod.me {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	reverse_proxy http://adguard:80
+}
+
+# Open WebUI - Chat Interface
+chat.pea-pod.me {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	reverse_proxy http://open-webui:8080
+}
+
+# Homebridge - HomeKit Bridge
+homebridge.pea-pod.me {
+	tls {
+		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+	}
+
+	reverse_proxy http://host.docker.internal:8581
+}

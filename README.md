@@ -49,14 +49,13 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 
 | Icon | Service | URL | Visibility |
 |------|---------|-----|------------|
-| ⚗️ | **Forgejo** | forgejo.pea-pod.me | 🔒 Private |
-| 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
-| 💻 | **code-server** | code.pea-pod.me | 🔒 Private |
-| 🛡️ | **AdGuard** | adguard.pea-pod.me | 🔒 Private |
+| ⚗️ | **Portainer** | portainer.pea-pod.me | 🔒 Private |
+| 🍵 | **Gitea** | gitea.pea-pod.me | 🔒 Private |
+| 🛡️ | **AdGuard Home** | adguard.pea-pod.me | 🔒 Private |
 | 🤖 | **Open WebUI** | chat.pea-pod.me | 🔒 Private |
-| 📊 | **Status Monitor** | [monitor.pea-pod.me](https://monitor.pea-pod.me) | 🌐 Public |
+| 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
 
-> **Private** services are only reachable on the internal home network. **Public** services are accessible from anywhere.
+> **Private** services are only reachable on the internal home network.
 
 ---
 
