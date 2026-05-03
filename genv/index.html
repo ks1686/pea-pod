@@ -32,11 +32,16 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">v2.1.0</span>
+        <span class="banner-badge" aria-hidden="true">v2.1.2</span>
         <p class="banner-text">
-          <strong>GENV v2.1.0</strong> — New <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">genv service</code> command, declarative <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">services</code> block in genv.json, expanded packaging channels (Fedora COPR, Alpine), and more supported package managers.
+          <strong>GENV v2.1.2</strong> — refined package manager support:
+          <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">brew</code>,
+          <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">paru</code>,
+          <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">yay</code>,
+          <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">snap</code>,
+          <code style="font-size:0.85em;background:rgba(255,255,255,0.12);padding:0.1em 0.35em;border-radius:0.25em;">linuxbrew</code>.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v2.1.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v2.1.2" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -87,6 +92,12 @@
           <a class="side-menu-link" href="/genv" aria-current="page">
             <span class="side-menu-icon" aria-hidden="true">📦</span>
             <span>GENV</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-menu-link" href="/public-terminal">
+            <span class="side-menu-icon" aria-hidden="true">💹</span>
+            <span>Public Terminal</span>
           </a>
         </li>
         <li role="presentation">
@@ -822,7 +833,7 @@ genv apply --yes --json 2>/dev/null</pre>
           <div class="genv-cta">
             <p class="genv-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="genv-cta-desc">
-              GENV v2.1.0 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
+              GENV v2.1.2 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
             </p>
             <div class="genv-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/genv" target="_blank" rel="noopener noreferrer">
