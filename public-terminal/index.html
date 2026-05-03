@@ -158,8 +158,8 @@
           </div>
           <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-top:0.85rem;">
             Re-run the same command at any time to upgrade. Config stored at
-            <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.4em;border-radius:0.3rem;color:var(--pt-accent);">~/.config/public-terminal/</code>
-            (respects <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.4em;border-radius:0.3rem;color:var(--pt-accent);">$XDG_CONFIG_HOME</code>).
+            <code class="pt-code-tag">~/.config/public-terminal/</code>
+            (respects <code class="pt-code-tag">$XDG_CONFIG_HOME</code>).
           </p>
           <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.5rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Run</p>
           <pre class="pt-code-block" style="margin-top:0.4rem;" aria-label="Run commands">public-terminal            <span class="comment"># launch the TUI</span>
@@ -189,7 +189,7 @@ public-terminal-rebalance --dry-run  <span class="comment"># plan without placin
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📊</span>
               <p class="pt-feature-title">Live Portfolio</p>
-              <p class="pt-feature-desc">Holdings, values, quantities, open orders, and options positions. Press <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">l</code> to toggle live balance streaming every 30 seconds.</p>
+              <p class="pt-feature-desc">Holdings, values, quantities, open orders, and options positions. Press <code class="pt-code-tag">l</code> to toggle live balance streaming every 30 seconds.</p>
             </div>
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📈</span>
@@ -209,7 +209,7 @@ public-terminal-rebalance --dry-run  <span class="comment"># plan without placin
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📉</span>
               <p class="pt-feature-title">Portfolio Chart</p>
-              <p class="pt-feature-desc">Scrollable price history across all holdings. Use <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">[</code> and <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">]</code> to scroll time windows. Extended-hours data included in the 24H view.</p>
+              <p class="pt-feature-desc">Scrollable price history across all holdings. Use <code class="pt-code-tag">[</code> and <code class="pt-code-tag">]</code> to scroll time windows. Extended-hours data included in the 24H view.</p>
             </div>
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">💳</span>
@@ -224,7 +224,7 @@ public-terminal-rebalance --dry-run  <span class="comment"># plan without placin
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">⏰</span>
               <p class="pt-feature-title">Systemd Timer</p>
-              <p class="pt-feature-desc">Automated daily rebalance Mon–Fri at 12:00 ET. Install, remove, pause, and skip runs directly from the TUI with <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">e</code> / <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">t</code> / <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">x</code>.</p>
+              <p class="pt-feature-desc">Automated daily rebalance Mon–Fri at 12:00 ET. Install, remove, pause, and skip runs directly from the TUI with <code class="pt-code-tag">e</code> / <code class="pt-code-tag">t</code> / <code class="pt-code-tag">x</code>.</p>
             </div>
           </div>
         </section>
@@ -355,11 +355,11 @@ Footer (key bindings)</pre>
             <li>Selects top N by market cap, filters excluded tickers, computes within-slice weights.</li>
             <li>Fetches the current portfolio from Public.com.</li>
             <li>Computes dollar deltas for all buckets against the investment base.</li>
-            <li>Applies drift threshold: <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">max(0.5% of target, $1)</code> — positions within tolerance are left alone.</li>
+            <li>Applies drift threshold: <code class="pt-code-tag">max(0.5% of target, $1)</code> — positions within tolerance are left alone.</li>
             <li>Places SELL orders first, waits for them to clear, then places BUY orders.</li>
             <li>BUY orders are capped to effective buying power budget.</li>
             <li>Full liquidations use share-quantity orders to avoid broker rejection.</li>
-            <li>Logs everything to <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">accounts/&lt;id&gt;/cache/rebalance.log</code>.</li>
+            <li>Logs everything to <code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code>.</li>
           </ol>
 
           <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Margin Investing</p>
@@ -368,7 +368,7 @@ allowed_margin  = margin_usage_pct × margin_capacity
 investment_base = portfolio_nav + allowed_margin
 effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loan)</pre>
           <p style="font-size:0.88rem;color:var(--pt-text-muted);margin-bottom:1.5rem;">
-            Set <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">margin_usage_pct = 0.0</code> to use cash only. The TUI disables the margin input if your account has no margin buying power.
+            Set <code class="pt-code-tag">margin_usage_pct = 0.0</code> to use cash only. The TUI disables the margin input if your account has no margin buying power.
           </p>
 
           <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Rebalance Settings (<span class="pt-code-tag">S</span>)</p>
@@ -411,7 +411,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
             <span>Systemd Timer</span>
           </div>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
-            The rebalancer runs as a user-level systemd service — no root access required. The timer fires Mon–Fri at <strong>12:00 ET</strong> (DST-aware). <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">Persistent=true</code> catches up immediately after a missed run.
+            The rebalancer runs as a user-level systemd service — no root access required. The timer fires Mon–Fri at <strong>12:00 ET</strong> (DST-aware). <code class="pt-code-tag">Persistent=true</code> catches up immediately after a missed run.
           </p>
           <table class="pt-table" aria-label="Timer TUI controls" style="margin-bottom:1.25rem;">
             <thead>
@@ -459,9 +459,9 @@ systemctl --user daemon-reload</pre>
         ├── market_caps.json          <span class="comment">— same-day market cap cache (auto-refreshes)</span>
         ├── today_buys.json           <span class="comment">— PDT protection ledger (resets daily)</span>
         └── skip_next_rebalance       <span class="comment">— sentinel file — presence skips one run</span></pre>
-          <table class="pt-table" style="margin-top:1.25rem;">
+          <table class="pt-table" aria-label="Configuration file descriptions" style="margin-top:1.25rem;">
             <thead>
-              <tr><th>File</th><th>Purpose</th></tr>
+              <tr><th scope="col">File</th><th scope="col">Purpose</th></tr>
             </thead>
             <tbody>
               <tr><td><code class="pt-code-tag">.env</code></td><td>API access token (<code class="pt-code-tag">PUBLIC_ACCESS_TOKEN</code>) — shared across all accounts</td></tr>
