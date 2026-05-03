@@ -459,11 +459,21 @@ systemctl --user daemon-reload</pre>
         ├── market_caps.json          <span class="comment">— same-day market cap cache (auto-refreshes)</span>
         ├── today_buys.json           <span class="comment">— PDT protection ledger (resets daily)</span>
         └── skip_next_rebalance       <span class="comment">— sentinel file — presence skips one run</span></pre>
-          <p style="font-size:0.88rem;color:var(--pt-text-muted);margin-top:0.75rem;">
-            The <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">.env</code> file holds your
-            <code style="font-size:0.8rem;background:var(--pt-accent-dim);padding:0.1em 0.35em;border-radius:0.25em;color:var(--pt-accent);">PUBLIC_ACCESS_TOKEN</code> from your Public.com account settings.
-            Existing v0.1.x single-account users are migrated automatically on first launch — no manual steps required.
-          </p>
+          <table class="pt-table" style="margin-top:1.25rem;">
+            <thead>
+              <tr><th>File</th><th>Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code class="pt-code-tag">.env</code></td><td>API access token (<code class="pt-code-tag">PUBLIC_ACCESS_TOKEN</code>) — shared across all accounts</td></tr>
+              <tr><td><code class="pt-code-tag">accounts.json</code></td><td>Ordered list of registered account IDs</td></tr>
+              <tr><td><code class="pt-code-tag">schema_version.json</code></td><td>Internal migration marker — updated automatically on launch</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/rebalance_config.json</code></td><td>Per-account rebalancer settings: index, top N, margin %, excluded tickers</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code></td><td>Full rebalancer run history for the account</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/market_caps.json</code></td><td>Same-day market cap cache — auto-refreshes each trading day</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/today_buys.json</code></td><td>PDT protection ledger — resets automatically at midnight</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/skip_next_rebalance</code></td><td>Sentinel file — presence causes the next scheduled rebalance to be skipped</td></tr>
+            </tbody>
+          </table>
         </section>
 
         <!-- ---- CTA ---- -->
