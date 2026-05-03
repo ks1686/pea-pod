@@ -1,33 +1,48 @@
 /* =============================================
    GENV — Global Environment Manager
-   Dark mode monochrome theme
+   Fully independent dark monochrome theme
    ============================================= */
 
-/* ---- CSS Variable Overrides (dark grayscale) ---- */
+/* ---- Design tokens — no dependency on styles.css variables ---- */
 :root {
-  --green-50:  #0f0f0f;
-  --green-100: #1a1a1a;
-  --green-200: #2e2e2e;
-  --green-300: #464646;
-  --green-400: #5e5e5e;
-  --green-500: #7a7a7a;
-  --green-600: #9a9a9a;
-  --green-700: #b8b8b8;
-  --green-800: #d4d4d4;
-  --green-900: #eeeeee;
-  --green-950: #f9f9f9;
+  /* Background / surface */
+  --genv-bg:           #0b0f1a;
+  --genv-surface:      #111827;
+  --genv-surface-2:    rgba(20, 20, 20, 0.9);
 
-  --card-bg: rgba(20, 20, 20, 0.9);
-  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-  --card-hover-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+  /* Borders */
+  --genv-border:       rgba(70, 70, 70, 0.5);
+  --genv-border-hover: rgba(110, 110, 110, 0.55);
 
-  --genv-text-muted: #9a9a9a;
-  --genv-accent: #c0c0c0;
+  /* Text */
+  --genv-text:         #eeeeee;
+  --genv-text-mid:     #d4d4d4;
+  --genv-text-muted:   #9a9a9a;
+
+  /* Accent */
+  --genv-accent:       #c0c0c0;
+  --genv-accent-hover: #e0e0e0;
+
+  /* Shadows */
+  --genv-shadow:       0 4px 24px rgba(0, 0, 0, 0.5);
+  --genv-shadow-lg:    0 8px 40px rgba(0, 0, 0, 0.7);
+
+  /* Misc */
+  --genv-radius:       0.75rem;
+  --genv-radius-lg:    1.25rem;
+  --genv-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --genv-font:         'Inter', 'Segoe UI', system-ui, sans-serif;
+  --genv-mono:         'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+}
+
+body {
+  background-color: var(--genv-bg);
+  color: var(--genv-text);
 }
 
 /* ---- Hard-coded color overrides ---- */
 .card {
-  border-color: rgba(70, 70, 70, 0.5);
+  border-color: var(--genv-border);
 }
 
 .card::before {
@@ -36,11 +51,11 @@
 
 .card.service-card:hover,
 .card.service-card:focus-visible {
-  border-color: rgba(70, 70, 70, 0.5);
+  border-color: var(--genv-border);
 }
 
 .burger-btn {
-  border-color: rgba(70, 70, 70, 0.5);
+  border-color: var(--genv-border);
 }
 
 .logo-icon {
@@ -52,7 +67,7 @@
 }
 
 .changelog-body {
-  border-color: rgba(70, 70, 70, 0.5);
+  border-color: var(--genv-border);
 }
 
 /* ---- GENV Hero Tagline ---- */
@@ -70,12 +85,12 @@
   align-items: center;
   gap: 0.75rem;
   background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(70, 70, 70, 0.5);
+  border: 1px solid var(--genv-border);
   border-radius: 0.75rem;
   padding: 0.85rem 1.5rem;
   font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
   font-size: 0.95rem;
-  color: var(--green-900);
+  color: var(--genv-text);
   letter-spacing: 0.01em;
 }
 
@@ -94,18 +109,18 @@
   border-radius: 0.375rem;
   color: var(--genv-text-muted);
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--genv-transition);
 }
 
 .copy-btn:hover {
   background: rgba(80, 80, 80, 0.4);
   border-color: rgba(160, 160, 160, 0.5);
-  color: var(--green-900);
+  color: var(--genv-text);
 }
 
 .copy-btn.copied {
   border-color: rgba(180, 180, 180, 0.7);
-  color: var(--green-950);
+  color: var(--genv-accent-hover);
 }
 
 .copy-btn svg {
@@ -128,13 +143,13 @@
   padding: 0.65rem 1.4rem;
   background: rgba(80, 80, 80, 0.85);
   color: #f0f0f0;
-  font-family: var(--font-sans);
+  font-family: var(--genv-font);
   font-size: 0.9rem;
   font-weight: 700;
   border: 1px solid rgba(120, 120, 120, 0.5);
   border-radius: 999px;
   text-decoration: none;
-  transition: var(--transition);
+  transition: var(--genv-transition);
 }
 
 .btn-primary:hover {
@@ -149,14 +164,14 @@
   gap: 0.5rem;
   padding: 0.65rem 1.4rem;
   background: transparent;
-  color: var(--green-800);
-  font-family: var(--font-sans);
+  color: var(--genv-text-mid);
+  font-family: var(--genv-font);
   font-size: 0.9rem;
   font-weight: 700;
   border: 1px solid rgba(70, 70, 70, 0.55);
   border-radius: 999px;
   text-decoration: none;
-  transition: var(--transition);
+  transition: var(--genv-transition);
 }
 
 .btn-secondary:hover {
@@ -174,24 +189,24 @@
 
 /* ---- Feature Cards ---- */
 .genv-feature-card {
-  background: var(--card-bg);
+  background: var(--genv-surface-2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(70, 70, 70, 0.5);
-  border-radius: var(--border-radius);
-  box-shadow: var(--card-shadow);
+  border: 1px solid var(--genv-border);
+  border-radius: var(--genv-radius-lg);
+  box-shadow: var(--genv-shadow);
   padding: 1.5rem 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: var(--transition);
+  transition: var(--genv-transition);
   animation: fadeUp 0.6s ease both;
 }
 
 .genv-feature-card:hover {
   transform: translateY(-4px) scale(1.01);
-  box-shadow: var(--card-hover-shadow);
-  border-color: rgba(110, 110, 110, 0.55);
+  box-shadow: var(--genv-shadow-lg);
+  border-color: var(--genv-border-hover);
 }
 
 .genv-feature-icon {
@@ -203,7 +218,7 @@
 .genv-feature-title {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--green-800);
+  color: var(--genv-text-mid);
 }
 
 .genv-feature-desc {
@@ -216,13 +231,13 @@
 .genv-platform-table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--card-bg);
+  background: var(--genv-surface-2);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(70, 70, 70, 0.5);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--genv-border);
+  border-radius: var(--genv-radius-lg);
   overflow: hidden;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--genv-shadow);
 }
 
 .genv-platform-table th {
@@ -234,13 +249,13 @@
   letter-spacing: 0.1em;
   color: var(--genv-accent);
   background: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(70, 70, 70, 0.5);
+  border-bottom: 1px solid var(--genv-border);
 }
 
 .genv-platform-table td {
   padding: 0.85rem 1.25rem;
   font-size: 0.9rem;
-  color: var(--green-900);
+  color: var(--genv-text);
   border-bottom: 1px solid rgba(50, 50, 50, 0.5);
 }
 
@@ -268,7 +283,7 @@
 /* ---- Code Blocks ---- */
 .genv-code-block {
   background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(70, 70, 70, 0.5);
+  border: 1px solid var(--genv-border);
   border-radius: 0.875rem;
   padding: 1.4rem 1.5rem;
   font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
@@ -278,7 +293,7 @@
   overflow-x: auto;
   white-space: pre;
   tab-size: 2;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--genv-shadow);
 }
 
 .genv-code-block .comment {
@@ -299,15 +314,15 @@
   align-items: flex-start;
   gap: 0.85rem;
   padding: 0.85rem 1.25rem;
-  background: var(--card-bg);
-  border: 1px solid rgba(70, 70, 70, 0.5);
+  background: var(--genv-surface-2);
+  border: 1px solid var(--genv-border);
   border-radius: 0.875rem;
-  transition: var(--transition);
+  transition: var(--genv-transition);
 }
 
 .genv-roadmap-list li:hover {
-  border-color: rgba(110, 110, 110, 0.55);
-  box-shadow: var(--card-shadow);
+  border-color: var(--genv-border-hover);
+  box-shadow: var(--genv-shadow);
 }
 
 .milestone-badge {
@@ -332,29 +347,29 @@
 .milestone-badge.complete {
   background: rgba(50, 50, 50, 0.6);
   border-color: rgba(180, 180, 180, 0.7);
-  color: var(--green-950);
+  color: var(--genv-accent-hover);
 }
 
 .milestone-text {
   font-size: 0.9rem;
-  color: var(--green-800);
+  color: var(--genv-text-mid);
   line-height: 1.5;
 }
 
 /* ---- CTA Section ---- */
 .genv-cta {
   background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(70, 70, 70, 0.5);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--genv-border);
+  border-radius: var(--genv-radius-lg);
   padding: 2.5rem 2rem;
   text-align: center;
-  box-shadow: var(--card-shadow);
+  box-shadow: var(--genv-shadow);
 }
 
 .genv-cta-title {
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--green-900);
+  color: var(--genv-text);
   margin-bottom: 0.6rem;
   letter-spacing: -0.02em;
 }
@@ -370,7 +385,7 @@
 /* ---- Announcement Banner (dark gradient) ---- */
 .announcement-banner {
   background: linear-gradient(135deg, #1a1a1a 0%, #2e2e2e 100%);
-  border-bottom: 1px solid rgba(70, 70, 70, 0.5);
+  border-bottom: 1px solid var(--genv-border);
 }
 
 /* ---- Side Menu Section Label ---- */
