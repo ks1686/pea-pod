@@ -369,6 +369,16 @@ footer a:hover {
   background: rgba(106, 195, 47, 0.04);
 }
 
+/* ---- Section sub-label ---- */
+.pt-section-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pt-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
 /* ---- Code tag ---- */
 .pt-code-tag {
   display: inline-block;

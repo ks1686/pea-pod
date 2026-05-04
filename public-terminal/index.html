@@ -247,7 +247,7 @@ Portfolio Chart   — scrollable price history
 └──────────────────────┘
 Footer (key bindings)</pre>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:1.5rem;margin-bottom:0.75rem;">
+          <p class="pt-section-label" style="margin-top:1.5rem;">
             Key Bindings
           </p>
           <table class="pt-table" aria-label="Key bindings">
@@ -258,23 +258,23 @@ Footer (key bindings)</pre>
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="pt-code-tag">r</span></td><td>Refresh portfolio, orders, and rebalancer status</td></tr>
-              <tr><td><span class="pt-code-tag">l</span></td><td>Toggle live portfolio balance stream on the chart</td></tr>
-              <tr><td><span class="pt-code-tag">b</span></td><td>Place a market buy order</td></tr>
-              <tr><td><span class="pt-code-tag">s</span></td><td>Place a market sell order</td></tr>
-              <tr><td><span class="pt-code-tag">v</span></td><td>View / modify the selected open order</td></tr>
-              <tr><td><span class="pt-code-tag">c</span></td><td>Cancel the selected open order</td></tr>
-              <tr><td><span class="pt-code-tag">h</span></td><td>View order history</td></tr>
-              <tr><td><span class="pt-code-tag">[</span></td><td>Scroll portfolio chart left (earlier)</td></tr>
-              <tr><td><span class="pt-code-tag">]</span></td><td>Scroll portfolio chart right (later)</td></tr>
-              <tr><td><span class="pt-code-tag">t</span></td><td>Pause / resume the installed rebalancer schedule</td></tr>
-              <tr><td><span class="pt-code-tag">e</span></td><td>Install / remove the rebalancer schedule</td></tr>
-              <tr><td><span class="pt-code-tag">x</span></td><td>Skip the next scheduled rebalance run</td></tr>
-              <tr><td><span class="pt-code-tag">S</span></td><td>Open rebalance settings modal</td></tr>
-              <tr><td><span class="pt-code-tag">Ctrl+A</span></td><td>Open account management modal (add / remove accounts)</td></tr>
-              <tr><td><span class="pt-code-tag">Ctrl+Left</span></td><td>Switch to previous account tab</td></tr>
-              <tr><td><span class="pt-code-tag">Ctrl+Right</span></td><td>Switch to next account tab</td></tr>
-              <tr><td><span class="pt-code-tag">q</span></td><td>Quit</td></tr>
+              <tr><td><code class="pt-code-tag">r</code></td><td>Refresh portfolio, orders, and rebalancer status</td></tr>
+              <tr><td><code class="pt-code-tag">l</code></td><td>Toggle live portfolio balance stream on the chart</td></tr>
+              <tr><td><code class="pt-code-tag">b</code></td><td>Place a market buy order</td></tr>
+              <tr><td><code class="pt-code-tag">s</code></td><td>Place a market sell order</td></tr>
+              <tr><td><code class="pt-code-tag">v</code></td><td>View / modify the selected open order</td></tr>
+              <tr><td><code class="pt-code-tag">c</code></td><td>Cancel the selected open order</td></tr>
+              <tr><td><code class="pt-code-tag">h</code></td><td>View order history</td></tr>
+              <tr><td><code class="pt-code-tag">[</code></td><td>Scroll portfolio chart left (earlier)</td></tr>
+              <tr><td><code class="pt-code-tag">]</code></td><td>Scroll portfolio chart right (later)</td></tr>
+              <tr><td><code class="pt-code-tag">t</code></td><td>Pause / resume the installed rebalancer schedule</td></tr>
+              <tr><td><code class="pt-code-tag">e</code></td><td>Install / remove the rebalancer schedule</td></tr>
+              <tr><td><code class="pt-code-tag">x</code></td><td>Skip the next scheduled rebalance run</td></tr>
+              <tr><td><code class="pt-code-tag">S</code></td><td>Open rebalance settings modal</td></tr>
+              <tr><td><code class="pt-code-tag">Ctrl+A</code></td><td>Open account management modal (add / remove accounts)</td></tr>
+              <tr><td><code class="pt-code-tag">Ctrl+Left</code></td><td>Switch to previous account tab</td></tr>
+              <tr><td><code class="pt-code-tag">Ctrl+Right</code></td><td>Switch to next account tab</td></tr>
+              <tr><td><code class="pt-code-tag">q</code></td><td>Quit</td></tr>
             </tbody>
           </table>
         </section>
@@ -285,7 +285,7 @@ Footer (key bindings)</pre>
             <span>Placing Orders</span>
           </div>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
-            Press <span class="pt-code-tag">b</span> to buy or <span class="pt-code-tag">s</span> to sell. A modal prompts for:
+            Press <code class="pt-code-tag">b</code> to buy or <code class="pt-code-tag">s</code> to sell. A modal prompts for:
           </p>
           <table class="pt-table" aria-label="Order fields" style="margin-bottom:1rem;">
             <thead>
@@ -295,7 +295,7 @@ Footer (key bindings)</pre>
               </tr>
             </thead>
             <tbody>
-              <tr><td><strong>Symbol</strong></td><td>e.g. <span class="pt-code-tag">AAPL</span>, <span class="pt-code-tag">BTC</span>, <span class="pt-code-tag">GLDM</span></td></tr>
+              <tr><td><strong>Symbol</strong></td><td>e.g. <code class="pt-code-tag">AAPL</code>, <code class="pt-code-tag">BTC</code>, <code class="pt-code-tag">GLDM</code></td></tr>
               <tr><td><strong>Instrument type</strong></td><td>Equity or Crypto</td></tr>
               <tr><td><strong>Order type</strong></td><td>Market, Limit, Stop, or Stop Limit</td></tr>
               <tr><td><strong>Quantity</strong></td><td>Shares or coin units (fractional supported)</td></tr>
@@ -320,7 +320,7 @@ Footer (key bindings)</pre>
             </div>
           </div>
           <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-top:0.85rem;">
-            All orders are day-only. To modify an open order, press <span class="pt-code-tag">v</span> to open its details modal — modification cancels the existing order and places a new one with updated parameters.
+            All orders are day-only. To modify an open order, press <code class="pt-code-tag">v</code> to open its details modal — modification cancels the existing order and places a new one with updated parameters.
           </p>
         </section>
 
@@ -330,7 +330,7 @@ Footer (key bindings)</pre>
             <span>Rebalancer</span>
           </div>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Target Allocation</p>
+          <p class="pt-section-label">Target Allocation</p>
           <table class="pt-table" aria-label="Target allocation" style="margin-bottom:1.5rem;">
             <thead>
               <tr>
@@ -348,7 +348,7 @@ Footer (key bindings)</pre>
             </tbody>
           </table>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">How Each Run Works</p>
+          <p class="pt-section-label">How Each Run Works</p>
           <ol class="pt-steps-list" style="margin-bottom:1.5rem;">
             <li>Fetches the current constituent list for the configured index from official ETF holdings (Wikipedia as fallback).</li>
             <li>Fetches market caps via yfinance — 20 parallel workers, results cached up to 20 hours.</li>
@@ -362,7 +362,7 @@ Footer (key bindings)</pre>
             <li>Logs everything to <code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code>.</li>
           </ol>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Margin Investing</p>
+          <p class="pt-section-label">Margin Investing</p>
           <pre class="pt-code-block" aria-label="Margin math" style="margin-bottom:1.5rem;">margin_capacity = current_margin_loan + current_margin_buying_power
 allowed_margin  = margin_usage_pct × margin_capacity
 investment_base = portfolio_nav + allowed_margin
@@ -371,7 +371,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
             Set <code class="pt-code-tag">margin_usage_pct = 0.0</code> to use cash only. The TUI disables the margin input if your account has no margin buying power.
           </p>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Rebalance Settings (<span class="pt-code-tag">S</span>)</p>
+          <p class="pt-section-label">Rebalance Settings (<code class="pt-code-tag">S</code>)</p>
           <table class="pt-table" aria-label="Rebalance settings" style="margin-bottom:1.5rem;">
             <thead>
               <tr>
@@ -387,7 +387,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
             </tbody>
           </table>
 
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Supported Indexes</p>
+          <p class="pt-section-label">Supported Indexes</p>
           <table class="pt-table" aria-label="Supported indexes">
             <thead>
               <tr>
@@ -396,11 +396,11 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="pt-code-tag">SP500</span></td><td>S&amp;P 500</td></tr>
-              <tr><td><span class="pt-code-tag">NASDAQ100</span></td><td>NASDAQ-100</td></tr>
-              <tr><td><span class="pt-code-tag">DJIA</span></td><td>Dow Jones Industrial Average</td></tr>
-              <tr><td><span class="pt-code-tag">FTSE_GLOBAL_ALL_CAP</span></td><td>Global equities via iShares ACWI holdings proxy</td></tr>
-              <tr><td><span class="pt-code-tag">SPUS</span></td><td>SP Funds S&amp;P 500 Shariah Industry Exclusions ETF</td></tr>
+              <tr><td><code class="pt-code-tag">SP500</code></td><td>S&amp;P 500</td></tr>
+              <tr><td><code class="pt-code-tag">NASDAQ100</code></td><td>NASDAQ-100</td></tr>
+              <tr><td><code class="pt-code-tag">DJIA</code></td><td>Dow Jones Industrial Average</td></tr>
+              <tr><td><code class="pt-code-tag">FTSE_GLOBAL_ALL_CAP</code></td><td>Global equities via iShares ACWI holdings proxy</td></tr>
+              <tr><td><code class="pt-code-tag">SPUS</code></td><td>SP Funds S&amp;P 500 Shariah Industry Exclusions ETF</td></tr>
             </tbody>
           </table>
         </section>
@@ -421,12 +421,12 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
               </tr>
             </thead>
             <tbody>
-              <tr><td><span class="pt-code-tag">e</span></td><td>Install/activate or disable/remove the scheduled timer</td></tr>
-              <tr><td><span class="pt-code-tag">t</span></td><td>Pause or resume the installed timer without removing service files</td></tr>
-              <tr><td><span class="pt-code-tag">x</span></td><td>Skip the next run (creates a sentinel file removed on next execution)</td></tr>
+              <tr><td><code class="pt-code-tag">e</code></td><td>Install/activate or disable/remove the scheduled timer</td></tr>
+              <tr><td><code class="pt-code-tag">t</code></td><td>Pause or resume the installed timer without removing service files</td></tr>
+              <tr><td><code class="pt-code-tag">x</code></td><td>Skip the next run (creates a sentinel file removed on next execution)</td></tr>
             </tbody>
           </table>
-          <p style="font-size:0.82rem;font-weight:700;color:var(--pt-text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Manage from the shell</p>
+          <p class="pt-section-label" style="margin-bottom:0.5rem;">Manage from the shell</p>
           <pre class="pt-code-block" aria-label="Shell timer commands"><span class="comment"># Status</span>
 systemctl --user status public-terminal-rebalance.timer
 
