@@ -49,11 +49,11 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 
 | Icon | Service | URL | Visibility |
 |------|---------|-----|------------|
-| ⚗️ | **Portainer** | portainer.pea-pod.me | 🔒 Private |
-| 🍵 | **Gitea** | gitea.pea-pod.me | 🔒 Private |
 | 🛡️ | **AdGuard Home** | adguard.pea-pod.me | 🔒 Private |
+| 🦭 | **Forgejo** | forgejo.pea-pod.me | 🔒 Private |
 | 🤖 | **Open WebUI** | chat.pea-pod.me | 🔒 Private |
 | 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
+| 🎬 | **Jellyfin** | jellyfin.pea-pod.me | 🔒 Private |
 
 > **Private** services are only reachable on the internal home network.
 
@@ -77,19 +77,26 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 
 ```
 pea-pod/
-├── index.html          # Main page — structure & content
+├── index.html              # Main page — structure & content
+├── changelogs.html         # Changelog page
 ├── css/
-│   └── styles.css      # All styling: layout, animations, colour palette
+│   ├── styles.css          # Global styling: layout, animations, colour palette
+│   └── public-terminal.css # Styles for the Public Terminal page
 ├── js/
-│   └── app.js          # Scroll animations, ripple effect, service card wiring
+│   └── app.js              # Scroll animations, ripple effect, service card wiring
+├── genv/
+│   └── index.html          # GENV project page
+├── public-terminal/
+│   └── index.html          # Public Terminal project page
+├── docs/                   # Design specs and implementation plans
 ├── icons/
-│   ├── icon-192.png    # PWA icon (192 × 192)
-│   └── icon-512.png    # PWA icon (512 × 512)
-├── favicon.png         # Browser tab icon
+│   ├── icon-192.png        # PWA icon (192 × 192)
+│   └── icon-512.png        # PWA icon (512 × 512)
+├── favicon.png             # Browser tab icon
 ├── apple-touch-icon.png
-├── manifest.json       # PWA manifest (name, theme colour, icons)
-├── wrangler.jsonc      # Cloudflare Workers configuration
-└── _headers            # HTTP response headers (cache control)
+├── manifest.json           # PWA manifest (name, theme colour, icons)
+├── wrangler.jsonc          # Cloudflare Workers configuration
+└── _headers                # HTTP response headers (cache control)
 ```
 
 ---
