@@ -60,12 +60,3 @@ homebridge.pea-pod.me {
 
 	reverse_proxy http://host.docker.internal:8581
 }
-
-# Jellyfin - Media Server
-jellyfin.pea-pod.me {
-	tls {
-		dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-	}
-
-	reverse_proxy http://jellyfin:8096
-}
