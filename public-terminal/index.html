@@ -32,11 +32,11 @@
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">New</span>
+        <span class="banner-badge" aria-hidden="true">v0.5.4</span>
         <p class="banner-text">
-          <strong>Public Terminal</strong> — trade, rebalance, and track your Public.com portfolio from the command line.
+          <strong>Public Terminal v0.5.4</strong> — Go-based btop-style trading TUI for Public.com with direct index investing and automated daily rebalancing.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/public-terminal" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+        <a class="banner-link" href="https://github.com/ks1686/public-terminal/releases/tag/v0.5.4" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -69,12 +69,6 @@
           <a class="side-menu-link" href="/#karim-work">
             <span class="side-menu-icon" aria-hidden="true">🌟</span>
             <span>Karim's Work</span>
-          </a>
-        </li>
-        <li>
-          <a class="side-menu-link" href="/#self-hosted">
-            <span class="side-menu-icon" aria-hidden="true">🖥️</span>
-            <span>Self-Hosted Services</span>
           </a>
         </li>
         <li>
@@ -136,35 +130,55 @@
           <p class="pt-hero-tagline">
             A btop/htop-style trading TUI for <a href="https://public.com" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Public.com</a> — direct index investing, automated daily rebalancing, and live portfolio tracking from your terminal.
           </p>
+          <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-bottom:1rem;">
+            Requires <a href="https://go.dev/" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Go 1.26+</a>, a Public.com account with API access, and
+            <a href="https://github.com/PublicDotCom/publicdotcom-cli" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">publicdotcom-cli</a>
+            for authentication (<code class="pt-code-tag">public auth login</code>).
+          </p>
           <div style="display:flex;flex-direction:column;gap:1rem;">
             <div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">uv (recommended)</p>
-              <div class="pt-install-block" aria-label="Install command via uv">
-                <span style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">uv tool install --force https://github.com/ks1686/public-terminal/releases/latest/download/public_terminal-latest.tar.gz</span>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Go install (recommended)</p>
+              <div class="pt-install-block" aria-label="Install command via go install">
+                <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">go install github.com/ks1686/public-terminal/cmd/public-terminal@latest</span>
                 <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
               </div>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Installs to <code class="pt-code-tag">~/go/bin/public-terminal</code> — make sure that directory is on your <code class="pt-code-tag">PATH</code>.</p>
             </div>
             <div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">pipx</p>
-              <div class="pt-install-block" aria-label="Install command via pipx">
-                <span style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">pipx install --force https://github.com/ks1686/public-terminal/releases/latest/download/public_terminal-latest.tar.gz</span>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Download binary</p>
+              <div class="pt-install-block" aria-label="Install command via pre-built binary" style="align-items:flex-start;">
+                <div style="display:flex;flex-direction:column;gap:0.5rem;flex:1;">
+                  <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">curl -L -o public-terminal https://github.com/ks1686/public-terminal/releases/latest/download/public-terminal-linux-x86_64</span>
+                  <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">chmod +x public-terminal</span>
+                </div>
+                <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy" style="align-self:flex-start;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+                </button>
+              </div>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Also available: <code class="pt-code-tag">public-terminal-linux-arm64</code>, <code class="pt-code-tag">public-terminal-macos-arm64</code>, <code class="pt-code-tag">public-terminal-macos-x86_64</code>.</p>
+            </div>
+            <div>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Public CLI dependency</p>
+              <div class="pt-install-block" aria-label="Install publicdotcom-cli">
+                <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">pipx install publicdotcom-cli</span>
                 <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
               </div>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Then run <code class="pt-code-tag">public auth login</code>. Credentials stay in your OS keychain — Public Terminal never stores API tokens.</p>
             </div>
           </div>
           <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-top:0.85rem;">
-            Re-run the same command at any time to upgrade. Config stored at
+            Config is stored at
             <code class="pt-code-tag">~/.config/public-terminal/</code>
             (respects <code class="pt-code-tag">$XDG_CONFIG_HOME</code>).
           </p>
           <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.5rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Run</p>
-          <pre class="pt-code-block" style="margin-top:0.4rem;" aria-label="Run commands">public-terminal            <span class="comment"># launch the TUI</span>
-public-terminal-rebalance  <span class="comment"># run a single rebalance cycle</span>
-public-terminal-rebalance --dry-run  <span class="comment"># plan without placing orders</span></pre>
+          <pre class="pt-code-block" style="margin-top:0.4rem;" aria-label="Run commands">public-terminal                      <span class="comment"># launch the TUI</span>
+public-terminal --rebalance          <span class="comment"># run a single rebalance cycle</span>
+public-terminal --rebalance --dry-run  <span class="comment"># plan without placing orders</span></pre>
           <div class="pt-cta-buttons" style="margin-top:1.25rem;">
             <a class="btn-primary" href="https://github.com/ks1686/public-terminal" target="_blank" rel="noopener noreferrer">
               ⭐ View on GitHub
@@ -194,7 +208,7 @@ public-terminal-rebalance --dry-run  <span class="comment"># plan without placin
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📈</span>
               <p class="pt-feature-title">Direct Index Investing</p>
-              <p class="pt-feature-desc">Track the top N constituents from S&amp;P 500, NASDAQ-100, DJIA, ACWI, or SPUS — market-cap weighted and automatically rebalanced daily.</p>
+              <p class="pt-feature-desc">Track the top N constituents from S&amp;P 500, NASDAQ-100, DJIA, FTSE Global All Cap, or SPUS — market-cap weighted and automatically rebalanced daily.</p>
             </div>
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📋</span>
@@ -449,7 +463,6 @@ systemctl --user daemon-reload</pre>
             <span>Configuration Files</span>
           </div>
           <pre class="pt-code-block" aria-label="Configuration file tree">~/.config/public-terminal/
-├── .env                              <span class="comment">— API access token (shared across all accounts)</span>
 ├── accounts.json                     <span class="comment">— ordered list of registered account IDs</span>
 ├── schema_version.json               <span class="comment">— internal migration marker</span>
 └── accounts/&lt;id&gt;/
@@ -457,6 +470,7 @@ systemctl --user daemon-reload</pre>
     └── cache/
         ├── rebalance.log             <span class="comment">— full rebalancer run history</span>
         ├── market_caps.json          <span class="comment">— same-day market cap cache (auto-refreshes)</span>
+        ├── portfolio_cache.json      <span class="comment">— cached portfolio for instant startup</span>
         ├── today_buys.json           <span class="comment">— PDT protection ledger (resets daily)</span>
         └── skip_next_rebalance       <span class="comment">— sentinel file — presence skips one run</span></pre>
           <table class="pt-table" aria-label="Configuration file descriptions" style="margin-top:1.25rem;">
@@ -464,16 +478,19 @@ systemctl --user daemon-reload</pre>
               <tr><th scope="col">File</th><th scope="col">Purpose</th></tr>
             </thead>
             <tbody>
-              <tr><td><code class="pt-code-tag">.env</code></td><td>API access token (<code class="pt-code-tag">PUBLIC_ACCESS_TOKEN</code>) — shared across all accounts</td></tr>
               <tr><td><code class="pt-code-tag">accounts.json</code></td><td>Ordered list of registered account IDs</td></tr>
               <tr><td><code class="pt-code-tag">schema_version.json</code></td><td>Internal migration marker — updated automatically on launch</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/rebalance_config.json</code></td><td>Per-account rebalancer settings: index, top N, margin %, excluded tickers</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code></td><td>Full rebalancer run history for the account</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/market_caps.json</code></td><td>Same-day market cap cache — auto-refreshes each trading day</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/portfolio_cache.json</code></td><td>Cached portfolio for instant startup</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/today_buys.json</code></td><td>PDT protection ledger — resets automatically at midnight</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/skip_next_rebalance</code></td><td>Sentinel file — presence causes the next scheduled rebalance to be skipped</td></tr>
             </tbody>
           </table>
+          <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-top:1rem;">
+            Credentials are handled exclusively by the <code class="pt-code-tag">public</code> CLI via your OS keychain — this project never reads, stores, or transmits API tokens.
+          </p>
         </section>
 
         <!-- ---- CTA ---- -->
@@ -481,7 +498,7 @@ systemctl --user daemon-reload</pre>
           <div class="pt-cta">
             <p class="pt-cta-title" id="cta-heading">Ready to trade from your terminal?</p>
             <p class="pt-cta-desc">
-              Public Terminal is open-source and MIT licensed. Requires a <a href="https://public.com" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Public.com</a> brokerage account with API access enabled.
+              Public Terminal is open-source and MIT licensed. Requires a <a href="https://public.com" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Public.com</a> brokerage account and the official <code class="pt-code-tag">public</code> CLI for OAuth auth.
             </p>
             <div class="pt-cta-buttons" style="justify-content:center;">
               <a class="btn-primary" href="https://github.com/ks1686/public-terminal" target="_blank" rel="noopener noreferrer">

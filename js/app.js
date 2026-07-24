@@ -191,9 +191,11 @@ function initCopyButtons() {
 
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const block = btn.closest('.genv-install-block');
+      const block = btn.closest('.genv-install-block, .pt-install-block');
+      if (!block) return;
       const lines = Array.from(block.querySelectorAll('.install-cmd')).map((el) => el.textContent.trim());
-      const text = lines.join('\n');
+      const text = lines.filter((line) => line && !line.startsWith('#')).join('\n');
+      if (!text) return;
 
       navigator.clipboard.writeText(text).then(() => {
         btn.classList.add('copied');
