@@ -13,10 +13,10 @@
 
 ## 📖 About
 
-**Pea Pod Network** is the public-facing homepage for a personal self-hosted network. It acts as a central hub with two main purposes:
+**Pea Pod Network** is the public-facing homepage for a personal project hub. It acts as a central launchpad with:
 
 1. **Quick Links** — direct shortcuts to external profiles (Resume, GitHub, LinkedIn).
-2. **Services Directory** — a curated list of self-hosted services running on the home network, each with a clear public/private badge.
+2. **Project pages** — documentation for open-source tools like [GENV](https://pea-pod.me/genv/) and [Public Terminal](https://pea-pod.me/public-terminal/).
 
 The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaScript — no build step required. It is deployed globally via Cloudflare Workers and installable as a [Progressive Web App](#progressive-web-app).
 
@@ -24,8 +24,7 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 
 ## ✨ Features
 
-- **🗂️ Unified dashboard** — profile shortcuts and self-hosted services in one place
-- **🏷️ Status badges** — visual indicators for Private / Public service visibility
+- **🗂️ Unified dashboard** — profile shortcuts and project documentation in one place
 - **🎞️ Scroll animations** — cards fade in smoothly as they enter the viewport (IntersectionObserver)
 - **💧 Ripple effect** — satisfying click feedback on every interactive card
 - **📱 Fully responsive** — CSS Grid layout adapts from mobile to wide desktop
@@ -42,20 +41,6 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 | 📄 **Resume** | [ks1686.github.io](https://ks1686.github.io) |
 | 🐙 **GitHub** | [github.com/ks1686](https://github.com/ks1686) |
 | 💼 **LinkedIn** | [linkedin.com/in/karim-smires](https://www.linkedin.com/in/karim-smires/) |
-
----
-
-## 🏠 Self-Hosted Services
-
-| Icon | Service | URL | Visibility |
-|------|---------|-----|------------|
-| 🛡️ | **AdGuard Home** | adguard.pea-pod.me | 🔒 Private |
-| 🦭 | **Forgejo** | forgejo.pea-pod.me | 🔒 Private |
-| 🤖 | **Open WebUI** | chat.pea-pod.me | 🔒 Private |
-| 🏠 | **Homebridge** | homebridge.pea-pod.me | 🔒 Private |
-| 🎬 | **Jellyfin** | jellyfin.pea-pod.me | 🔒 Private |
-
-> **Private** services are only reachable on the internal home network.
 
 ---
 
@@ -83,7 +68,7 @@ pea-pod/
 │   ├── styles.css          # Global styling: layout, animations, colour palette
 │   └── public-terminal.css # Styles for the Public Terminal page
 ├── js/
-│   └── app.js              # Scroll animations, ripple effect, service card wiring
+│   └── app.js              # Scroll animations, ripple effect, UI helpers
 ├── genv/
 │   └── index.html          # GENV project page
 ├── public-terminal/
@@ -154,7 +139,7 @@ Install it from Chrome / Edge / Safari using the browser's *"Add to Home Screen"
 
 - Semantic landmark elements (`<header>`, `<main>`, `<footer>`, `<section>`)
 - Descriptive `aria-label` attributes on every interactive element
-- Full keyboard navigation for service cards (`Enter` / `Space` to activate)
+- Full keyboard navigation for interactive cards (`Enter` / `Space` to activate)
 - `prefers-reduced-motion` media query disables animations for users who request it
 - `:focus-visible` outlines on all focusable elements
 
