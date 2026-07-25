@@ -1,0 +1,15 @@
+# Keep private / non-site files out of Workers static asset uploads
+.git
+.cursor
+.wrangler
+.DS_Store
+**/.DS_Store
+docs
+*.md
+!README.md
+.env*
+.dev.vars*
+node_modules
+.assetsignore
+.gitignore
+wrangler.jsonc
