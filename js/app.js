@@ -1,6 +1,6 @@
 /**
  * Pea Pod Network - app.js
- * Handles smooth animations and shortcut card functionality.
+ * Terminal shell interactions: motion, menu, copy, typing hero.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initBurgerMenu();
   initAnnouncementBanner();
   initCopyButtons();
+  initHeroTyping();
 });
 
 /**
- * Intersection Observer for scroll-triggered fade-in animations.
- * Cards that start off-screen will animate in as they enter the viewport.
+ * Intersection Observer for scroll-triggered reveal animations.
  */
 function initScrollAnimations() {
   const observer = new IntersectionObserver(
@@ -26,7 +26,7 @@ function initScrollAnimations() {
         }
       });
     },
-    { threshold: 0.1 }
+    { threshold: 0.12 }
   );
 
   document.querySelectorAll('.card, .section').forEach((el) => {
@@ -54,6 +54,7 @@ function createRipple(event) {
   const size = Math.max(rect.width, rect.height);
   const x = event.clientX - rect.left - size / 2;
   const y = event.clientY - rect.top - size / 2;
+  const accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4ade80';
 
   ripple.style.cssText = `
     position: absolute;
@@ -62,7 +63,8 @@ function createRipple(event) {
     left: ${x}px;
     top: ${y}px;
     border-radius: 50%;
-    background: rgba(74, 222, 128, 0.25);
+    background: ${accent};
+    opacity: 0.22;
     transform: scale(0);
     animation: rippleEffect 0.5s ease-out forwards;
     pointer-events: none;
@@ -73,9 +75,7 @@ function createRipple(event) {
 }
 
 /**
- * Service cards — when a service is deployed, set data-url and data-status="online"
- * on the card element, then call activateServiceCard() or reload the page.
- * This function wires up click handlers for any already-active service cards.
+ * Wire click handlers for service cards that expose data-url.
  */
 function initServiceCards() {
   document.querySelectorAll('.card.service-card[data-url]').forEach((card) => {
@@ -95,7 +95,6 @@ function initServiceCards() {
   });
 }
 
-// Inject ripple keyframe once
 (function injectRippleStyle() {
   const style = document.createElement('style');
   style.textContent = `
@@ -107,21 +106,24 @@ function initServiceCards() {
 })();
 
 /**
- * Announcement banner — dismissible, remembers state in localStorage.
+ * Dismissible announcement banners (project pages).
  */
 function initAnnouncementBanner() {
   const banner = document.getElementById('announcement-banner');
   const closeBtn = document.getElementById('banner-close');
   if (!banner || !closeBtn) return;
 
-  if (localStorage.getItem('genv-banner-dismissed') === '1') {
+  const theme = document.body.dataset.theme || 'pea-pod';
+  const storageKey = `${theme}-banner-dismissed`;
+
+  if (localStorage.getItem(storageKey) === '1') {
     banner.classList.add('hidden');
     return;
   }
 
   closeBtn.addEventListener('click', () => {
     banner.classList.add('hidden');
-    localStorage.setItem('genv-banner-dismissed', '1');
+    localStorage.setItem(storageKey, '1');
   });
 }
 
@@ -170,7 +172,6 @@ function initBurgerMenu() {
     }
   });
 
-  // Close the menu when an anchor link is clicked (in-page or cross-page with hash)
   sideMenu.querySelectorAll('.side-menu-link').forEach((link) => {
     link.addEventListener('click', () => {
       if (link.hash) {
@@ -181,9 +182,7 @@ function initBurgerMenu() {
 }
 
 /**
- * Copy-to-clipboard buttons on .genv-install-block elements.
- * Each .copy-btn collects text from sibling .install-cmd spans and writes
- * them to the clipboard joined by newlines.
+ * Copy-to-clipboard for install command blocks.
  */
 function initCopyButtons() {
   const checkSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
@@ -210,4 +209,37 @@ function initCopyButtons() {
       });
     });
   });
+}
+
+/**
+ * Homepage terminal typing intro.
+ */
+function initHeroTyping() {
+  const host = document.getElementById('hero-prompt');
+  if (!host) return;
+
+  const typed = host.querySelector('.prompt-typed');
+  const full = host.dataset.prompt || '';
+  if (!typed || !full) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    typed.textContent = full;
+    host.classList.add('is-done');
+    return;
+  }
+
+  let i = 0;
+  const tick = () => {
+    typed.textContent = full.slice(0, i);
+    i += 1;
+    if (i <= full.length) {
+      const delay = full[i - 1] === ' ' ? 28 : 22 + Math.random() * 28;
+      window.setTimeout(tick, delay);
+    } else {
+      host.classList.add('is-done');
+    }
+  };
+
+  window.setTimeout(tick, 350);
 }

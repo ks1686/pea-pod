@@ -1,11 +1,11 @@
 {
   "name": "Pea Pod Network",
   "short_name": "Pea Pod",
-  "description": "A cozy home for self-hosted services and quick links.",
+  "description": "A terminal-inspired home for projects, docs, and quick links.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#16a34a",
-  "theme_color": "#16a34a",
+  "background_color": "#070b09",
+  "theme_color": "#4ade80",
   "icons": [
     {
       "src": "/icons/icon-192.png",
