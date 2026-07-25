@@ -1,43 +1,30 @@
 /* =============================================
-   GENV — Global Environment Manager
-   Fully independent dark monochrome theme
+   GENV — red accent on shared terminal shell
    ============================================= */
 
-/* ---- Design tokens — no dependency on styles.css variables ---- */
 :root {
-  /* Background / surface */
-  --genv-bg:           #0b0f1a;
-  --genv-surface:      #111827;
-  --genv-surface-2:    rgba(20, 20, 20, 0.9);
+  --genv-bg:           var(--bg);
+  --genv-surface:      var(--surface);
+  --genv-surface-2:    var(--surface-2);
 
-  /* Borders */
-  --genv-border:       rgba(70, 70, 70, 0.5);
-  --genv-border-hover: rgba(110, 110, 110, 0.55);
+  --genv-border:       var(--border);
+  --genv-border-hover: var(--border-strong);
 
-  /* Text */
-  --genv-text:         #eeeeee;
-  --genv-text-mid:     #d4d4d4;
-  --genv-text-muted:   #9a9a9a;
+  --genv-text:         var(--text);
+  --genv-text-mid:     var(--text);
+  --genv-text-muted:   var(--text-muted);
 
-  /* Accent */
-  --genv-accent:       #c0c0c0;
-  --genv-accent-hover: #e0e0e0;
+  --genv-accent:       var(--accent);
+  --genv-accent-hover: var(--accent-hover);
 
-  /* Shadows */
-  --genv-shadow:       0 4px 24px rgba(0, 0, 0, 0.5);
-  --genv-shadow-lg:    0 8px 40px rgba(0, 0, 0, 0.7);
+  --genv-shadow:       var(--shadow);
+  --genv-shadow-lg:    var(--shadow-hover);
 
-  /* Misc */
-  --genv-radius:       0.75rem;
-  --genv-radius-lg:    1.25rem;
-  --genv-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --genv-font:         'Inter', 'Segoe UI', system-ui, sans-serif;
-  --genv-mono:         'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-}
-
-body {
-  background-color: var(--genv-bg);
-  color: var(--genv-text);
+  --genv-radius:       var(--radius);
+  --genv-radius-lg:    var(--radius-lg);
+  --genv-transition:   all var(--transition);
+  --genv-font:         var(--font-sans);
+  --genv-mono:         var(--font-mono);
 }
 
 /* ---- Hard-coded color overrides ---- */
@@ -46,7 +33,7 @@ body {
 }
 
 .card::before {
-  background: linear-gradient(135deg, rgba(80, 80, 80, 0.10), rgba(60, 60, 60, 0.05));
+  background: linear-gradient(135deg, var(--accent-dim), transparent 55%);
 }
 
 .card.service-card:hover,

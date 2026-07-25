@@ -1,64 +1,32 @@
 /* =============================================
-   Public Terminal — public.com dark theme
-   Fully independent from styles.css variables
+   Public Terminal — blue accent on shared shell
    ============================================= */
 
-/* ---- Design tokens ---- */
 :root {
-  /* Background / surface */
-  --pt-bg:           #0D1129;
-  --pt-surface:      #141C44;
-  --pt-surface-2:    #1A2352;
-  --pt-surface-3:    rgba(20, 28, 68, 0.85);
+  --pt-bg:           var(--bg);
+  --pt-surface:      var(--surface);
+  --pt-surface-2:    var(--surface-2);
+  --pt-surface-3:    var(--surface-2);
 
-  /* Borders */
-  --pt-border:       rgba(106, 195, 47, 0.15);
-  --pt-border-hover: rgba(106, 195, 47, 0.35);
+  --pt-border:       var(--border);
+  --pt-border-hover: var(--border-strong);
 
-  /* Text */
-  --pt-text:         #F0F4FF;
-  --pt-text-mid:     #C8D3F0;
-  --pt-text-muted:   rgba(240, 244, 255, 0.55);
+  --pt-text:         var(--text);
+  --pt-text-mid:     var(--text);
+  --pt-text-muted:   var(--text-muted);
 
-  /* Accent — public.com lime green */
-  --pt-accent:       #6AC32F;
-  --pt-accent-hover: #0F9B4A;
-  --pt-accent-dim:   rgba(106, 195, 47, 0.08);
+  --pt-accent:       var(--accent);
+  --pt-accent-hover: var(--accent-hover);
+  --pt-accent-dim:   var(--accent-dim);
 
-  /* Shadows */
-  --pt-shadow:       0 4px 24px rgba(0, 0, 0, 0.5);
-  --pt-shadow-lg:    0 8px 40px rgba(0, 0, 0, 0.7);
+  --pt-shadow:       var(--shadow);
+  --pt-shadow-lg:    var(--shadow-hover);
 
-  /* Misc */
-  --pt-radius:       0.75rem;
-  --pt-radius-lg:    1.25rem;
-  --pt-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --pt-font:         'Inter', 'Segoe UI', system-ui, sans-serif;
-  --pt-mono:         'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-}
-
-/* ---- Base overrides ---- */
-body {
-  background-color: var(--pt-bg);
-  color: var(--pt-text);
-  font-family: var(--pt-font);
-}
-
-/* ---- Blob decoration — lime glow ---- */
-.blob-1 {
-  background: radial-gradient(circle, rgba(106,195,47,0.18), rgba(15,155,74,0.08));
-}
-.blob-2 {
-  background: radial-gradient(circle, rgba(15,155,74,0.12), rgba(106,195,47,0.06));
-}
-.blob-3 {
-  background: radial-gradient(circle, rgba(106,195,47,0.08), transparent);
-}
-
-/* ---- Announcement banner ---- */
-.announcement-banner {
-  background: linear-gradient(135deg, var(--pt-accent-hover) 0%, var(--pt-accent) 100%);
-  border-bottom: 1px solid rgba(106, 195, 47, 0.3);
+  --pt-radius:       var(--radius);
+  --pt-radius-lg:    var(--radius-lg);
+  --pt-transition:   all var(--transition);
+  --pt-font:         var(--font-sans);
+  --pt-mono:         var(--font-mono);
 }
 
 /* ---- Card overrides ---- */
@@ -66,7 +34,7 @@ body {
   border-color: var(--pt-border);
 }
 .card::before {
-  background: linear-gradient(135deg, rgba(106,195,47,0.08), rgba(15,155,74,0.04));
+  background: linear-gradient(135deg, var(--accent-dim), transparent 55%);
 }
 .card:hover,
 .card:focus-visible {
@@ -86,9 +54,18 @@ body {
 .section-label {
   color: var(--pt-accent);
 }
-.section-label::before,
+.section-label::before {
+  content: "//";
+  opacity: 0.55;
+  background: none;
+  flex: 0;
+  height: auto;
+}
 .section-label::after {
-  background: var(--pt-border);
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--pt-border-hover), transparent);
 }
 
 /* ---- Burger button ---- */
@@ -101,7 +78,7 @@ body {
   border-color: var(--pt-accent);
 }
 .burger-line {
-  background: var(--pt-text);
+  background: var(--pt-accent);
 }
 
 /* ---- Menu overlay ---- */
