@@ -3,8 +3,6 @@
   <p><em>A cozy corner of the internet — powered by green energy &amp; good vibes</em></p>
 
   [![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare-F38020?logo=cloudflare&logoColor=white)](https://cloudflare.com)
-  [![Hosted on GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-222?logo=github&logoColor=white)](https://pages.github.com)
-  [![PWA Ready](https://img.shields.io/badge/PWA-Ready-5A0FC8?logo=pwa&logoColor=white)](#progressive-web-app)
   [![Vanilla JS](https://img.shields.io/badge/Built%20with-Vanilla%20JS-F7DF1E?logo=javascript&logoColor=black)](#tech-stack)
   [![License](https://img.shields.io/github/license/ks1686/pea-pod)](LICENSE)
 </div>
@@ -18,7 +16,7 @@
 1. **Quick Links** — direct shortcuts to external profiles (Resume, GitHub, LinkedIn).
 2. **Project pages** — documentation for open-source tools like [GENV](https://pea-pod.me/genv/) and [Public Terminal](https://pea-pod.me/public-terminal/).
 
-The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaScript — no build step required. It is deployed globally via Cloudflare Workers and installable as a [Progressive Web App](#progressive-web-app).
+The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaScript — no build step required. It is deployed globally via Cloudflare Workers and can be added to the home screen from its [web app manifest](#web-app-manifest).
 
 ---
 
@@ -29,7 +27,7 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 - **💧 Ripple effect** — satisfying click feedback on every interactive card
 - **📱 Fully responsive** — CSS Grid layout adapts from mobile to wide desktop
 - **♿ Accessible** — semantic HTML, ARIA labels, keyboard navigation, and `prefers-reduced-motion` support
-- **📲 PWA** — installable as a standalone app with its own icon and theme colour
+- **📲 Installable** — web app manifest with its own icon and theme colour
 - **⚡ Zero dependencies** — no npm, no bundler, no framework overhead
 
 ---
@@ -51,10 +49,9 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 | Markup | HTML5 (semantic elements) |
 | Styling | CSS3 — Grid, Flexbox, CSS Variables, keyframe animations, backdrop-filter |
 | Scripting | Vanilla JavaScript (ES6+) |
-| Fonts | [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts |
-| Hosting | [GitHub Pages](https://pages.github.com) |
-| CDN / Deploy | [Cloudflare Workers](https://workers.cloudflare.com) via [Wrangler](https://developers.cloudflare.com/workers/wrangler/) |
-| PWA | Web App Manifest + service worker support |
+| Fonts | [Sora](https://fonts.google.com/specimen/Sora) + [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) via Google Fonts |
+| Deploy | [Cloudflare Workers](https://workers.cloudflare.com) via [Wrangler](https://developers.cloudflare.com/workers/wrangler/) |
+| Manifest | Web App Manifest (`standalone`) |
 
 ---
 
@@ -64,11 +61,14 @@ The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaSc
 pea-pod/
 ├── index.html              # Main page — structure & content
 ├── changelogs.html         # Changelog page
+├── 404.html                # Themed not-found page
 ├── css/
 │   ├── styles.css          # Global styling: layout, animations, colour palette
+│   ├── genv.css            # GENV page accents
 │   └── public-terminal.css # Styles for the Public Terminal page
 ├── js/
-│   └── app.js              # Scroll animations, ripple effect, UI helpers
+│   ├── app.js              # Scroll animations, ripple effect, UI helpers
+│   └── changelogs.js       # GitHub commit timeline
 ├── genv/
 │   └── index.html          # GENV project page
 ├── public-terminal/
@@ -97,6 +97,9 @@ npx wrangler dev
 # Or with Python's built-in server
 python3 -m http.server 8080
 # → open http://localhost:8080
+
+# Same checks GitHub Actions runs on every PR
+bash scripts/ci-check.sh
 ```
 
 ---
@@ -115,23 +118,23 @@ Key Wrangler settings (`wrangler.jsonc`):
 | Setting | Value |
 |---------|-------|
 | `name` | `pea-pod` |
-| `compatibility_date` | `2025-09-27` |
+| `compatibility_date` | `2026-08-15` |
 | `assets.directory` | `.` (entire repo root) |
-| `compatibility_flags` | `nodejs_compat` |
+| `assets.not_found_handling` | `404-page` |
 | `observability` | enabled |
 
 ---
 
-## 📲 Progressive Web App
+## 📲 Web App Manifest
 
-The site ships a full PWA manifest (`manifest.json`):
+The site ships a web app manifest (`manifest.json`):
 
 - **App name:** Pea Pod Network
 - **Display mode:** `standalone` (hides browser chrome when installed)
-- **Theme colour:** `#16a34a` (green)
+- **Theme colour:** `#4ade80`
 - **Icons:** 192 × 192 and 512 × 512 PNG
 
-Install it from Chrome / Edge / Safari using the browser's *"Add to Home Screen"* / *"Install App"* option.
+There is no service worker, so the site is not offline-capable. Install it from Chrome / Edge / Safari using *Add to Home Screen* / *Install App*.
 
 ---
 
@@ -146,5 +149,5 @@ Install it from Chrome / Edge / Safari using the browser's *"Add to Home Screen"
 ---
 
 <div align="center">
-  <sub>🫛 Pea Pod Network — hosted on <a href="https://pages.github.com">GitHub Pages</a> &amp; served via <a href="https://cloudflare.com">Cloudflare</a></sub>
+  <sub>🫛 Pea Pod Network — deployed on <a href="https://workers.cloudflare.com">Cloudflare Workers</a></sub>
 </div>

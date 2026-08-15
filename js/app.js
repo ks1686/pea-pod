@@ -6,7 +6,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initCardRipple();
-  initServiceCards();
   initBurgerMenu();
   initAnnouncementBanner();
   initCopyButtons();
@@ -38,11 +37,7 @@ function initScrollAnimations() {
  * Ripple effect on card clicks for tactile feedback.
  */
 function initCardRipple() {
-  document.querySelectorAll('.card:not(.service-card)').forEach((card) => {
-    card.addEventListener('click', createRipple);
-  });
-
-  document.querySelectorAll('.card.service-card.active').forEach((card) => {
+  document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', createRipple);
   });
 }
@@ -75,37 +70,6 @@ function createRipple(event) {
 }
 
 /**
- * Wire click handlers for service cards that expose data-url.
- */
-function initServiceCards() {
-  document.querySelectorAll('.card.service-card[data-url]').forEach((card) => {
-    const url = card.dataset.url;
-    if (url) {
-      card.classList.add('active');
-      card.setAttribute('role', 'link');
-      card.setAttribute('tabindex', '0');
-      card.addEventListener('click', () => window.open(url, '_blank', 'noopener noreferrer'));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          window.open(url, '_blank', 'noopener noreferrer');
-        }
-      });
-    }
-  });
-}
-
-(function injectRippleStyle() {
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes rippleEffect {
-      to { transform: scale(2.5); opacity: 0; }
-    }
-  `;
-  document.head.appendChild(style);
-})();
-
-/**
  * Dismissible announcement banners (project pages).
  */
 function initAnnouncementBanner() {
@@ -135,6 +99,19 @@ function initBurgerMenu() {
 
   if (!burgerBtn || !sideMenu || !overlay || !closeBtn) return;
 
+  const chrome = document.querySelectorAll('header, main, footer, .bg-decoration, .announcement-banner');
+
+  function setChromeInert(on) {
+    chrome.forEach((el) => {
+      if (on) el.setAttribute('inert', '');
+      else el.removeAttribute('inert');
+    });
+  }
+
+  function focusableInMenu() {
+    return Array.from(sideMenu.querySelectorAll('a[href], button:not([disabled])'));
+  }
+
   function openMenu() {
     sideMenu.classList.add('open');
     overlay.classList.add('open');
@@ -142,6 +119,7 @@ function initBurgerMenu() {
     sideMenu.setAttribute('aria-hidden', 'false');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    setChromeInert(true);
     closeBtn.focus();
   }
 
@@ -152,6 +130,7 @@ function initBurgerMenu() {
     sideMenu.setAttribute('aria-hidden', 'true');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    setChromeInert(false);
     burgerBtn.focus();
   }
 
@@ -167,8 +146,25 @@ function initBurgerMenu() {
   overlay.addEventListener('click', closeMenu);
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && sideMenu.classList.contains('open')) {
+    if (!sideMenu.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
       closeMenu();
+      return;
+    }
+
+    if (e.key !== 'Tab') return;
+
+    const items = focusableInMenu();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
     }
   });
 
@@ -188,6 +184,22 @@ function initCopyButtons() {
   const checkSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>';
   const clipSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>';
 
+  let live = document.getElementById('copy-status');
+  if (!live) {
+    live = document.createElement('div');
+    live.id = 'copy-status';
+    live.className = 'visually-hidden';
+    live.setAttribute('aria-live', 'polite');
+    document.body.appendChild(live);
+  }
+
+  function announce(message) {
+    live.textContent = '';
+    window.requestAnimationFrame(() => {
+      live.textContent = message;
+    });
+  }
+
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const block = btn.closest('.genv-install-block, .pt-install-block');
@@ -199,12 +211,14 @@ function initCopyButtons() {
       navigator.clipboard.writeText(text).then(() => {
         btn.classList.add('copied');
         btn.innerHTML = checkSVG;
+        announce('Copied');
         setTimeout(() => {
           btn.classList.remove('copied');
           btn.innerHTML = clipSVG;
         }, 2000);
       }).catch(() => {
         btn.title = 'Copy failed';
+        announce('Copy failed');
         setTimeout(() => { btn.title = 'Copy'; }, 2000);
       });
     });

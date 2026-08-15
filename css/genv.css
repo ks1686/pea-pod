@@ -22,7 +22,7 @@
 
   --genv-radius:       var(--radius);
   --genv-radius-lg:    var(--radius-lg);
-  --genv-transition:   all var(--transition);
+  --genv-transition:   background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
   --genv-font:         var(--font-sans);
   --genv-mono:         var(--font-mono);
 }
@@ -34,11 +34,6 @@
 
 .card::before {
   background: linear-gradient(135deg, var(--accent-dim), transparent 55%);
-}
-
-.card.service-card:hover,
-.card.service-card:focus-visible {
-  border-color: var(--genv-border);
 }
 
 .burger-btn {
@@ -64,6 +59,68 @@
   margin-bottom: 1.25rem;
   max-width: 640px;
   line-height: 1.6;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.os-label {
+  font-size: 0.78rem;
+  color: var(--genv-text-muted);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.flag-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.flag-list li {
+  font-size: 0.88rem;
+  color: var(--genv-text-muted);
+}
+
+.code-inline {
+  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1em 0.4em;
+  border-radius: 0.3rem;
+  color: #c8d3e8;
+}
+
+.genv-prose {
+  font-size: 0.92rem;
+  color: var(--genv-text-muted);
+  margin-bottom: 1rem;
+}
+
+.genv-prose a {
+  color: var(--genv-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.genv-install-block.wide {
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cmd-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
 }
 
 /* ---- Install Command Block ---- */
@@ -121,6 +178,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+  margin-top: 1.25rem;
 }
 
 .btn-primary {
