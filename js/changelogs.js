@@ -29,10 +29,16 @@ async function loadCommits() {
   try {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits?per_page=${PER_PAGE}&page=${currentPage}`;
     const response = await fetch(url, {
-      headers: { Accept: 'application/vnd.github+json' },
+      headers: {
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
     });
 
     if (!response.ok) {
+      if (response.status === 403 || response.status === 429) {
+        throw new Error('GitHub rate limit — try again in an hour.');
+      }
       throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
     }
 
@@ -91,14 +97,15 @@ function renderCommits(commits) {
 
   commits.forEach((commit) => {
     const sha = commit.sha.slice(0, 7);
-    const message = escapeHtml(commit.commit.message.split('\n')[0]);
+    const subject = commit.commit.message.split('\n')[0];
+    const message = escapeHtml(subject);
     const author = escapeHtml(commit.commit.author.name);
     const date = formatDate(commit.commit.author.date);
     const commitUrl = commit.html_url;
 
     const item = document.createElement('li');
     item.className = 'changelog-item';
-    item.setAttribute('aria-label', `Commit ${sha}: ${commit.commit.message.split('\n')[0]}`);
+    item.setAttribute('aria-label', `Commit ${sha}: ${escapeHtml(subject)}`);
     item.innerHTML = `
       <div class="changelog-dot" aria-hidden="true">📝</div>
       <div class="changelog-body">

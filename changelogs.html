@@ -8,11 +8,15 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Changelogs — Pea Pod Network" />
+    <script>document.documentElement.classList.add("js");</script>
     <meta property="og:description" content="Track the development &amp; progress of Pea Pod Network." />
-    <meta property="og:image" content="https://ks1686.github.io/favicon.png" />
+    <meta property="og:url" content="https://pea-pod.me/changelogs" />
+    <meta property="og:image" content="https://pea-pod.me/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://pea-pod.me/icons/icon-512.png" />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" width="32" height="32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" width="180" height="180" />
     <link rel="manifest" href="/manifest.json" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,6 +28,7 @@
     <title>Changelogs — Pea Pod Network</title>
   </head>
   <body data-theme="pea-pod">
+    <a class="skip-link" href="#main">Skip to content</a>
     <div class="bg-decoration" aria-hidden="true"></div>
 
     <button class="burger-btn" id="burger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="side-menu">
@@ -77,14 +82,12 @@
       </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
       <div class="container">
         <a class="nav-back" href="/" aria-label="Back to home">← Back to Home</a>
 
         <section class="section" aria-labelledby="changelog-heading">
-          <div class="section-label" id="changelog-heading">
-            <span>Changelogs</span>
-          </div>
+          <h2 class="section-label" id="changelog-heading">Changelogs</h2>
 
           <div id="changelog-container" aria-live="polite" aria-label="Commit history">
             <div class="changelog-loading" id="changelog-loading">
@@ -105,10 +108,8 @@
     <footer>
       <div class="container">
         <p>
-          🫛 Pea Pod Network &mdash; hosted on
-          <a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
-          &amp; served via
-          <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a>
+          🫛 Pea Pod Network &mdash; deployed on
+          <a href="https://workers.cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare Workers</a>
         </p>
       </div>
     </footer>
