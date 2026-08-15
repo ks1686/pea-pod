@@ -13,3 +13,5 @@ node_modules
 .assetsignore
 .gitignore
 wrangler.jsonc
+.github
+scripts

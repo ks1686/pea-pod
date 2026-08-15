@@ -9,12 +9,16 @@
     <!-- Open Graph / Social preview -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Public Terminal" />
+    <script>document.documentElement.classList.add("js");</script>
     <meta property="og:description" content="A btop-style trading TUI for Public.com with direct index investing and automated daily rebalancing." />
-    <meta property="og:image" content="https://ks1686.github.io/favicon.png" />
+    <meta property="og:url" content="https://pea-pod.me/public-terminal/" />
+    <meta property="og:image" content="https://pea-pod.me/icons/icon-512.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://pea-pod.me/icons/icon-512.png" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" width="32" height="32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" width="180" height="180" />
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Fonts -->
@@ -29,6 +33,7 @@
     <title>Public Terminal</title>
   </head>
   <body data-theme="public-terminal">
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ========== Announcement Banner ========== -->
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
@@ -109,7 +114,7 @@
     </header>
 
     <!-- ========== Main Content ========== -->
-    <main>
+    <main id="main" tabindex="-1">
       <div class="container">
 
         <!-- Back to home -->
@@ -119,22 +124,20 @@
 
         <!-- ---- Get Started ---- -->
         <section id="get-started" class="section" aria-labelledby="install-heading">
-          <div class="section-label" id="install-heading">
-            <span>Get Started</span>
-          </div>
+          <h2 class="section-label" id="install-heading">Get Started</h2>
           <p class="pt-hero-tagline">
-            A btop/htop-style trading TUI for <a href="https://public.com" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Public.com</a> — direct index investing, automated daily rebalancing, and live portfolio tracking from your terminal.
+            A btop/htop-style trading TUI for <a class="pt-inline-link" href="https://public.com" target="_blank" rel="noopener noreferrer">Public.com</a> — direct index investing, automated daily rebalancing, and live portfolio tracking from your terminal.
           </p>
-          <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-bottom:1rem;">
-            Requires <a href="https://go.dev/" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">Go 1.26+</a>, a Public.com account with API access, and
-            <a href="https://github.com/PublicDotCom/publicdotcom-cli" target="_blank" rel="noopener noreferrer" style="color:var(--pt-accent);font-weight:600;text-decoration:none;">publicdotcom-cli</a>
+          <p class="pt-prose">
+            Requires <a class="pt-inline-link" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go 1.26+</a>, a Public.com account with API access, and
+            <a class="pt-inline-link" href="https://github.com/PublicDotCom/publicdotcom-cli" target="_blank" rel="noopener noreferrer">publicdotcom-cli</a>
             for authentication (<code class="pt-code-tag">public auth login</code>).
           </p>
-          <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="stack">
             <div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Go install (recommended)</p>
+              <p class="os-label">Go install (recommended)</p>
               <div class="pt-install-block" aria-label="Install command via go install">
-                <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">go install github.com/ks1686/public-terminal/cmd/public-terminal@latest</span>
+                <span class="install-cmd">go install github.com/ks1686/public-terminal/cmd/public-terminal@latest</span>
                 <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
@@ -142,22 +145,22 @@
               <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Installs to <code class="pt-code-tag">~/go/bin/public-terminal</code> — make sure that directory is on your <code class="pt-code-tag">PATH</code>.</p>
             </div>
             <div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Download binary</p>
-              <div class="pt-install-block" aria-label="Install command via pre-built binary" style="align-items:flex-start;">
-                <div style="display:flex;flex-direction:column;gap:0.5rem;flex:1;">
-                  <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">curl -L -o public-terminal https://github.com/ks1686/public-terminal/releases/latest/download/public-terminal-linux-x86_64</span>
-                  <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">chmod +x public-terminal</span>
+              <p class="os-label">Download binary</p>
+              <div class="pt-install-block" aria-label="Install command via pre-built binary">
+                <div class="cmd-stack">
+                  <span class="install-cmd">curl -L -o public-terminal https://github.com/ks1686/public-terminal/releases/latest/download/public-terminal-linux-x86_64</span>
+                  <span class="install-cmd">chmod +x public-terminal</span>
                 </div>
-                <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy" style="align-self:flex-start;">
+                <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
               </div>
               <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Also available: <code class="pt-code-tag">public-terminal-linux-arm64</code>, <code class="pt-code-tag">public-terminal-macos-arm64</code>, <code class="pt-code-tag">public-terminal-macos-x86_64</code>.</p>
             </div>
             <div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-bottom:0.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">Public CLI dependency</p>
+              <p class="os-label">Public CLI dependency</p>
               <div class="pt-install-block" aria-label="Install publicdotcom-cli">
-                <span class="install-cmd" style="font-family:var(--pt-mono);font-size:0.88rem;word-break:break-all;">pipx install publicdotcom-cli</span>
+                <span class="install-cmd">pipx install publicdotcom-cli</span>
                 <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
@@ -186,9 +189,7 @@ public-terminal --rebalance --dry-run  <span class="comment"># plan without plac
 
         <!-- ---- Features ---- -->
         <section id="features" class="section" aria-labelledby="features-heading">
-          <div class="section-label" id="features-heading">
-            <span>Features</span>
-          </div>
+          <h2 class="section-label" id="features-heading">Features</h2>
           <div class="pt-features-grid">
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">🗂️</span>
@@ -240,9 +241,7 @@ public-terminal --rebalance --dry-run  <span class="comment"># plan without plac
 
         <!-- ---- Interface ---- -->
         <section id="interface" class="section" aria-labelledby="interface-heading">
-          <div class="section-label" id="interface-heading">
-            <span>Interface</span>
-          </div>
+          <h2 class="section-label" id="interface-heading">Interface</h2>
           <pre class="pt-code-block" aria-label="TUI layout diagram">Header (clock)
 Account Tabs      — one tab per account; switch with Ctrl+Left / Ctrl+Right
 Balance Bar       — total equity, buying power, options BP, crypto BP, cash or margin balance
@@ -290,9 +289,7 @@ Footer (key bindings)</pre>
 
         <!-- ---- Placing Orders ---- -->
         <section id="placing-orders" class="section" aria-labelledby="orders-heading">
-          <div class="section-label" id="orders-heading">
-            <span>Placing Orders</span>
-          </div>
+          <h2 class="section-label" id="orders-heading">Placing Orders</h2>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
             Press <code class="pt-code-tag">b</code> to buy or <code class="pt-code-tag">s</code> to sell. A modal prompts for:
           </p>
@@ -335,9 +332,7 @@ Footer (key bindings)</pre>
 
         <!-- ---- Rebalancer ---- -->
         <section id="rebalancer" class="section" aria-labelledby="rebalancer-heading">
-          <div class="section-label" id="rebalancer-heading">
-            <span>Rebalancer</span>
-          </div>
+          <h2 class="section-label" id="rebalancer-heading">Rebalancer</h2>
 
           <p class="pt-section-label">Target Allocation</p>
           <table class="pt-table" aria-label="Target allocation" style="margin-bottom:1.5rem;">
@@ -416,9 +411,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
 
         <!-- ---- Systemd Timer ---- -->
         <section id="systemd-timer" class="section" aria-labelledby="timer-heading">
-          <div class="section-label" id="timer-heading">
-            <span>Systemd Timer</span>
-          </div>
+          <h2 class="section-label" id="timer-heading">Systemd Timer</h2>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
             The rebalancer runs as a user-level systemd service — no root access required. The timer fires Mon–Fri at <strong>12:00 ET</strong> (DST-aware). <code class="pt-code-tag">Persistent=true</code> catches up immediately after a missed run.
           </p>
@@ -454,9 +447,7 @@ systemctl --user daemon-reload</pre>
 
         <!-- ---- Configuration Files ---- -->
         <section id="configuration" class="section" aria-labelledby="config-heading">
-          <div class="section-label" id="config-heading">
-            <span>Configuration Files</span>
-          </div>
+          <h2 class="section-label" id="config-heading">Configuration Files</h2>
           <pre class="pt-code-block" aria-label="Configuration file tree">~/.config/public-terminal/
 ├── accounts.json                     <span class="comment">— ordered list of registered account IDs</span>
 ├── schema_version.json               <span class="comment">— internal migration marker</span>
