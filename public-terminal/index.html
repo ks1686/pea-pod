@@ -97,7 +97,7 @@
         <li><a class="side-menu-link" href="#interface"><span class="side-menu-icon" aria-hidden="true">🖥️</span><span>Interface</span></a></li>
         <li><a class="side-menu-link" href="#placing-orders"><span class="side-menu-icon" aria-hidden="true">📋</span><span>Placing Orders</span></a></li>
         <li><a class="side-menu-link" href="#rebalancer"><span class="side-menu-icon" aria-hidden="true">⚖️</span><span>Rebalancer</span></a></li>
-        <li><a class="side-menu-link" href="#systemd-timer"><span class="side-menu-icon" aria-hidden="true">⏰</span><span>Systemd Timer</span></a></li>
+        <li><a class="side-menu-link" href="#systemd-timer"><span class="side-menu-icon" aria-hidden="true">⏰</span><span>Scheduling</span></a></li>
         <li><a class="side-menu-link" href="#configuration"><span class="side-menu-icon" aria-hidden="true">📁</span><span>Configuration</span></a></li>
       </ul>
     </nav>
@@ -411,9 +411,12 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
 
         <!-- ---- Systemd Timer ---- -->
         <section id="systemd-timer" class="section" aria-labelledby="timer-heading">
-          <h2 class="section-label" id="timer-heading">Systemd Timer</h2>
+          <h2 class="section-label" id="timer-heading">Scheduled Rebalancing</h2>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
-            The rebalancer runs as a user-level systemd service — no root access required. The timer fires Mon–Fri at <strong>12:00 ET</strong> (DST-aware). <code class="pt-code-tag">Persistent=true</code> catches up immediately after a missed run.
+            The rebalancer runs as a user-level service on Linux (<strong>systemd timer</strong>) or macOS (<strong>launchd agent</strong>) — no root access required. It fires Mon–Fri at <strong>12:00 ET</strong>. On Linux, <code class="pt-code-tag">Persistent=true</code> catches up immediately after a missed run. Install or remove either flavor with <code class="pt-code-tag">--install-service</code> / <code class="pt-code-tag">--remove-service</code>, or entirely from inside the TUI.
+          </p>
+          <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
+            <strong>macOS note:</strong> launchd's <code class="pt-code-tag">StartCalendarInterval</code> uses local wall-clock time rather than America/New_York, so on install public-terminal converts 12:00 ET to the matching local hour (DST-aware for the next weekday noon ET). After a timezone or DST change, press <code class="pt-code-tag">e</code> twice (remove, then reinstall) to rewrite the hour.
           </p>
           <table class="pt-table" aria-label="Timer TUI controls" style="margin-bottom:1.25rem;">
             <thead>
@@ -428,7 +431,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
               <tr><td><code class="pt-code-tag">x</code></td><td>Skip the next run (creates a sentinel file removed on next execution)</td></tr>
             </tbody>
           </table>
-          <p class="pt-section-label" style="margin-bottom:0.5rem;">Manage from the shell</p>
+          <p class="pt-section-label" style="margin-bottom:0.5rem;">Manage from the shell <span style="font-weight:normal;color:var(--pt-text-muted);">(Linux / systemd)</span></p>
           <pre class="pt-code-block" aria-label="Shell timer commands"><span class="comment"># Status</span>
 systemctl --user status public-terminal-rebalance.timer
 
@@ -443,6 +446,15 @@ systemctl --user disable --now public-terminal-rebalance.timer
 rm -f ~/.config/systemd/user/public-terminal-rebalance.service
 rm -f ~/.config/systemd/user/public-terminal-rebalance.timer
 systemctl --user daemon-reload</pre>
+          <p class="pt-section-label" style="margin-bottom:0.5rem;">Manage from the shell <span style="font-weight:normal;color:var(--pt-text-muted);">(macOS / launchd)</span></p>
+          <pre class="pt-code-block" aria-label="Shell launchd commands"><span class="comment"># Status</span>
+launchctl print gui/$(id -u)/com.public-terminal.rebalance
+
+<span class="comment"># Remove the schedule</span>
+launchctl bootout gui/$(id -u)/com.public-terminal.rebalance
+
+<span class="comment"># Reinstall the schedule</span>
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.public-terminal.rebalance.plist</pre>
         </section>
 
         <!-- ---- Configuration Files ---- -->
