@@ -79,15 +79,16 @@ grep -q 'brew install --cask genv' genv/index.html || fail "genv page missing ca
 pass "genv v4 facts"
 
 # ---- PeaProxy facts --------------------------------------------------------
-# Pin to the newest ks1686/peaproxy release tag; OAuth is on main until a newer tag.
-grep -q 'v0.1.0' peaproxy/index.html || fail "peaproxy page missing v0.1.0"
-grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.1.0' peaproxy/index.html || fail "peaproxy page missing go install @v0.1.0"
-grep -q 'peaproxy_0.1.0_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 0.1.0 tarball"
+# Pin to the newest ks1686/peaproxy release tag; bump version strings together.
+grep -q 'v0.2.0' peaproxy/index.html || fail "peaproxy page missing v0.2.0"
+grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.2.0' peaproxy/index.html || fail "peaproxy page missing go install @v0.2.0"
+grep -q 'peaproxy_0.2.0_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 0.2.0 tarball"
 grep -q '127.0.0.1:8317' peaproxy/index.html || fail "peaproxy page missing localhost bind"
 grep -q 'PeaProxy authors are not liable' peaproxy/index.html || fail "peaproxy page missing OAuth liability line"
-grep -q 'Subscription OAuth is on' peaproxy/index.html || fail "peaproxy page missing OAuth-on-main note"
+grep -q 'v0.2.0 includes' peaproxy/index.html || fail "peaproxy page missing v0.2.0 includes OAuth status"
+grep -qE 'v0\.1\.0|peaproxy@main|OAuth is on|not this tag|lives on main' peaproxy/index.html && fail "peaproxy page still pins v0.1.0 or OAuth-on-main"
 grep -q 'href="/peaproxy"' index.html || fail "home nav missing PeaProxy"
-pass "peaproxy v0.1.0 facts"
+pass "peaproxy v0.2.0 facts"
 
 # ---- Wrangler / headers ----------------------------------------------------
 grep -q '"not_found_handling": "404-page"' wrangler.jsonc || fail "wrangler missing 404-page handling"
