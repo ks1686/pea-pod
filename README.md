@@ -14,7 +14,7 @@
 **Pea Pod Network** is the public-facing homepage for a personal project hub. It acts as a central launchpad with:
 
 1. **Quick Links** — direct shortcuts to external profiles (Resume, GitHub, LinkedIn).
-2. **Project pages** — documentation for open-source tools like [GENV](https://pea-pod.me/genv/) and [Public Terminal](https://pea-pod.me/public-terminal/).
+2. **Project pages** — documentation for open-source tools like [GENV](https://pea-pod.me/genv/), [Public Terminal](https://pea-pod.me/public-terminal/), and [PeaProxy](https://pea-pod.me/peaproxy/).
 
 The site is a dependency-free static web app: pure HTML, CSS, and vanilla JavaScript — no build step required. It is deployed globally via Cloudflare Workers and can be added to the home screen from its [web app manifest](#web-app-manifest).
 
@@ -65,7 +65,8 @@ pea-pod/
 ├── css/
 │   ├── styles.css          # Global styling: layout, animations, colour palette
 │   ├── genv.css            # GENV page accents
-│   └── public-terminal.css # Styles for the Public Terminal page
+│   ├── public-terminal.css # Styles for the Public Terminal page
+│   └── peaproxy.css        # Styles for the PeaProxy page
 ├── js/
 │   ├── app.js              # Scroll animations, ripple effect, UI helpers
 │   └── changelogs.js       # GitHub commit timeline
@@ -73,6 +74,8 @@ pea-pod/
 │   └── index.html          # GENV project page
 ├── public-terminal/
 │   └── index.html          # Public Terminal project page
+├── peaproxy/
+│   └── index.html          # PeaProxy project page
 ├── docs/                   # Design specs and implementation plans
 ├── icons/
 │   ├── icon-192.png        # PWA icon (192 × 192)

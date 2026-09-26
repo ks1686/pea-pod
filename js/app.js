@@ -202,7 +202,7 @@ function initCopyButtons() {
 
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const block = btn.closest('.genv-install-block, .pt-install-block');
+      const block = btn.closest('.genv-install-block, .pt-install-block, .ppx-install-block');
       if (!block) return;
       const lines = Array.from(block.querySelectorAll('.install-cmd')).map((el) => el.textContent.trim());
       const text = lines.filter((line) => line && !line.startsWith('#')).join('\n');
