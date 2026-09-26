@@ -32,11 +32,11 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">v4.2.2</span>
+        <span class="banner-badge" aria-hidden="true">v4.5.1</span>
         <p class="banner-text">
-          <strong>GENV v4.2.2</strong> — schema v8 portable multi-target configs, plus PowerShell parity from schema v7.
+          <strong>GENV v4.5.1</strong> — schema v8 portable multi-target configs, schema v9 managed external releases, plus PowerShell parity from schema v7.
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v4.2.2" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/genv/releases/tag/v4.5.1" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -134,7 +134,7 @@
               <p class="os-label">Other Linux</p>
               <div class="genv-install-block wide" aria-label="Install command for Linux via pre-built binary">
                 <div class="cmd-stack">
-                  <span class="install-cmd">curl -Lo genv.tar.gz https://github.com/ks1686/genv/releases/latest/download/genv_4.2.2_linux_amd64.tar.gz</span>
+                  <span class="install-cmd">curl -Lo genv.tar.gz https://github.com/ks1686/genv/releases/latest/download/genv_4.5.1_linux_amd64.tar.gz</span>
                   <span class="install-cmd">tar -xzf genv.tar.gz &amp;&amp; sudo mv genv /usr/local/bin/</span>
                 </div>
                 <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
@@ -144,7 +144,7 @@
               <p class="os-label">Windows (PowerShell)</p>
               <div class="genv-install-block wide" aria-label="Install command for Windows via PowerShell">
                 <div class="cmd-stack">
-                  <span class="install-cmd">Invoke-WebRequest -Uri https://github.com/ks1686/genv/releases/latest/download/genv_4.2.2_windows_amd64.zip -OutFile genv.zip</span>
+                  <span class="install-cmd">Invoke-WebRequest -Uri https://github.com/ks1686/genv/releases/latest/download/genv_4.5.1_windows_amd64.zip -OutFile genv.zip</span>
                   <span class="install-cmd">Expand-Archive genv.zip -DestinationPath .</span>
                 </div>
                 <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg></button>
@@ -197,6 +197,16 @@
               <span class="genv-feature-icon" aria-hidden="true">🖥️</span>
               <p class="genv-feature-title">PowerShell parity</p>
               <p class="genv-feature-desc">Schema v7+ can target <code class="code-inline">powershell</code> for aliases, profiles, and hooks on native Windows.</p>
+            </div>
+            <div class="genv-feature-card">
+              <span class="genv-feature-icon" aria-hidden="true">🔌</span>
+              <p class="genv-feature-title">Plugin adapters</p>
+              <p class="genv-feature-desc">Schema v8 <code class="code-inline">adapters</code> cover plugin CLIs genv does not ship built-in (<code class="code-inline">claude plugin</code>, <code class="code-inline">gh extension</code>, …). Set <code class="code-inline">prefer</code> to the adapter name.</p>
+            </div>
+            <div class="genv-feature-card">
+              <span class="genv-feature-icon" aria-hidden="true">📦</span>
+              <p class="genv-feature-title">Managed externals</p>
+              <p class="genv-feature-desc">Schema v9 can attach a managed <code class="code-inline">external</code> recipe that discovers GitHub Releases or structured HTTP releases, verifies the artifact, and installs or removes it.</p>
             </div>
           </div>
         </section>
@@ -270,7 +280,7 @@ genv apply --target ubuntu --yes</pre>
         </section>
 
         <section id="spec-format" class="section" aria-labelledby="format-heading">
-          <h2 class="section-label" id="format-heading">Spec Format (schema v8)</h2>
+          <h2 class="section-label" id="format-heading">Spec Format (schema v8 / v9)</h2>
           <pre class="genv-code-block" aria-label="genv.json schema v8 example">{
   "schemaVersion": "8",
   "defaults": {
@@ -321,9 +331,11 @@ genv apply --target ubuntu --yes</pre>
 }</pre>
           <ul class="flag-list">
             <li>Desired state lives under <code class="code-inline">defaults</code> and/or <code class="code-inline">targets.&lt;id&gt;</code> — not as top-level <code class="code-inline">packages</code> / <code class="code-inline">env</code>.</li>
-            <li>No per-record <code class="code-inline">host</code> in v8 (use target buckets).</li>
+            <li>No per-record <code class="code-inline">host</code> in v8/v9 (use target buckets).</li>
             <li>Target map entries may be <code class="code-inline">null</code> tombstones to drop a default for one OS.</li>
-            <li><code class="code-inline">repo</code> and <code class="code-inline">updates</code> stay top-level.</li>
+            <li><code class="code-inline">repo</code>, <code class="code-inline">updates</code>, and v8 <code class="code-inline">adapters</code> stay top-level. Prefer v8 unless a managed external recipe requires v9.</li>
+            <li>Schema v8 <code class="code-inline">adapters</code> declare plugin CLIs — details in <a href="https://github.com/ks1686/genv/blob/main/SCHEMA.md#spec-adapters-v8" target="_blank" rel="noopener noreferrer">SCHEMA.md</a>.</li>
+            <li>Schema v9 managed external releases: <a href="https://github.com/ks1686/genv/blob/main/docs/external-releases.md" target="_blank" rel="noopener noreferrer">docs/external-releases.md</a> and <a href="https://github.com/ks1686/genv/blob/main/SCHEMA.md#managed-external-releases-v9" target="_blank" rel="noopener noreferrer">SCHEMA.md</a>.</li>
             <li>Legacy v1–v7 specs still load. Convert with <code class="code-inline">genv migrate</code>.</li>
           </ul>
         </section>
@@ -357,14 +369,14 @@ genv apply --target ubuntu --yes</pre>
 
         <section id="roadmap" class="section" aria-labelledby="roadmap-heading">
           <h2 class="section-label" id="roadmap-heading">Roadmap</h2>
-          <p class="genv-prose">The v3 line closed the old milestone backlog. v4 is schema v8 + multi-target configs. Future work lives in GitHub issues and <a href="https://github.com/ks1686/genv/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer">ROADMAP.md</a>.</p>
+          <p class="genv-prose">The v3 line closed the old milestone backlog. v4 is schema v8 multi-target configs plus schema v9 managed external releases. Future work lives in GitHub issues and <a href="https://github.com/ks1686/genv/blob/main/ROADMAP.md" target="_blank" rel="noopener noreferrer">ROADMAP.md</a>.</p>
         </section>
 
         <section class="section" aria-labelledby="cta-heading">
           <div class="genv-cta">
             <p class="genv-cta-title" id="cta-heading">Ready to get started?</p>
             <p class="genv-cta-desc">
-              GENV v4.2.2 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
+              GENV v4.5.1 is here — open-source and MIT licensed. Adapter quality and test coverage are where contributions matter most.
             </p>
             <div class="genv-cta-buttons">
               <a class="btn-primary" href="https://github.com/ks1686/genv" target="_blank" rel="noopener noreferrer">⭐ Star on GitHub</a>

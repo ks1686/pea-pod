@@ -67,9 +67,12 @@ pass "shared chrome on every page"
 
 # ---- GENV facts ------------------------------------------------------------
 # Version pins must match the newest ks1686/genv release tag; bump both together.
-grep -q 'v4.2.2' genv/index.html || fail "genv page missing v4.2.2"
-grep -qE 'v4\.0\.(9|10|11|12|13)' genv/index.html && fail "genv page still pins an old v4.0.x version"
+grep -q 'v4.5.1' genv/index.html || fail "genv page missing v4.5.1"
+grep -q 'genv_4.5.1_linux_amd64.tar.gz' genv/index.html || fail "genv page missing linux 4.5.1 tarball"
+grep -q 'genv_4.5.1_windows_amd64.zip' genv/index.html || fail "genv page missing windows 4.5.1 zip"
+grep -qE 'v4\.0\.(9|10|11|12|13)|v4\.2\.2' genv/index.html && fail "genv page still pins an old version"
 grep -q '"schemaVersion": "8"' genv/index.html || fail "genv page missing schema v8"
+grep -q 'schema v9' genv/index.html || fail "genv page missing schema v9 mention"
 grep -q 'brew install --cask genv' genv/index.html || fail "genv page missing cask install"
 pass "genv v4 facts"
 
