@@ -9,7 +9,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="PeaProxy — local AI gateway" />
-    <meta property="og:description" content="CLI + localhost UI. v1.6.0 includes API keys, free/local providers, and subscription OAuth (ToS/ban risk)." />
+    <meta property="og:description" content="CLI + localhost UI. v1.6.0 includes failover, image generations, embeddings, Codex tools, Copilot OAuth + OpenCode Go, and honest quota remaining (ToS/ban risk)." />
     <meta property="og:url" content="https://pea-pod.me/peaproxy/" />
     <meta property="og:image" content="https://pea-pod.me/icons/icon-512.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,7 +34,7 @@
       <div class="banner-content">
         <span class="banner-badge" aria-hidden="true">v1.6.0</span>
         <p class="banner-text">
-          <strong>PeaProxy v1.6.0</strong> — Honest quota remaining on Health / peaproxy health when the provider reports it.
+          <strong>PeaProxy v1.6.0</strong> — Failover policies, image generations, embeddings, Codex Responses tools, Copilot OAuth + OpenCode Go, honest quota remaining on Health. Subscription OAuth is ToS/ban risk.
         </p>
         <a class="banner-link" href="https://github.com/ks1686/peaproxy/releases/tag/v1.6.0" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
@@ -91,6 +91,7 @@
           <p class="side-menu-section-label" role="heading" aria-level="2">On this page</p>
         </li>
         <li><a class="side-menu-link" href="#get-started"><span class="side-menu-icon" aria-hidden="true">🚀</span><span>Get Started</span></a></li>
+        <li><a class="side-menu-link" href="#ui"><span class="side-menu-icon" aria-hidden="true">🖼️</span><span>Localhost UI</span></a></li>
         <li><a class="side-menu-link" href="#features"><span class="side-menu-icon" aria-hidden="true">✨</span><span>Features</span></a></li>
         <li><a class="side-menu-link" href="#cli"><span class="side-menu-icon" aria-hidden="true">💻</span><span>CLI</span></a></li>
         <li><a class="side-menu-link" href="#http"><span class="side-menu-icon" aria-hidden="true">🌐</span><span>HTTP</span></a></li>
@@ -115,15 +116,28 @@
         <section id="get-started" class="section" aria-labelledby="install-heading">
           <h2 class="section-label" id="install-heading">Get Started</h2>
           <p class="ppx-hero-tagline">
-            Maximize whatever you already pay for, fall back to keys, and treat Ollama / LM Studio / llama.cpp / vLLM / OpenRouter-free / OpenCode Zen as first-class — then expose one OpenAI-shaped, one Claude-shaped, and one Responses local endpoint that coding tools already speak.
+            Point coding tools at one local OpenAI-shaped, Claude-shaped, and Responses endpoint. Use keys and local runtimes first; optionally attach subscription OAuth <strong>at your own risk</strong>; fail over on 429/401.
           </p>
           <p class="ppx-prose">
             Status: <strong>CLI + localhost UI</strong> at <code class="ppx-code-tag">127.0.0.1:8317</code>. Tagged
             <a class="ppx-inline-link" href="https://github.com/ks1686/peaproxy/releases/tag/v1.6.0" target="_blank" rel="noopener noreferrer">v1.6.0</a>
-            includes API keys + free/local providers (llama.cpp, vLLM, Jan, GPT4All, NIM, Workers AI, SambaNova, Ollama Cloud), OpenCode Go API key, <code class="ppx-code-tag">POST /v1/responses</code>, and subscription OAuth (Claude, Codex, Gemini/Antigravity, xAI, Kimi, Meta Muse, Copilot) with a ban/ToS warning — prefer official API keys. Requires
+            includes API keys + free/local providers (llama.cpp, vLLM, Jan, GPT4All, NIM, Workers AI, SambaNova, Ollama Cloud), OpenCode Go API key, <code class="ppx-code-tag">POST /v1/responses</code> (native Codex OAuth passes tools through), <code class="ppx-code-tag">POST /v1/images/generations</code>, <code class="ppx-code-tag">POST /v1/embeddings</code>, honest quota remaining on Health, and subscription OAuth (Claude, Codex, Gemini/Antigravity, xAI, Kimi, Meta Muse, Copilot) with a ban/ToS warning — prefer official API keys. Requires
             <a class="ppx-inline-link" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go 1.22+</a>
             for <code class="ppx-code-tag">go install</code>.
           </p>
+          <table class="ppx-table" aria-label="Keys versus OAuth">
+            <thead>
+              <tr><th scope="col">Path</th><th scope="col">When</th><th scope="col">Risk</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>API key</strong></td><td>Official provider console / AI Studio (<code class="ppx-code-tag">anthropic</code>, <code class="ppx-code-tag">openai</code>, <code class="ppx-code-tag">google</code>/<code class="ppx-code-tag">gemini</code>, <code class="ppx-code-tag">xai</code>, Groq, …)</td><td>Supported. Prefer this.</td></tr>
+              <tr><td><strong>Local / no key</strong></td><td>Ollama, LM Studio, llama.cpp, vLLM, Jan, GPT4All — software you already run</td><td>Supported.</td></tr>
+              <tr><td><strong>Subscription OAuth</strong></td><td><code class="ppx-code-tag">peaproxy auth login --provider …</code> for Claude Pro/Max, ChatGPT/Codex, Gemini/Antigravity, xAI, Kimi, Meta Muse, or GitHub Copilot</td><td><strong>ToS/ban risk. At your own risk.</strong> Authors not liable.</td></tr>
+              <tr><td><strong>OpenCode Go</strong></td><td>Subscribe at <a class="ppx-inline-link" href="https://opencode.ai/auth" target="_blank" rel="noopener noreferrer">opencode.ai/auth</a></td><td>Official <strong>API key</strong> (<code class="ppx-code-tag">adapter: opencode_go</code>). Distinct from Zen. Not OAuth.</td></tr>
+              <tr><td><strong>Qwen consumer OAuth</strong></td><td>—</td><td><strong>Not yet</strong> (no CPA flow). Use a Qwen <strong>API key</strong> with <code class="ppx-code-tag">openai_compat</code>.</td></tr>
+              <tr><td><strong>Factory / Droid upstream</strong></td><td>—</td><td><strong>Not yet</strong> (no public consumer chat OAuth). Use <strong>Droid as a client</strong> of PeaProxy.</td></tr>
+            </tbody>
+          </table>
           <div class="stack">
             <div>
               <p class="os-label">Go install (tagged v1.6.0)</p>
@@ -154,7 +168,7 @@
             </div>
           </div>
           <p class="ppx-prose" style="margin-top:0.85rem;margin-bottom:0;">
-            First <code class="ppx-code-tag">serve</code> writes <code class="ppx-code-tag">~/.config/peaproxy/config.yaml</code> if missing.
+            First <code class="ppx-code-tag">serve</code> writes <code class="ppx-code-tag">~/.config/peaproxy/config.yaml</code> if missing. Tokens and inline keys go to the OS keychain (encrypted file fallback), not plaintext YAML.
           </p>
           <p class="os-label" style="margin-top:0.85rem;">Run</p>
           <pre class="ppx-code-block" aria-label="Run commands">peaproxy --version
@@ -164,6 +178,39 @@ peaproxy auth login --provider anthropic
           <div class="ppx-cta-buttons" style="margin-top:1.25rem;">
             <a class="btn-primary" href="https://github.com/ks1686/peaproxy" target="_blank" rel="noopener noreferrer">⭐ View on GitHub</a>
             <a class="btn-secondary" href="https://github.com/ks1686/peaproxy/releases/latest" target="_blank" rel="noopener noreferrer">↓ Latest release</a>
+          </div>
+        </section>
+
+        <section id="ui" class="section" aria-labelledby="ui-heading">
+          <h2 class="section-label" id="ui-heading">Localhost UI</h2>
+          <p class="ppx-prose">
+            Captured from live <code class="ppx-code-tag">peaproxy serve</code> plus a local OpenAI-compat mock. No API keys or OAuth tokens appear in the images.
+          </p>
+          <div class="ppx-shots">
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/accounts.png" alt="PeaProxy Accounts tab with local and API-key onboarding CTAs first" loading="lazy" />
+              <figcaption>First-run <strong>Accounts</strong> — local / API-key onboarding CTAs first. Subscription OAuth is last-resort (ToS/ban risk; authors are not liable).</figcaption>
+            </figure>
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/catalog.png" alt="PeaProxy Catalog tab with live ListModels and image_out modality tag" loading="lazy" />
+              <figcaption><strong>Catalog</strong> — live <code class="ppx-code-tag">ListModels</code> with pin/rename overlays. <code class="ppx-code-tag">image_out</code> is a modality tag on the row.</figcaption>
+            </figure>
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/showcase.png" alt="PeaProxy Showcase generating an image via POST /v1/images/generations" loading="lazy" />
+              <figcaption><strong>Showcase</strong> — <code class="ppx-code-tag">image_out</code> one-click generate via <code class="ppx-code-tag">POST /v1/images/generations</code> (never faked as chat). The lime square is a throwaway mock upstream, not a photoreal generator.</figcaption>
+            </figure>
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/requests.png" alt="PeaProxy Request log redacted inspector" loading="lazy" />
+              <figcaption><strong>Request log</strong> — opt-in redacted inspector (<code class="ppx-code-tag">requestLog: true</code> or the Settings / Request log toggle).</figcaption>
+            </figure>
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/settings.png" alt="PeaProxy Settings showing loopback bind and secret backend" loading="lazy" />
+              <figcaption><strong>Settings</strong> — loopback bind, secret backend, request-log toggle, catalog overlay counts. Tokens and API keys are not shown.</figcaption>
+            </figure>
+            <figure class="ppx-shot">
+              <img src="https://raw.githubusercontent.com/ks1686/peaproxy/main/docs/screenshots/health.png" alt="PeaProxy Health tab with adapter ListModels status and cooldown overlay" loading="lazy" />
+              <figcaption><strong>Health</strong> — adapter <code class="ppx-code-tag">ListModels</code> status, cooldown overlay, and provider-reported remaining when known.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -178,12 +225,27 @@ peaproxy auth login --provider anthropic
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔌</span>
               <p class="ppx-feature-title">Local wires</p>
-              <p class="ppx-feature-desc">OpenAI <code class="ppx-code-tag">/v1/chat/completions</code>, Claude <code class="ppx-code-tag">/v1/messages</code> (true SSE), Codex <code class="ppx-code-tag">/v1/responses</code> (native OAuth passes tools through), image-out <code class="ppx-code-tag">/v1/images/generations</code>, and embeddings <code class="ppx-code-tag">/v1/embeddings</code>.</p>
+              <p class="ppx-feature-desc">OpenAI <code class="ppx-code-tag">/v1/chat/completions</code>, Claude <code class="ppx-code-tag">/v1/messages</code> (true SSE), and Codex <code class="ppx-code-tag">/v1/responses</code>. Native Codex OAuth passes tools through (<code class="ppx-code-tag">tools</code>, <code class="ppx-code-tag">tool_choice</code>, function-call items); only <code class="ppx-code-tag">stream_options</code> is dropped. Other adapters round-trip function tools via chat and do not execute them.</p>
+            </div>
+            <div class="ppx-feature-card">
+              <span class="ppx-feature-icon" aria-hidden="true">🖼️</span>
+              <p class="ppx-feature-title">Image generations</p>
+              <p class="ppx-feature-desc"><code class="ppx-code-tag">POST /v1/images/generations</code> for API-key OpenAI-compat when the catalog tags <code class="ppx-code-tag">image_out</code>. Showcase one-click generates. Subscription OAuth adapters refuse clearly — no fake chat image path.</p>
+            </div>
+            <div class="ppx-feature-card">
+              <span class="ppx-feature-icon" aria-hidden="true">🧮</span>
+              <p class="ppx-feature-title">Embeddings</p>
+              <p class="ppx-feature-desc"><code class="ppx-code-tag">POST /v1/embeddings</code> for API-key OpenAI-compat when the catalog tags <code class="ppx-code-tag">embeddings</code>. Showcase can try. OAuth / Messages-only adapters refuse clearly — no fake vectors.</p>
+            </div>
+            <div class="ppx-feature-card">
+              <span class="ppx-feature-icon" aria-hidden="true">📊</span>
+              <p class="ppx-feature-title">Honest quota remaining</p>
+              <p class="ppx-feature-desc">Health / <code class="ppx-code-tag">peaproxy health</code> / <code class="ppx-code-tag">GET /admin/health</code> show provider-reported remaining when known (rate-limit headers; OpenRouter <code class="ppx-code-tag">GET /key</code>). Unknown remaining is omitted, never invented as 0 or unlimited.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🖥️</span>
               <p class="ppx-feature-title">CLI + localhost UI</p>
-              <p class="ppx-feature-desc">No macOS tray. Accounts, Catalog, Showcase, Clients, Health, Request log, and Settings in the browser on loopback. Showcase generates for <code class="ppx-code-tag">image_out</code> models and can try <code class="ppx-code-tag">embeddings</code>. Health / <code class="ppx-code-tag">peaproxy health</code> show provider-reported remaining when known. First-run onboarding CTAs; Settings shows bind, LAN, and secret-backend status.</p>
+              <p class="ppx-feature-desc">No macOS / Windows tray — by design. Accounts, Catalog, Showcase, Clients, Health, Request log, and Settings in the browser on loopback. First-run onboarding CTAs; Settings shows bind, LAN, and secret-backend status.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔑</span>
@@ -198,7 +260,7 @@ peaproxy auth login --provider anthropic
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔁</span>
               <p class="ppx-feature-title">Failover</p>
-              <p class="ppx-feature-desc">429/401 and retryable error bodies move to the next account; policies <code class="ppx-code-tag">round-robin</code> (default), <code class="ppx-code-tag">fill-first</code>, and <code class="ppx-code-tag">sticky</code>. Cooled accounts are not re-hit. Usage is persisted next to the config as <code class="ppx-code-tag">usage.json</code>.</p>
+              <p class="ppx-feature-desc">429/401/503/529 and retryable rate-limit / overloaded / auth-expired bodies move to the next account; policies <code class="ppx-code-tag">round-robin</code> (default), <code class="ppx-code-tag">fill-first</code>, and <code class="ppx-code-tag">sticky</code>. Cooled accounts are not re-hit (503 + Retry-After). Usage is persisted next to the config as <code class="ppx-code-tag">usage.json</code>.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🧰</span>
@@ -217,21 +279,29 @@ peaproxy auth login --provider anthropic
             <tbody>
               <tr><td><code class="ppx-code-tag">serve</code></td><td>Listen <code class="ppx-code-tag">127.0.0.1:8317</code> + UI (writes first-run config)</td></tr>
               <tr><td><code class="ppx-code-tag">--version</code></td><td>Build version (<code class="ppx-code-tag">dev</code> unless a release ldflag)</td></tr>
-              <tr><td><code class="ppx-code-tag">auth</code></td><td>Subscription OAuth (<code class="ppx-code-tag">--provider anthropic|openai|gemini|xai|kimi|kimi-ai|meta|copilot</code>). Prints a ToS/ban-risk warning. Prefer API keys.</td></tr>
+              <tr><td><code class="ppx-code-tag">auth</code></td><td>Subscription OAuth (<code class="ppx-code-tag">--provider anthropic|openai|gemini|xai|kimi|kimi-ai|meta|copilot</code>). Prints a ToS/ban-risk warning. <code class="ppx-code-tag">--print-url</code> / <code class="ppx-code-tag">--device</code> / <code class="ppx-code-tag">--no-browser</code>. Prefer API keys. Qwen and Factory are <strong>not yet</strong>. OpenCode Go is an API key (<code class="ppx-code-tag">--provider opencode-go</code> explains).</td></tr>
               <tr><td><code class="ppx-code-tag">accounts</code></td><td>Configured provider accounts (<code class="ppx-code-tag">list</code> / <code class="ppx-code-tag">add &lt;preset&gt;</code>)</td></tr>
-              <tr><td><code class="ppx-code-tag">models</code></td><td>Live catalog (<code class="ppx-code-tag">--filter free|paid|local</code>)</td></tr>
-              <tr><td><code class="ppx-code-tag">catalog</code></td><td>Listing overlays (<code class="ppx-code-tag">pin</code> / <code class="ppx-code-tag">rename</code> / <code class="ppx-code-tag">hide</code>)</td></tr>
+              <tr><td><code class="ppx-code-tag">models</code></td><td>Live catalog (<code class="ppx-code-tag">--filter all|free|paid|local|subscription_oauth</code>)</td></tr>
+              <tr><td><code class="ppx-code-tag">catalog</code></td><td>Listing overlays (<code class="ppx-code-tag">pin</code> / <code class="ppx-code-tag">rename</code> / <code class="ppx-code-tag">hide</code>) matching the Catalog UI</td></tr>
               <tr><td><code class="ppx-code-tag">requests</code></td><td>Opt-in inspector (<code class="ppx-code-tag">tail</code> when request log is on)</td></tr>
-              <tr><td><code class="ppx-code-tag">health</code></td><td>Adapter health / provider-reported remaining when known / cooldowns matching <code class="ppx-code-tag">GET /admin/health</code></td></tr>
+              <tr><td><code class="ppx-code-tag">health</code></td><td>Adapter health / quota remaining / provider-reported remaining when known / cooldowns matching <code class="ppx-code-tag">GET /admin/health</code></td></tr>
               <tr><td><code class="ppx-code-tag">status</code></td><td>Bind / config path / version</td></tr>
               <tr><td><code class="ppx-code-tag">config</code></td><td><code class="ppx-code-tag">path</code> / <code class="ppx-code-tag">show</code> / <code class="ppx-code-tag">validate</code> / <code class="ppx-code-tag">init</code></td></tr>
               <tr><td><code class="ppx-code-tag">clients</code></td><td>Harness presets (<code class="ppx-code-tag">list</code> / <code class="ppx-code-tag">show</code> / <code class="ppx-code-tag">verify [--chat]</code>)</td></tr>
             </tbody>
           </table>
           <pre class="ppx-code-block" style="margin-top:1.25rem;" aria-label="Quick client and curl examples">curl -s http://127.0.0.1:8317/v1/models
+curl -s http://127.0.0.1:8317/v1/images/generations \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"dall-e-3","prompt":"a pea pod icon"}'
+curl -s http://127.0.0.1:8317/v1/embeddings \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"text-embedding-3-small","input":"hello pea"}'
 peaproxy clients show cursor
 peaproxy clients show opencode      <span class="comment"># includes /v1</span>
 peaproxy clients show claude-code   <span class="comment"># does NOT include /v1</span>
+peaproxy clients show pi            <span class="comment"># both wires; cloak off</span>
+peaproxy clients show codex         <span class="comment"># Responses API</span>
 peaproxy clients show droid         <span class="comment"># Factory Droid BYOK client</span>
 peaproxy clients verify cursor --chat</pre>
         </section>
@@ -245,7 +315,7 @@ peaproxy clients verify cursor --chat</pre>
             <tbody>
               <tr><td><code class="ppx-code-tag">GET /v1/models</code></td><td>Live list; hide/expose affect listing only</td></tr>
               <tr><td><code class="ppx-code-tag">GET /v0/catalog</code></td><td>Rich catalog (tier, modalities, privacy, hidden/routable)</td></tr>
-              <tr><td><code class="ppx-code-tag">POST /v1/chat/completions</code></td><td>Stream + non-stream; failover on retryable status/bodies</td></tr>
+              <tr><td><code class="ppx-code-tag">POST /v1/chat/completions</code></td><td>Stream + non-stream; failover on retryable status/bodies; cooled accounts are not re-hit (503 + Retry-After)</td></tr>
               <tr><td><code class="ppx-code-tag">POST /v1/messages</code></td><td>Native Anthropic SSE or translated OpenAI stream</td></tr>
               <tr><td><code class="ppx-code-tag">POST /v1/responses</code></td><td>Codex / OpenAI Responses (native OAuth passes tools through; else translated via chat)</td></tr>
               <tr><td><code class="ppx-code-tag">POST /v1/images/generations</code></td><td>OpenAI Images API for models tagged <code class="ppx-code-tag">image_out</code>; refused (no chat fake) otherwise</td></tr>
@@ -253,6 +323,7 @@ peaproxy clients verify cursor --chat</pre>
               <tr><td><code class="ppx-code-tag">GET /</code></td><td>UI: Accounts, Catalog, Showcase, Clients, Health, Request log, Settings</td></tr>
               <tr><td><code class="ppx-code-tag">GET /healthz</code></td><td>Liveness (LAN warning flags; no admin token)</td></tr>
               <tr><td><code class="ppx-code-tag">GET /admin/health</code></td><td>Bind, adapter health, provider-reported remaining when known, account cooldowns (token required off loopback)</td></tr>
+              <tr><td><code class="ppx-code-tag">GET /admin/quota</code></td><td>Per-account quota remaining plus the provider honesty matrix (unknown omitted, never invented)</td></tr>
             </tbody>
           </table>
         </section>
@@ -264,7 +335,7 @@ peaproxy clients verify cursor --chat</pre>
             <a class="ppx-inline-link" href="https://github.com/ks1686/peaproxy/blob/main/docs/OAUTH.md" target="_blank" rel="noopener noreferrer">docs/OAUTH.md</a>.
           </div>
           <p class="ppx-prose">
-            Default bind is <strong>loopback</strong>. Binding <code class="ppx-code-tag">0.0.0.0</code> requires <code class="ppx-code-tag">--allow-lan</code> <strong>and</strong> a non-empty admin token. Never log secrets; the opt-in request log is redacted. OpenCode Zen <strong>free</strong> models may train on prompts — see catalog privacy notes.
+            Default bind is <strong>loopback</strong>. Binding <code class="ppx-code-tag">0.0.0.0</code> requires <code class="ppx-code-tag">--allow-lan</code> <strong>and</strong> a non-empty admin token. Never log secrets; the opt-in request log is redacted. OpenCode Zen <strong>free</strong> models may train on prompts — see catalog privacy notes. GitHub Models is retired and is not a provider.
           </p>
         </section>
 

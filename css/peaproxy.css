@@ -342,6 +342,42 @@ footer a:hover {
   line-height: 1.6;
 }
 
+.ppx-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.ppx-shot {
+  margin: 0;
+  background: var(--ppx-surface-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ppx-border);
+  border-radius: var(--ppx-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ppx-shadow);
+  transition: var(--ppx-transition);
+}
+.ppx-shot:hover {
+  border-color: var(--ppx-border-hover);
+  box-shadow: var(--ppx-shadow-lg);
+}
+.ppx-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--ppx-border);
+}
+.ppx-shot figcaption {
+  padding: 0.85rem 1rem 1rem;
+  font-size: 0.82rem;
+  color: var(--ppx-text-muted);
+  line-height: 1.55;
+}
+.ppx-shot figcaption strong {
+  color: var(--ppx-text);
+}
+
 .ppx-table {
   width: 100%;
   border-collapse: collapse;
@@ -352,6 +388,7 @@ footer a:hover {
   border-radius: var(--ppx-radius-lg);
   overflow: hidden;
   box-shadow: var(--ppx-shadow);
+  margin-bottom: 1.25rem;
 }
 .ppx-table th {
   padding: 0.85rem 1.25rem;
@@ -447,7 +484,8 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-  .ppx-features-grid {
+  .ppx-features-grid,
+  .ppx-shots {
     grid-template-columns: 1fr;
   }
   .ppx-cta {
@@ -456,5 +494,9 @@ footer a:hover {
   .ppx-install-block {
     font-size: 0.82rem;
     padding: 0.75rem 1.1rem;
+  }
+  .ppx-table {
+    display: block;
+    overflow-x: auto;
   }
 }
