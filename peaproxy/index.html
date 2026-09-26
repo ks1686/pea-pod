@@ -9,7 +9,7 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="PeaProxy — local AI gateway" />
-    <meta property="og:description" content="CLI + localhost UI. v0.2.1 includes API keys, free/local providers, and subscription OAuth (ToS/ban risk)." />
+    <meta property="og:description" content="CLI + localhost UI. v0.2.2 includes API keys, free/local providers, and subscription OAuth (ToS/ban risk)." />
     <meta property="og:url" content="https://pea-pod.me/peaproxy/" />
     <meta property="og:image" content="https://pea-pod.me/icons/icon-512.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -32,11 +32,11 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="announcement-banner" id="announcement-banner" role="region" aria-label="Announcement">
       <div class="banner-content">
-        <span class="banner-badge" aria-hidden="true">v0.2.1</span>
+        <span class="banner-badge" aria-hidden="true">v0.2.2</span>
         <p class="banner-text">
-          <strong>PeaProxy v0.2.1</strong> — CLI + localhost UI, API keys + free/local, and subscription OAuth (ToS/ban risk).
+          <strong>PeaProxy v0.2.2</strong> — llama.cpp / vLLM / NIM / Workers AI / Ollama Cloud presets plus <code class="ppx-code-tag">/v1/responses</code>; subscription OAuth (ToS/ban risk).
         </p>
-        <a class="banner-link" href="https://github.com/ks1686/peaproxy/releases/tag/v0.2.1" target="_blank" rel="noopener noreferrer">Release notes →</a>
+        <a class="banner-link" href="https://github.com/ks1686/peaproxy/releases/tag/v0.2.2" target="_blank" rel="noopener noreferrer">Release notes →</a>
         <button class="banner-close" id="banner-close" aria-label="Dismiss announcement">✕</button>
       </div>
     </div>
@@ -115,20 +115,20 @@
         <section id="get-started" class="section" aria-labelledby="install-heading">
           <h2 class="section-label" id="install-heading">Get Started</h2>
           <p class="ppx-hero-tagline">
-            Maximize whatever you already pay for, fall back to keys, and treat Ollama / LM Studio / OpenRouter-free / OpenCode Zen as first-class — then expose one OpenAI-shaped and one Claude-shaped local endpoint that coding tools already speak.
+            Maximize whatever you already pay for, fall back to keys, and treat Ollama / LM Studio / llama.cpp / vLLM / OpenRouter-free / OpenCode Zen as first-class — then expose one OpenAI-shaped, one Claude-shaped, and one Responses local endpoint that coding tools already speak.
           </p>
           <p class="ppx-prose">
             Status: <strong>CLI + localhost UI</strong> at <code class="ppx-code-tag">127.0.0.1:8317</code>. Tagged
-            <a class="ppx-inline-link" href="https://github.com/ks1686/peaproxy/releases/tag/v0.2.1" target="_blank" rel="noopener noreferrer">v0.2.1</a>
-            includes API keys + free/local providers and subscription OAuth (Claude, Codex, Gemini/Antigravity, xAI, Kimi, Meta Muse) with a ban/ToS warning — prefer official API keys. Requires
+            <a class="ppx-inline-link" href="https://github.com/ks1686/peaproxy/releases/tag/v0.2.2" target="_blank" rel="noopener noreferrer">v0.2.2</a>
+            includes API keys + free/local providers (llama.cpp, vLLM, NIM, Workers AI, Ollama Cloud), <code class="ppx-code-tag">POST /v1/responses</code>, and subscription OAuth (Claude, Codex, Gemini/Antigravity, xAI, Kimi, Meta Muse) with a ban/ToS warning — prefer official API keys. Requires
             <a class="ppx-inline-link" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go 1.22+</a>
             for <code class="ppx-code-tag">go install</code>.
           </p>
           <div class="stack">
             <div>
-              <p class="os-label">Go install (tagged v0.2.1)</p>
+              <p class="os-label">Go install (tagged v0.2.2)</p>
               <div class="ppx-install-block" aria-label="Install command via go install">
-                <span class="install-cmd">go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.2.1</span>
+                <span class="install-cmd">go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.2.2</span>
                 <button class="copy-btn" aria-label="Copy command to clipboard" title="Copy">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
@@ -141,7 +141,7 @@
               <p class="os-label">Linux binary (amd64)</p>
               <div class="ppx-install-block wide" aria-label="Install command via pre-built Linux binary">
                 <div class="cmd-stack">
-                  <span class="install-cmd">curl -Lo peaproxy.tar.gz https://github.com/ks1686/peaproxy/releases/latest/download/peaproxy_0.2.1_linux_amd64.tar.gz</span>
+                  <span class="install-cmd">curl -Lo peaproxy.tar.gz https://github.com/ks1686/peaproxy/releases/latest/download/peaproxy_0.2.2_linux_amd64.tar.gz</span>
                   <span class="install-cmd">tar -xzf peaproxy.tar.gz &amp;&amp; sudo mv peaproxy /usr/local/bin/</span>
                 </div>
                 <button class="copy-btn" aria-label="Copy commands to clipboard" title="Copy">
@@ -177,8 +177,8 @@ peaproxy auth login --provider anthropic
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔌</span>
-              <p class="ppx-feature-title">Two local wires</p>
-              <p class="ppx-feature-desc">OpenAI <code class="ppx-code-tag">/v1/chat/completions</code> and Claude <code class="ppx-code-tag">/v1/messages</code> (true SSE, not a single-event wrapper).</p>
+              <p class="ppx-feature-title">Local wires</p>
+              <p class="ppx-feature-desc">OpenAI <code class="ppx-code-tag">/v1/chat/completions</code>, Claude <code class="ppx-code-tag">/v1/messages</code> (true SSE), and Codex <code class="ppx-code-tag">/v1/responses</code>.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🖥️</span>
@@ -188,12 +188,12 @@ peaproxy auth login --provider anthropic
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔑</span>
               <p class="ppx-feature-title">Keys, free, and local</p>
-              <p class="ppx-feature-desc">Ollama, LM Studio, Groq, Cerebras, Google AI Studio, xAI, Hugging Face, Anthropic/OpenAI/OpenRouter keys, OpenCode Zen, custom OpenAI-compat.</p>
+              <p class="ppx-feature-desc">Ollama (local or Cloud), LM Studio, llama.cpp, vLLM, Groq, Cerebras, Google AI Studio, xAI, Hugging Face, NVIDIA NIM, Cloudflare Workers AI, Anthropic/OpenAI/OpenRouter keys, OpenCode Zen, custom OpenAI-compat.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🪪</span>
               <p class="ppx-feature-title">Subscription OAuth</p>
-              <p class="ppx-feature-desc">v0.2.1 includes Claude, Codex, Gemini/Antigravity, xAI, Kimi, and Meta Muse login. Ban/ToS risk; prefer API keys. See <a class="ppx-inline-link" href="#security">Security</a>.</p>
+              <p class="ppx-feature-desc">v0.2.2 includes Claude, Codex, Gemini/Antigravity, xAI, Kimi, and Meta Muse login. Ban/ToS risk; prefer API keys. See <a class="ppx-inline-link" href="#security">Security</a>.</p>
             </div>
             <div class="ppx-feature-card">
               <span class="ppx-feature-icon" aria-hidden="true">🔁</span>
@@ -243,6 +243,7 @@ peaproxy clients verify cursor --chat</pre>
               <tr><td><code class="ppx-code-tag">GET /v0/catalog</code></td><td>Rich catalog (tier, modalities, privacy, hidden/routable)</td></tr>
               <tr><td><code class="ppx-code-tag">POST /v1/chat/completions</code></td><td>Stream + non-stream; failover on 429/401</td></tr>
               <tr><td><code class="ppx-code-tag">POST /v1/messages</code></td><td>Native Anthropic SSE or translated OpenAI stream</td></tr>
+              <tr><td><code class="ppx-code-tag">POST /v1/responses</code></td><td>Codex / OpenAI Responses (native for Codex OAuth, else translated via chat)</td></tr>
               <tr><td><code class="ppx-code-tag">GET /</code></td><td>UI: Accounts, Catalog, Showcase, Clients, Health, Settings</td></tr>
               <tr><td><code class="ppx-code-tag">GET /healthz</code></td><td>Liveness (LAN warning flags; no admin token)</td></tr>
               <tr><td><code class="ppx-code-tag">GET /admin/health</code></td><td>Bind, adapters, account cooldowns (token required off loopback)</td></tr>
@@ -265,7 +266,7 @@ peaproxy clients verify cursor --chat</pre>
           <div class="ppx-cta">
             <p class="ppx-cta-title" id="cta-heading">Ready to run a local gateway?</p>
             <p class="ppx-cta-desc">
-              PeaProxy is open-source and MIT licensed. v0.2.1 includes subscription OAuth at your own risk — prefer official API keys.
+              PeaProxy is open-source and MIT licensed. v0.2.2 includes subscription OAuth at your own risk — prefer official API keys.
             </p>
             <div class="ppx-cta-buttons" style="justify-content:center;">
               <a class="btn-primary" href="https://github.com/ks1686/peaproxy" target="_blank" rel="noopener noreferrer">⭐ Star on GitHub</a>
