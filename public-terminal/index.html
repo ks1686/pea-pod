@@ -165,7 +165,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5h-.5A1.5 1.5 0 0 0 3 3h10a1.5 1.5 0 0 0-1.5-1.5H11A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
                 </button>
               </div>
-              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Then run <code class="pt-code-tag">public auth login</code>. Credentials stay in your OS keychain — Public Terminal never stores API tokens.</p>
+              <p style="font-size:0.78rem;color:var(--pt-text-muted);margin-top:0.4rem;">Or <code class="pt-code-tag">uv tool install publicdotcom-cli</code>. Then run <code class="pt-code-tag">public auth login</code>. Credentials stay in your OS keychain — Public Terminal never stores API tokens.</p>
             </div>
           </div>
           <p style="font-size:0.85rem;color:var(--pt-text-muted);margin-top:0.85rem;">
@@ -199,7 +199,7 @@ public-terminal --rebalance --dry-run  <span class="comment"># plan without plac
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📊</span>
               <p class="pt-feature-title">Live Portfolio</p>
-              <p class="pt-feature-desc">Holdings, values, quantities, open orders, and options positions. Press <code class="pt-code-tag">l</code> to toggle live balance streaming every 30 seconds.</p>
+              <p class="pt-feature-desc">Holdings, values, quantities, open orders, and options positions. The TUI polls every 30 seconds; the status bar shows a <code class="pt-code-tag">STREAMING</code> indicator.</p>
             </div>
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">📈</span>
@@ -214,12 +214,12 @@ public-terminal --rebalance --dry-run  <span class="comment"># plan without plac
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">🔖</span>
               <p class="pt-feature-title">Options Tracking</p>
-              <p class="pt-feature-desc">View open calls and puts with contract details, expiration dates, and P&amp;L. Positions expiring within 7 days are highlighted in yellow.</p>
+              <p class="pt-feature-desc">View open calls and puts with contract details, expiration dates, and P&amp;L. Close a selected contract from the Options pane with <code class="pt-code-tag">s</code>. Positions expiring within 7 days are highlighted in yellow.</p>
             </div>
             <div class="pt-feature-card">
-              <span class="pt-feature-icon" aria-hidden="true">📉</span>
-              <p class="pt-feature-title">Portfolio Chart</p>
-              <p class="pt-feature-desc">Scrollable price history across all holdings. Use <code class="pt-code-tag">[</code> and <code class="pt-code-tag">]</code> to scroll time windows. Extended-hours data included in the 24H view.</p>
+              <span class="pt-feature-icon" aria-hidden="true">🪟</span>
+              <p class="pt-feature-title">Four-Pane Layout</p>
+              <p class="pt-feature-desc">Stocks, Crypto, Options, and Open Orders in a 2×2 grid. Cycle panes with <code class="pt-code-tag">Tab</code> / <code class="pt-code-tag">Shift+Tab</code>, or move focus with <code class="pt-code-tag">Alt</code>+arrows.</p>
             </div>
             <div class="pt-feature-card">
               <span class="pt-feature-icon" aria-hidden="true">💳</span>
@@ -242,18 +242,20 @@ public-terminal --rebalance --dry-run  <span class="comment"># plan without plac
         <!-- ---- Interface ---- -->
         <section id="interface" class="section" aria-labelledby="interface-heading">
           <h2 class="section-label" id="interface-heading">Interface</h2>
-          <pre class="pt-code-block" aria-label="TUI layout diagram">Header (clock)
-Account Tabs      — one tab per account; switch with Ctrl+Left / Ctrl+Right
+          <pre class="pt-code-block" aria-label="TUI layout diagram">Account Tabs      — one tab per account; switch with Ctrl+← / Ctrl+→; click to switch
 Balance Bar       — total equity, buying power, options BP, crypto BP, cash or margin balance
 Rebalancer Bar    — timer status, active config, key hint strip
-Portfolio Chart   — scrollable price history
-┌─ HOLDINGS ──────────┐  ┌─ OPEN ORDERS ──────┐
-│ stocks, ETFs, crypto │  │ pending orders      │
-├──────────────────────┤  └────────────────────┘
-│ OPTIONS              │
-│ calls, puts          │
-└──────────────────────┘
-Footer (key bindings)</pre>
+┌─ STOCKS ────────────┐  ┌─ CRYPTO ───────────┐
+│ stocks, ETFs         │  │ BTC, ETH, SOL, ... │
+└──────────────────────┘  └────────────────────┘
+┌─ OPTIONS ───────────┐  ┌─ OPEN ORDERS ──────┐
+│ calls, puts          │  │ pending orders      │
+└──────────────────────┘  └────────────────────┘
+Key hints / Status bar  — includes STREAMING</pre>
+
+          <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-top:1rem;">
+            Live streaming is always on: the TUI polls Public.com every 30 seconds and refreshes balances, holdings, options, and open orders in-place. The status bar shows the active account with a <code class="pt-code-tag">STREAMING</code> indicator.
+          </p>
 
           <p class="pt-section-label" style="margin-top:1.5rem;">
             Key Bindings
@@ -267,21 +269,21 @@ Footer (key bindings)</pre>
             </thead>
             <tbody>
               <tr><td><code class="pt-code-tag">r</code></td><td>Refresh portfolio, orders, and rebalancer status</td></tr>
-              <tr><td><code class="pt-code-tag">l</code></td><td>Toggle live portfolio balance stream on the chart</td></tr>
+              <tr><td><code class="pt-code-tag">Tab</code> / <code class="pt-code-tag">Shift+Tab</code></td><td>Cycle focused pane (Stocks → Crypto → Options → Orders)</td></tr>
+              <tr><td><code class="pt-code-tag">Alt</code>+arrows</td><td>Move pane focus in the 2×2 grid</td></tr>
+              <tr><td><code class="pt-code-tag">↑</code> / <code class="pt-code-tag">↓</code> / <code class="pt-code-tag">j</code> / <code class="pt-code-tag">k</code></td><td>Navigate rows in the focused pane</td></tr>
               <tr><td><code class="pt-code-tag">b</code></td><td>Place a market buy order</td></tr>
-              <tr><td><code class="pt-code-tag">s</code></td><td>Place a market sell order</td></tr>
+              <tr><td><code class="pt-code-tag">s</code></td><td>Place a market sell order (from Options: close the selected contract)</td></tr>
               <tr><td><code class="pt-code-tag">v</code></td><td>View / modify the selected open order</td></tr>
               <tr><td><code class="pt-code-tag">c</code></td><td>Cancel the selected open order</td></tr>
               <tr><td><code class="pt-code-tag">h</code></td><td>View order history</td></tr>
-              <tr><td><code class="pt-code-tag">[</code></td><td>Scroll portfolio chart left (earlier)</td></tr>
-              <tr><td><code class="pt-code-tag">]</code></td><td>Scroll portfolio chart right (later)</td></tr>
               <tr><td><code class="pt-code-tag">t</code></td><td>Pause / resume the installed rebalancer schedule</td></tr>
               <tr><td><code class="pt-code-tag">e</code></td><td>Install / remove the rebalancer schedule</td></tr>
               <tr><td><code class="pt-code-tag">x</code></td><td>Skip the next scheduled rebalance run</td></tr>
               <tr><td><code class="pt-code-tag">S</code></td><td>Open rebalance settings modal</td></tr>
               <tr><td><code class="pt-code-tag">Ctrl+A</code></td><td>Open account management modal (add / remove accounts)</td></tr>
-              <tr><td><code class="pt-code-tag">Ctrl+Left</code></td><td>Switch to previous account tab</td></tr>
-              <tr><td><code class="pt-code-tag">Ctrl+Right</code></td><td>Switch to next account tab</td></tr>
+              <tr><td><code class="pt-code-tag">Ctrl+←</code> / <code class="pt-code-tag">Ctrl+→</code></td><td>Switch account tab</td></tr>
+              <tr><td><code class="pt-code-tag">?</code></td><td>Full keybinding overlay</td></tr>
               <tr><td><code class="pt-code-tag">q</code></td><td>Quit</td></tr>
             </tbody>
           </table>
@@ -291,7 +293,7 @@ Footer (key bindings)</pre>
         <section id="placing-orders" class="section" aria-labelledby="orders-heading">
           <h2 class="section-label" id="orders-heading">Placing Orders</h2>
           <p style="font-size:0.92rem;color:var(--pt-text-muted);margin-bottom:1rem;">
-            Press <code class="pt-code-tag">b</code> to buy or <code class="pt-code-tag">s</code> to sell. A modal prompts for:
+            Press <code class="pt-code-tag">b</code> to buy or <code class="pt-code-tag">s</code> to sell. From the Options pane, <code class="pt-code-tag">s</code> pre-fills the selected OCC symbol and contract quantity to close that position (opening new options with <code class="pt-code-tag">b</code> on that pane is not supported yet). A modal prompts for:
           </p>
           <table class="pt-table" aria-label="Order fields" style="margin-bottom:1rem;">
             <thead>
@@ -301,10 +303,10 @@ Footer (key bindings)</pre>
               </tr>
             </thead>
             <tbody>
-              <tr><td><strong>Symbol</strong></td><td>e.g. <code class="pt-code-tag">AAPL</code>, <code class="pt-code-tag">BTC</code>, <code class="pt-code-tag">GLDM</code></td></tr>
-              <tr><td><strong>Instrument type</strong></td><td>Equity or Crypto</td></tr>
+              <tr><td><strong>Symbol</strong></td><td>e.g. <code class="pt-code-tag">AAPL</code>, <code class="pt-code-tag">BTC</code>, <code class="pt-code-tag">GLDM</code>, or an OCC option symbol</td></tr>
+              <tr><td><strong>Instrument type</strong></td><td>Equity, Crypto, or Option</td></tr>
               <tr><td><strong>Order type</strong></td><td>Market, Limit, Stop, or Stop Limit</td></tr>
-              <tr><td><strong>Quantity</strong></td><td>Shares or coin units (fractional supported)</td></tr>
+              <tr><td><strong>Amount / quantity</strong></td><td>Dollar amount for stocks and crypto; contract count for options</td></tr>
             </tbody>
           </table>
           <div class="pt-features-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
@@ -345,8 +347,9 @@ Footer (key bindings)</pre>
             </thead>
             <tbody>
               <tr><td>Stocks</td><td>65%</td><td>Top N from configured index, market-cap weighted</td></tr>
-              <tr><td>BTC</td><td>15%</td><td>Bitcoin</td></tr>
-              <tr><td>ETH</td><td>5%</td><td>Ethereum</td></tr>
+              <tr><td>BTC</td><td>12%</td><td>Bitcoin</td></tr>
+              <tr><td>ETH</td><td>4%</td><td>Ethereum</td></tr>
+              <tr><td>SOL</td><td>4%</td><td>Solana</td></tr>
               <tr><td>GLDM</td><td>10%</td><td>Gold ETF</td></tr>
               <tr><td>Cash</td><td>5%</td><td>Uninvested buying power (no orders placed)</td></tr>
             </tbody>
@@ -354,15 +357,14 @@ Footer (key bindings)</pre>
 
           <p class="pt-section-label">How Each Run Works</p>
           <ol class="pt-steps-list" style="margin-bottom:1.5rem;">
-            <li>Fetches the current constituent list for the configured index from official ETF holdings (Wikipedia as fallback).</li>
-            <li>Fetches market caps via yfinance — 20 parallel workers, results cached up to 20 hours.</li>
+            <li>Fetches the current constituent list for the configured index from official ETF holdings.</li>
+            <li>Fetches market caps via Yahoo Finance — 20 parallel workers, results cached up to 20 hours.</li>
             <li>Selects top N by market cap, filters excluded tickers, computes within-slice weights.</li>
             <li>Fetches the current portfolio from Public.com.</li>
             <li>Computes dollar deltas for all buckets against the investment base.</li>
-            <li>Applies drift threshold: <code class="pt-code-tag">max(0.5% of target, $1)</code> — positions within tolerance are left alone.</li>
+            <li>Applies drift threshold: <code class="pt-code-tag">max(0.5% of target, $5)</code> for equities and <code class="pt-code-tag">max(0.5% of target, $1)</code> for crypto — positions within tolerance are left alone.</li>
             <li>Places SELL orders first, waits for them to clear, then places BUY orders.</li>
-            <li>BUY orders are capped to effective buying power budget.</li>
-            <li>Full liquidations use share-quantity orders to avoid broker rejection.</li>
+            <li>BUY orders are capped to the effective buying power budget.</li>
             <li>Logs everything to <code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code>.</li>
           </ol>
 
@@ -403,7 +405,7 @@ effective_bp    = cash_buying_power + max(0, allowed_margin - current_margin_loa
               <tr><td><code class="pt-code-tag">SP500</code></td><td>S&amp;P 500</td></tr>
               <tr><td><code class="pt-code-tag">NASDAQ100</code></td><td>NASDAQ-100</td></tr>
               <tr><td><code class="pt-code-tag">DJIA</code></td><td>Dow Jones Industrial Average</td></tr>
-              <tr><td><code class="pt-code-tag">FTSE_GLOBAL_ALL_CAP</code></td><td>Global equities via iShares ACWI holdings proxy</td></tr>
+              <tr><td><code class="pt-code-tag">FTSE_GLOBAL_ALL_CAP</code></td><td>Global equities (sourced from SSGA SPGM, MSCI ACWI IMI)</td></tr>
               <tr><td><code class="pt-code-tag">SPUS</code></td><td>SP Funds S&amp;P 500 Shariah Industry Exclusions ETF</td></tr>
             </tbody>
           </table>
@@ -469,6 +471,7 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.public-terminal.reba
         ├── rebalance.log             <span class="comment">— full rebalancer run history</span>
         ├── market_caps.json          <span class="comment">— same-day market cap cache (auto-refreshes)</span>
         ├── portfolio_cache.json      <span class="comment">— cached portfolio for instant startup</span>
+        ├── constituents_&lt;index&gt;.json <span class="comment">— cached index constituent lists</span>
         ├── today_buys.json           <span class="comment">— PDT protection ledger (resets daily)</span>
         └── skip_next_rebalance       <span class="comment">— sentinel file — presence skips one run</span></pre>
           <table class="pt-table" aria-label="Configuration file descriptions" style="margin-top:1.25rem;">
@@ -482,6 +485,7 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.public-terminal.reba
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/rebalance.log</code></td><td>Full rebalancer run history for the account</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/market_caps.json</code></td><td>Same-day market cap cache — auto-refreshes each trading day</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/portfolio_cache.json</code></td><td>Cached portfolio for instant startup</td></tr>
+              <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/constituents_&lt;index&gt;.json</code></td><td>Cached index constituent lists</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/today_buys.json</code></td><td>PDT protection ledger — resets automatically at midnight</td></tr>
               <tr><td><code class="pt-code-tag">accounts/&lt;id&gt;/cache/skip_next_rebalance</code></td><td>Sentinel file — presence causes the next scheduled rebalance to be skipped</td></tr>
             </tbody>
