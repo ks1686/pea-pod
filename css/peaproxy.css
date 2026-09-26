@@ -1,0 +1,460 @@
+/* =============================================
+   PeaProxy — teal accent on shared shell
+   ============================================= */
+
+:root {
+  --ppx-bg:           var(--bg);
+  --ppx-surface:      var(--surface);
+  --ppx-surface-2:    var(--surface-2);
+  --ppx-surface-3:    var(--surface-2);
+
+  --ppx-border:       var(--border);
+  --ppx-border-hover: var(--border-strong);
+
+  --ppx-text:         var(--text);
+  --ppx-text-mid:     var(--text);
+  --ppx-text-muted:   var(--text-muted);
+
+  --ppx-accent:       var(--accent);
+  --ppx-accent-hover: var(--accent-hover);
+  --ppx-accent-dim:   var(--accent-dim);
+
+  --ppx-shadow:       var(--shadow);
+  --ppx-shadow-lg:    var(--shadow-hover);
+
+  --ppx-radius:       var(--radius);
+  --ppx-radius-lg:    var(--radius-lg);
+  --ppx-transition:   background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+  --ppx-font:         var(--font-sans);
+  --ppx-mono:         var(--font-mono);
+}
+
+.card {
+  border-color: var(--ppx-border);
+}
+.card::before {
+  background: linear-gradient(135deg, var(--accent-dim), transparent 55%);
+}
+.card:hover,
+.card:focus-visible {
+  border-color: var(--ppx-accent);
+}
+.card-title {
+  color: var(--ppx-text);
+}
+.card-desc {
+  color: var(--ppx-text-muted);
+}
+.card-arrow {
+  color: var(--ppx-accent);
+}
+
+.section-label {
+  color: var(--ppx-accent);
+}
+.section-label::before {
+  content: "//";
+  opacity: 0.55;
+  background: none;
+  flex: 0;
+  height: auto;
+}
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ppx-border-hover), transparent);
+}
+
+.burger-btn {
+  background: var(--ppx-surface-3);
+  border-color: var(--ppx-border);
+}
+.burger-btn:hover {
+  background: var(--ppx-surface-2);
+  border-color: var(--ppx-accent);
+}
+.burger-line {
+  background: var(--ppx-accent);
+}
+
+.menu-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.side-menu {
+  background: var(--ppx-surface);
+  border-right-color: var(--ppx-border);
+}
+.side-menu-header {
+  border-bottom-color: var(--ppx-border);
+}
+.side-menu-title {
+  color: var(--ppx-accent);
+}
+.side-menu-close {
+  color: var(--ppx-text-mid);
+}
+.side-menu-close:hover {
+  background: var(--ppx-surface-2);
+  color: var(--ppx-text);
+}
+.side-menu-link {
+  color: var(--ppx-text-mid);
+}
+.side-menu-link:hover,
+.side-menu-link:focus-visible {
+  background: var(--ppx-surface-2);
+  color: var(--ppx-text);
+  border-left-color: var(--ppx-accent);
+}
+.side-menu-link[aria-current="page"] {
+  background: var(--ppx-surface-2);
+  color: var(--ppx-text);
+  border-left-color: var(--ppx-accent);
+}
+
+.nav-back {
+  background: var(--ppx-surface-2);
+  border-color: var(--ppx-border);
+  color: var(--ppx-accent);
+}
+.nav-back:hover {
+  background: var(--ppx-surface);
+  color: var(--ppx-accent-hover);
+}
+
+.site-title {
+  background: linear-gradient(135deg, var(--ppx-accent) 0%, var(--ppx-accent-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.site-tagline {
+  color: var(--ppx-text-muted);
+}
+
+footer {
+  color: var(--ppx-text-muted);
+}
+footer a {
+  color: var(--ppx-accent);
+}
+footer a:hover {
+  color: var(--ppx-accent-hover);
+}
+
+.side-menu-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ppx-text-muted);
+  padding: 0.9rem 1.5rem 0.4rem;
+  margin: 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.os-label {
+  font-size: 0.78rem;
+  color: var(--ppx-text-muted);
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ppx-prose {
+  font-size: 0.85rem;
+  color: var(--ppx-text-muted);
+  margin-bottom: 1rem;
+}
+
+.ppx-prose a,
+.ppx-inline-link {
+  color: var(--ppx-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cmd-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.install-cmd {
+  font-family: var(--ppx-mono);
+  font-size: 0.88rem;
+  word-break: break-all;
+}
+
+.ppx-hero-tagline {
+  font-size: 1.05rem;
+  color: var(--ppx-text-muted);
+  margin-bottom: 1.25rem;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+.ppx-install-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--ppx-border);
+  border-radius: var(--ppx-radius);
+  padding: 0.85rem 1.5rem;
+  font-family: var(--ppx-mono);
+  font-size: 0.95rem;
+  color: var(--ppx-text);
+  letter-spacing: 0.01em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ppx-install-block.wide {
+  align-items: flex-start;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--ppx-border);
+  border-radius: 0.375rem;
+  color: var(--ppx-text-muted);
+  cursor: pointer;
+  transition: var(--ppx-transition);
+}
+.copy-btn:hover {
+  background: var(--ppx-accent-dim);
+  border-color: var(--ppx-accent);
+  color: var(--ppx-accent);
+}
+.copy-btn.copied {
+  border-color: var(--ppx-accent);
+  color: var(--ppx-accent);
+}
+.copy-btn svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  pointer-events: none;
+}
+
+.ppx-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--ppx-accent);
+  color: var(--ppx-bg);
+  font-family: var(--ppx-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid var(--ppx-accent);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: var(--ppx-transition);
+}
+.btn-primary:hover {
+  background: var(--ppx-accent-hover);
+  border-color: var(--ppx-accent-hover);
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: transparent;
+  color: var(--ppx-text-mid);
+  font-family: var(--ppx-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid var(--ppx-border-hover);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: var(--ppx-transition);
+}
+.btn-secondary:hover {
+  background: var(--ppx-surface-2);
+  border-color: var(--ppx-accent);
+  color: var(--ppx-accent);
+  transform: translateY(-2px);
+}
+
+.ppx-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.ppx-feature-card {
+  background: var(--ppx-surface-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ppx-border);
+  border-radius: var(--ppx-radius-lg);
+  box-shadow: var(--ppx-shadow);
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: var(--ppx-transition);
+  animation: fadeUp 0.6s ease both;
+}
+.ppx-feature-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--ppx-shadow-lg);
+  border-color: var(--ppx-border-hover);
+}
+.ppx-feature-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.ppx-feature-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ppx-text);
+}
+.ppx-feature-desc {
+  font-size: 0.88rem;
+  color: var(--ppx-text-muted);
+  line-height: 1.6;
+}
+
+.ppx-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ppx-surface-3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--ppx-border);
+  border-radius: var(--ppx-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ppx-shadow);
+}
+.ppx-table th {
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ppx-accent);
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--ppx-border);
+}
+.ppx-table td {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ppx-text-mid);
+  border-bottom: 1px solid var(--ppx-border);
+}
+.ppx-table tr:last-child td {
+  border-bottom: none;
+}
+.ppx-table tr:hover td {
+  background: var(--ppx-accent-dim);
+}
+
+.ppx-code-tag {
+  display: inline-block;
+  font-family: var(--ppx-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.15em 0.5em;
+  background: var(--ppx-accent-dim);
+  border: 1px solid var(--ppx-border);
+  border-radius: 0.3rem;
+  color: var(--ppx-accent);
+  margin: 0.1em 0.2em;
+}
+
+.ppx-code-block {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--ppx-border);
+  border-radius: 0.875rem;
+  padding: 1.4rem 1.5rem;
+  font-family: var(--ppx-mono);
+  font-size: 0.875rem;
+  color: var(--ppx-text);
+  line-height: 1.75;
+  overflow-x: auto;
+  white-space: pre;
+  tab-size: 2;
+  box-shadow: var(--ppx-shadow);
+}
+.ppx-code-block .comment {
+  color: var(--ppx-text-muted);
+  font-style: italic;
+}
+
+.ppx-warning {
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: var(--ppx-radius-lg);
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 1.25rem;
+  color: var(--ppx-text);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.ppx-warning strong {
+  color: #fca5a5;
+}
+
+.ppx-cta {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--ppx-border);
+  border-radius: var(--ppx-radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--ppx-shadow);
+}
+.ppx-cta-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--ppx-text);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+.ppx-cta-desc {
+  font-size: 0.95rem;
+  color: var(--ppx-text-muted);
+  max-width: 540px;
+  margin: 0 auto 0.5rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .ppx-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .ppx-cta {
+    padding: 2rem 1.25rem;
+  }
+  .ppx-install-block {
+    font-size: 0.82rem;
+    padding: 0.75rem 1.1rem;
+  }
+}
