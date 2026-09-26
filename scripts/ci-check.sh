@@ -80,16 +80,16 @@ pass "genv v4 facts"
 
 # ---- PeaProxy facts --------------------------------------------------------
 # Pin to the newest ks1686/peaproxy release tag; bump version strings together.
-grep -q 'v0.2.6' peaproxy/index.html || fail "peaproxy page missing v0.2.6"
-grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.2.6' peaproxy/index.html || fail "peaproxy page missing go install @v0.2.6"
-grep -q 'peaproxy_0.2.6_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 0.2.6 tarball"
+grep -q 'v0.2.8' peaproxy/index.html || fail "peaproxy page missing v0.2.8"
+grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v0.2.8' peaproxy/index.html || fail "peaproxy page missing go install @v0.2.8"
+grep -q 'peaproxy_0.2.8_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 0.2.8 tarball"
 grep -q '127.0.0.1:8317' peaproxy/index.html || fail "peaproxy page missing localhost bind"
 grep -q 'PeaProxy authors are not liable' peaproxy/index.html || fail "peaproxy page missing OAuth liability line"
-grep -q 'v0.2.6 includes' peaproxy/index.html || fail "peaproxy page missing v0.2.6 includes OAuth status"
+grep -q 'v0.2.8 includes' peaproxy/index.html || fail "peaproxy page missing v0.2.8 includes OAuth status"
 grep -q '/v1/responses' peaproxy/index.html || fail "peaproxy page missing /v1/responses"
-grep -qE 'v0\.2\.5|v0\.2\.4|v0\.2\.3|v0\.2\.2|v0\.2\.1|v0\.2\.0|v0\.1\.0|peaproxy@main|OAuth is on|not this tag|lives on main' peaproxy/index.html && fail "peaproxy page still pins an old version or OAuth-on-main"
+grep -qE 'v0\.2\.7|v0\.2\.6|v0\.2\.5|v0\.2\.4|v0\.2\.3|v0\.2\.2|v0\.2\.1|v0\.2\.0|v0\.1\.0|peaproxy@main|OAuth is on|not this tag|lives on main' peaproxy/index.html && fail "peaproxy page still pins an old version or OAuth-on-main"
 grep -q 'href="/peaproxy"' index.html || fail "home nav missing PeaProxy"
-pass "peaproxy v0.2.6 facts"
+pass "peaproxy v0.2.8 facts"
 
 # ---- Wrangler / headers ----------------------------------------------------
 grep -q '"not_found_handling": "404-page"' wrangler.jsonc || fail "wrangler missing 404-page handling"
