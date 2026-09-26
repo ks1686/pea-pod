@@ -80,21 +80,22 @@ pass "genv v4 facts"
 
 # ---- PeaProxy facts --------------------------------------------------------
 # Pin to the newest ks1686/peaproxy release tag; bump version strings together.
-grep -q 'v1.2.0' peaproxy/index.html || fail "peaproxy page missing v1.2.0"
-grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v1.2.0' peaproxy/index.html || fail "peaproxy page missing go install @v1.2.0"
-grep -q 'peaproxy_1.2.0_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 1.2.0 tarball"
+grep -q 'v1.3.0' peaproxy/index.html || fail "peaproxy page missing v1.3.0"
+grep -q 'go install github.com/ks1686/peaproxy/cmd/peaproxy@v1.3.0' peaproxy/index.html || fail "peaproxy page missing go install @v1.3.0"
+grep -q 'peaproxy_1.3.0_linux_amd64.tar.gz' peaproxy/index.html || fail "peaproxy page missing linux 1.3.0 tarball"
 grep -q '127.0.0.1:8317' peaproxy/index.html || fail "peaproxy page missing localhost bind"
 grep -q 'PeaProxy authors are not liable' peaproxy/index.html || fail "peaproxy page missing OAuth liability line"
-grep -q 'v1.2.0 includes' peaproxy/index.html || fail "peaproxy page missing v1.2.0 includes OAuth status"
+grep -q 'v1.3.0 includes' peaproxy/index.html || fail "peaproxy page missing v1.3.0 includes OAuth status"
 grep -q '/v1/responses' peaproxy/index.html || fail "peaproxy page missing /v1/responses"
+grep -q 'passes tools through' peaproxy/index.html || fail "peaproxy page missing Codex tools pass-through"
 grep -q '/v1/images/generations' peaproxy/index.html || fail "peaproxy page missing /v1/images/generations"
 grep -q 'catalog' peaproxy/index.html || fail "peaproxy page missing catalog CLI"
 grep -q 'requests' peaproxy/index.html || fail "peaproxy page missing requests CLI"
 grep -q 'fill-first' peaproxy/index.html || fail "peaproxy page missing fill-first failover"
 grep -q 'sticky' peaproxy/index.html || fail "peaproxy page missing sticky failover"
-grep -qE 'v1\.1\.0|v1\.0\.0|v0\.2\.8|v0\.2\.7|v0\.2\.6|v0\.2\.5|v0\.2\.4|v0\.2\.3|v0\.2\.2|v0\.2\.1|v0\.2\.0|v0\.1\.0|peaproxy@main|OAuth is on|not this tag|lives on main' peaproxy/index.html && fail "peaproxy page still pins an old version or OAuth-on-main"
+grep -qE 'v1\.2\.0|v1\.1\.0|v1\.0\.0|v0\.2\.8|v0\.2\.7|v0\.2\.6|v0\.2\.5|v0\.2\.4|v0\.2\.3|v0\.2\.2|v0\.2\.1|v0\.2\.0|v0\.1\.0|peaproxy@main|OAuth is on|not this tag|lives on main' peaproxy/index.html && fail "peaproxy page still pins an old version or OAuth-on-main"
 grep -q 'href="/peaproxy"' index.html || fail "home nav missing PeaProxy"
-pass "peaproxy v1.2.0 facts"
+pass "peaproxy v1.3.0 facts"
 
 # ---- Wrangler / headers ----------------------------------------------------
 grep -q '"not_found_handling": "404-page"' wrangler.jsonc || fail "wrangler missing 404-page handling"
